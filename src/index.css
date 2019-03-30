@@ -12,3 +12,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face{
+  font-family: HelveticaNeueCyrLight;
+  src: url(./assets/fonts/HelveticaNeueCyr-Light.woff) format('woff');
+}
+
+@font-face{
+  font-family: HelveticaNeueCyrBlack;
+  src: url(./assets/fonts/HelveticaNeueCyr-Black.woff) format('woff');
+
+}
+@font-face{
+  font-family: HelveticaNeueCyrBold;
+  src: url(./assets/fonts/HelveticaNeueCyr-Bold.woff) format('woff');
+
+}
+
+@font-face{
+  font-family: HelveticaNeueCyrRoman;
+  src: url(./assets/fonts/HelveticaNeueCyr-Roman.woff) format('woff');
+
+}
