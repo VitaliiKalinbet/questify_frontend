@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../../components/Header/Header';
 
 class DashboardPage extends Component {
   state = {};
@@ -6,7 +7,7 @@ class DashboardPage extends Component {
   render() {
     return (
       <div>
-        <h2>DashboardPage</h2>
+        <Header />
       </div>
     );
   }
