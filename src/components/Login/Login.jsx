@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   login: ''
 };
 
-class SignIn extends Component {
+class Login extends Component {
   state = { ...INITIAL_STATE };
 
   reset = () => {
@@ -16,9 +16,10 @@ class SignIn extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    // alert('success');
     // const { signIn } = this.props;
     // signIn({ ...this.state });
-    // this.reset();
+    this.reset();
   };
 
   handleChange = e => {
@@ -29,27 +30,31 @@ class SignIn extends Component {
   };
 
   render() {
-    const input = SignInConfig.map(el => (
-      <label key={el.label} className={styles.label}>
-        {el.label}
+    const input = (
+      <label htmlFor="login" className={styles.login__label}>
+        Choose your name to sign up or log in
         <input
-          key={el.name}
-          className={styles.input}
+          className={styles.login__input}
           onChange={this.handleChange}
-          name={el.name}
-          type={el.type}
-          value={this.state[el.name]}
-          // autoComplete={el.autoComplete}
-          placeholder={el.placeholder}
+          name="login"
+          type="login"
+          value={this.state.login}
+          required="required"
+          minLength="5"
+          placeholder=""
         />
       </label>
-    ));
+    );
     return (
-      <div className={styles.auth_container}>
-        <form className={styles.auth_form} onSubmit={this.handleSubmit}>
+      <div className={styles.login_container}>
+        <h1 className={styles.logo}>Questify</h1>
+        <p className={styles.login__slogan}>
+          Questify will turn your life into a thrilling game full of amazing quests and exciting challenges.
+        </p>
+        <form className={styles.login_form} onSubmit={this.handleSubmit}>
           {input}
-          <button className={styles.button} type="submit">
-            Log in!
+          <button className={styles.login_button} type="submit">
+            go!
           </button>
         </form>
       </div>
@@ -57,4 +62,4 @@ class SignIn extends Component {
   }
 }
 
-export default withAuth(SignIn);
+export default Login;
