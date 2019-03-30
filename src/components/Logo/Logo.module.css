@@ -2,6 +2,16 @@
   font-weight: bold;
   color: #00d7ff;
   letter-spacing: 3px;
-  font-size: 21px;
-  font: 800 21px 'HelveticaNeueCyrRoman', sans-serif;
+  font: 800 15px 'HelveticaNeueCyrRoman', sans-serif;
 }
+
+  @media (min-width: 768px) {
+    .logo {
+      font: 800 20px 'HelveticaNeueCyrRoman', sans-serif;;
+    }
+  }
+  @media (min-width: 1920px) {
+    .logo {
+      font: 800 21px 'HelveticaNeueCyrRoman', sans-serif;
+    }
+  }
