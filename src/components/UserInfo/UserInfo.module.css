@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
 
 .circle {
@@ -14,7 +15,8 @@
   line-height: 35px;
   background-color: #6b788f;
   color: #fff;
-  border-radius: 50%
+  border-radius: 50%;
+
 }
 .name {
   font: 400 17px 'Helvetica Neue Cyr Bold', sans-serif;

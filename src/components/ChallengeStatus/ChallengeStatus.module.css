@@ -14,10 +14,10 @@
 .challendgeTrue {
   composes: challendge;
   background-color:#00d7ff;
-  background: url('./trophy/tT.png');
+  background: url('../../assets/images/trophy/trophyT.png');
 }
 
 .challendgeFalse {
   composes: challendge;
-  background: url('./trophy/tF.png');
+  background: url('../../assets/images/trophy/trophyF.png');
 }
