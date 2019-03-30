@@ -1,0 +1,11 @@
+.menuList {
+    display: grid;
+    list-style: none;
+    width: 100%;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 2fr));
+  }
+  .item {
+    width: 300px;
+    height: 400px;
+  }

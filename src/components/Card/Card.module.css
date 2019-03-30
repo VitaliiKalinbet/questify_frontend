@@ -1,0 +1,133 @@
+.card {
+    position: relative;
+    width: 284px;
+    height: 264px;
+    border-radius: 11px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+    margin-left: 50px;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-family: HelveticaNeueCyrBold Arial, sans-serif;
+    color: #282828;
+    margin: 0 0 8px;
+    width: 250px;
+    text-align: center;
+    font-size: 23px;
+    line-height: 28px;
+}
+
+.date {
+    font-family: HelveticaNeueCyrRoman Arial, sans-serif;
+    color: #b9c3c8;
+    margin: 0;
+    text-align: center;
+    font-size: 15px;
+}
+
+.nameInput {
+    color: #00d7ff;
+    outline: none;
+    border: none;
+    width: 230px;
+    border-bottom: 1px solid #00d7ff;
+    font-size: 20px;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    width: 27px;
+    height: 27px;
+    background-position: center;
+    background-size: contain;
+}
+
+.btnEdit {
+    composes: btn;
+    background-image: url('../../assets/images/icons/save/outline-save-24px.svg');
+}
+
+.btnDelete {
+    composes: btn;
+    background-image: url('../../assets/images/icons/delete/baseline-close-24px.svg');
+}
+
+.btnComplete {
+    composes: btn;
+    background-image: url('../../assets/images/icons/done/baseline-done-24px.svg');
+}
+
+.btnStart {
+    cursor: pointer;
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    text-transform: uppercase;
+    color: #12964a;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.createTitle {
+    margin: 0;
+    font-size: 14px;
+    font-family: HelveticaNeueCyrRoman Arial, sans-serif;
+    color: #b9c3c8;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btnList {
+    display: flex;
+    justify-content: space-between;
+    width: 90px;
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.btnItem:first-child {
+    border-right: 1px solid #000000;
+    padding-right: 10px;
+}
+
+.buttonStar {
+    width: 25px;
+    height: 25px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: inherit;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    outline: none;
+    cursor: pointer;
+}
+
+.buttonStarNotActive {
+    composes: buttonStar;
+    background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg');
+}
+
+.buttonStarActive {
+    composes: buttonStar;
+    background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-active.svg');
+}
