@@ -16,16 +16,25 @@
   margin-right: 10px;
 }
 
-.difficulties:nth-child(1):before {
-  background: rgb(14, 214, 255);
+.difficultyLink::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.difficulties:nth-child(2):before {
-  background: rgb(31, 215, 5);
+.Normal:before {
+  background-color: #1fd705;
 }
 
-.difficulties:nth-child(3):before {
-  background: rgb(237, 3, 56);
+.Easy:before {
+  background-color: #0ed6ff;
+}
+
+.Hard:before {
+  background-color: #ed0338;
 }
 
 .groups {
@@ -33,11 +42,11 @@
 }
 
 .quest {
-  background: white;
+  background: #ffffff;
 }
 
 .challenge {
-  background: rgb(63, 78, 109);
+  background: #3f4e6d;
 }
 
 .quest li {

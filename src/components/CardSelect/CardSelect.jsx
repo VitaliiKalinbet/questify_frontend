@@ -5,16 +5,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './CardSelect.module.css';
 
-const CardSelect = ({ items, groups, selected, onClick, isQuest }) => {
-  return (
+const CardSelect = ({ items, isGroup, selected, onClick, isQuest, isSelectorOpen }) => {
+  return isSelectorOpen ? (
     <ul className={isQuest ? `${s.quest} ${s.selectList}` : `${s.challenge} ${s.selectList}`}>
       {items.length > 0 ? (
         items.map(item => (
-          <li className={!groups ? `${s.difficulties}` : `${s.groups}`} key={item}>
+          <li className={!isGroup ? `${s.difficulties} ${s[item]}` : `${s.groups}`} key={item}>
             <a
-              className={item === selected ? `${s.previouslySelected}` : undefined}
-              data-value={item}
-              onClick={() => onClick(item, groups)}
+              className={item === selected ? `${s.previouslySelected}}` : undefined}
+              onClick={() => onClick(item, isGroup)}
             >
               {item}
             </a>
@@ -24,15 +23,23 @@ const CardSelect = ({ items, groups, selected, onClick, isQuest }) => {
         <span>There is something wrong with a backend</span>
       )}
     </ul>
+  ) : (
+    <a
+      className={`${s.previouslySelected} ${s.difficultyLink} ${s[selected]}`}
+      onClick={() => onClick(selected, isGroup)}
+    >
+      {selected}
+    </a>
   );
 };
 
 CardSelect.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  groups: PropTypes.bool.isRequired,
+  isGroup: PropTypes.bool.isRequired,
   selected: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  isQuest: PropTypes.bool.isRequired
+  isQuest: PropTypes.bool.isRequired,
+  isSelectorOpen: PropTypes.bool.isRequired
 };
 
 export default CardSelect;

@@ -3,27 +3,20 @@ import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 import CardView from './CardView';
 
-// { isQuest: true,
-//   _id: 5c9d9fa51f9b5b1fb73691a2,
-//   name: 'Create your first quest',
-//   group: 'Learning',
-//   difficulty: 'Normal',
-//   dueData: 124,
-//   done: false,
-//   updatedAt: 2019-03-29T10:12:08.484Z,
-//   createdAt: 2019-03-29T10:12:08.484Z },
-
 class CardContainer extends Component {
   state = {
     name: '',
-    difficulty: '',
-    group: '',
+    difficulty: 'Normal',
+    group: 'Stuff',
+    date: null,
     createMode: false,
     editMode: false,
     completeModal: false,
     deleteQuestModal: false,
     agreedDeleting: false,
-    isStarActive: false
+    isStarActive: false,
+    isSelectorDifficultiesOpen: false,
+    isSelectorGroupsOpen: false
   };
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
@@ -75,11 +68,14 @@ class CardContainer extends Component {
     }));
   };
 
-  handleSaveSelectedItemDifficulties = (item, dest) => {
-    if (dest) {
-      this.setState({ group: item });
+  handleSaveSelectedItem = (item, group) => {
+    if (group) {
+      this.setState(prevState => ({ group: item, isSelectorGroupsOpen: !prevState.isSelectorGroupsOpen }));
     } else {
-      this.setState({ difficulty: item });
+      this.setState(prevState => ({
+        difficulty: item,
+        isSelectorDifficultiesOpen: !prevState.isSelectorDifficultiesOpen
+      }));
     }
   };
 
@@ -95,7 +91,7 @@ class CardContainer extends Component {
         onChange={this.handleChange}
         onStarClick={this.handleStarClick}
         onCreateCard={this.handleCreateCard}
-        onSaveSelectedItemDifficulties={this.handleSaveSelectedItemDifficulties}
+        onSaveSelectedItem={this.handleSaveSelectedItem}
         onHideCompletedModal={this.hideCompletedModal}
         showDelQuestModal={this.showDeleteQuestModal}
         onAgreedDel={this.handleAgreedDeleting}
