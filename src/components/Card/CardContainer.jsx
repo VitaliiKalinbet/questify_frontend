@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 import CardView from './CardView';
+
+// { isQuest: true,
+//   _id: 5c9d9fa51f9b5b1fb73691a2,
+//   name: 'Create your first quest',
+//   group: 'Learning',
+//   difficulty: 'Normal',
+//   dueData: 124,
+//   done: false,
+//   updatedAt: 2019-03-29T10:12:08.484Z,
+//   createdAt: 2019-03-29T10:12:08.484Z },
 
 class CardContainer extends Component {
   state = {
     name: '',
     difficulty: null,
     group: null,
+    createMode: false,
     editMode: false,
     completeModal: false,
     deleteQuestModal: false,
-    agreedDeleting: false
+    agreedDeleting: false,
+    isStarActive: false
   };
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
@@ -55,10 +68,32 @@ class CardContainer extends Component {
     showCompletedModal();
   };
 
+  handleStarClick = () => {
+    this.setState(prevState => ({
+      isStarActive: !prevState.isStarActive
+    }));
+  };
+
   render() {
-    return <CardView {...this.state} onChange={this.handleChange} />;
+    const { mode } = this.props;
+    const { isStarActive } = this.state;
+    return mode === 'render' ? (
+      <CardView {...this.props} isStarActive={isStarActive} mode={mode} onStarClick={this.handleStarClick} />
+    ) : (
+      <CardView {...this.state} mode={mode} onChange={this.handleChange} onCreateCard={this.handleCreateCard} />
+    );
   }
 }
+
+CardContainer.propTypes = {
+  _id: PropTypes.string,
+  mode: PropTypes.string
+};
+
+CardContainer.defaultProps = {
+  _id: '',
+  mode: ''
+};
 
 export default CardContainer;
 
