@@ -87,6 +87,7 @@
   color:#ffffff;
   background-color: #ff851c;
   border: 0;
+  outline: none;
   border-radius: 50%;
   box-shadow: 0px 8px 20px 0px rgba(255, 127, 27, 0.35);
     }
