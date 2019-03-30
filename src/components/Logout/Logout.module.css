@@ -10,7 +10,7 @@ button {
   text-align: center;
   padding: 0;
   border-radius: 50%;
-  background: url('./logout/logout.png');
+  background: url('../../assets/images/logout/logout.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
