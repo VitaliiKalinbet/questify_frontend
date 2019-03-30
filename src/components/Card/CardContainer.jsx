@@ -16,8 +16,8 @@ import CardView from './CardView';
 class CardContainer extends Component {
   state = {
     name: '',
-    difficulty: null,
-    group: null,
+    difficulty: '',
+    group: '',
     createMode: false,
     editMode: false,
     completeModal: false,
@@ -74,13 +74,28 @@ class CardContainer extends Component {
     }));
   };
 
+  handleSaveSelectedItemDifficulties = (item, dest) => {
+    if (dest) {
+      this.setState({ group: item });
+    } else {
+      this.setState({ difficulty: item });
+    }
+  };
+
   render() {
     const { mode } = this.props;
     const { isStarActive } = this.state;
     return mode === 'render' ? (
       <CardView {...this.props} isStarActive={isStarActive} mode={mode} onStarClick={this.handleStarClick} />
     ) : (
-      <CardView {...this.state} mode={mode} onChange={this.handleChange} onCreateCard={this.handleCreateCard} />
+      <CardView
+        {...this.state}
+        mode={mode}
+        onChange={this.handleChange}
+        onStarClick={this.handleStarClick}
+        onCreateCard={this.handleCreateCard}
+        onSaveSelectedItemDifficulties={this.handleSaveSelectedItemDifficulties}
+      />
     );
   }
 }

@@ -11,7 +11,11 @@ const CardSelect = ({ items, groups, selected, onClick, isQuest }) => {
       {items.length > 0 ? (
         items.map(item => (
           <li className={!groups ? `${s.difficulties}` : `${s.groups}`} key={item}>
-            <a className={item === selected ? `${s.previouslySelected}` : undefined} onClick={onClick}>
+            <a
+              className={item === selected ? `${s.previouslySelected}` : undefined}
+              data-value={item}
+              onClick={() => onClick(item, groups)}
+            >
               {item}
             </a>
           </li>

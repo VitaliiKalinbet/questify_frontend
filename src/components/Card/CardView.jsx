@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Card.module.css';
+import CardSelect from '../CardSelect/CardSelect';
+
+const arrDifficulties = ['Easy', 'Normal', 'Hard'];
+
 // components
 // import CompletedModal from '../CompletedModal/CompletedModal';
 // import DeleteQuestModal from '../DeleteQuestModal/DeleteQuestModal';
@@ -8,7 +12,16 @@ import s from './Card.module.css';
 // { name, difficulty, group, editMode, completeModal, deleteQuestModal, agreedDeleting }
 /* group, difficulty, dueData, done, updatedAt, _id */
 
-const CardView = ({ mode, isQuest, name, createdAt, onChange, isStarActive, onStarClick }) => {
+const CardView = ({
+  mode,
+  isQuest,
+  name,
+  createdAt,
+  onChange,
+  isStarActive,
+  onStarClick,
+  onSaveSelectedItemDifficulties
+}) => {
   if (mode === 'render') {
     if (isQuest) {
       // for render Quest by props
@@ -47,6 +60,17 @@ const CardView = ({ mode, isQuest, name, createdAt, onChange, isStarActive, onSt
     if (isQuest) {
       return (
         <div className={s.card}>
+          <CardSelect
+            isQuest={isQuest}
+            onClick={onSaveSelectedItemDifficulties}
+            items={arrDifficulties}
+            selected="Normal"
+          />
+          <button
+            className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
+            type="button"
+            onClick={onStarClick}
+          />
           <div className={s.box}>
             <h2 className={s.createTitle}>Create new quest</h2>
             <input className={s.nameInput} type="text" name="name" value={name} onChange={onChange} />
@@ -76,7 +100,8 @@ CardView.propTypes = {
   createdAt: PropTypes.string,
   onChange: PropTypes.func,
   isStarActive: PropTypes.bool,
-  onStarClick: PropTypes.func
+  onStarClick: PropTypes.func,
+  onSaveSelectedItemDifficulties: PropTypes.func
 };
 
 CardView.defaultProps = {
@@ -86,7 +111,8 @@ CardView.defaultProps = {
   createdAt: '',
   onChange: () => null,
   isStarActive: false,
-  onStarClick: () => null
+  onStarClick: () => null,
+  onSaveSelectedItemDifficulties: () => null
 };
 
 export default CardView;
