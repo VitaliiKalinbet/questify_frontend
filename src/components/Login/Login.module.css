@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 246px 0px 226px  280px;
   max-width: 1920px;
+  background-image: url("../../assets/images/login_page_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .logo{
@@ -64,8 +67,7 @@
 }
 .login__input:focus{
   outline: none;
-  /* color:#00d8ff; */
-}
+ }
 
 .login_button{
   margin: 0;
