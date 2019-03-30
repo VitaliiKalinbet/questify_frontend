@@ -1,6 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
+import { asyncOperetion } from '../../redux/user';
 import styles from './Login.module.css';
 
 const INITIAL_STATE = {
@@ -16,8 +19,9 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // const { signIn } = this.props;
-    // signIn({ ...this.state });
+    const { userLogin } = this.props;
+    const { nickName } = this.state;
+    userLogin(nickName);
     this.reset();
   };
 
@@ -61,4 +65,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  userLogin: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = {
+  userLogin: asyncOperetion.loginUser
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
