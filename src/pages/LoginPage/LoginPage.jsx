@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from '../../components/Card/CardContainer';
 
 class LoginPage extends Component {
   state = {};
@@ -7,6 +8,7 @@ class LoginPage extends Component {
     return (
       <div>
         <h2>LoginPage</h2>
+        <Card />
       </div>
     );
   }
