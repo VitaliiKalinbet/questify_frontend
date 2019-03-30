@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './ChallengeStatus.module.css';
 
 const ChallengeStatus = ({ challengeSendToUser }) => (
-  <div className={challengeSendToUser ? styles.challendgeTrue : styles.challendgeFalse} />
+  <div>
+    <svg
+      className={challengeSendToUser ? styles.challendgeTrue : styles.challendgeFalse}
+      width="20px"
+      height="20px"
+      viewbox="0 0 20 20"
+    />
+  </div>
 );
 
 ChallengeStatus.propTypes = {
