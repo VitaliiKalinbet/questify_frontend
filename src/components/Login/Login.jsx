@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import styles from './Login.module.css';
 
 const INITIAL_STATE = {
-  login: ''
+  nickName: ''
 };
 
 class Login extends Component {
@@ -30,14 +30,14 @@ class Login extends Component {
 
   render() {
     const input = (
-      <label htmlFor="login" className={styles.login__label}>
+      <label htmlFor="nickName" className={styles.login__label}>
         Choose your name to sign up or log in
         <input
           className={styles.login__input}
           onChange={this.handleChange}
-          name="login"
-          type="login"
-          value={this.state.login}
+          name="nickName"
+          type="nickName"
+          value={this.state.nickName}
           required="required"
           minLength="5"
           placeholder=""
