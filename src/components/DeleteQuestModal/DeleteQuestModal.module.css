@@ -1,0 +1,72 @@
+.wrapper {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  /* width: 100%;
+  height: 100%; */
+
+  width: 313px;
+  height: 293px;
+  border-radius: 11px;
+  background-color: rgba(21, 57, 90, 0.3);
+  z-index: 1999;
+}
+
+.body{
+  position: absolute;
+  top: 37%;
+  left:9%;
+  box-sizing: border-box;
+  width: 250px;
+  height: 145px;
+  padding-top: 30px;
+  background: white;
+  border-radius: 11px;
+  text-align: center;
+  font: 400 14px 'HelveticaNeueCyrBlack', sans-serif;
+  letter-spacing: 0.9px;
+}
+.text{
+  margin-bottom: 18px;
+}
+
+.button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "HelveticaNeueCyrBlack", sans-serif;
+}
+
+.button:focus, .button:hover, .button:active {
+  outline: none;
+  cursor: pointer;
+}
+
+.buttonDelete{
+  composes:button;
+  color:#db0938;
+
+}
+
+.buttonCancel{
+  composes: button;
+  color: #24d40c;
+  margin-right: 36px;
+}
+
+.buttonCancel::after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  right: -16px;
+  bottom: -4px;
+  width: 1px;
+  height: 23px;
+  background: #b9c3c8;
+}
+
