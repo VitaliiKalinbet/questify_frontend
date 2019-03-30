@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Header from '../../components/Header/Header';
 
 class DashboardPage extends Component {
   state = {};
 
   render() {
-    return <div>DashboardPage</div>;
+    return (
+      <div>
+        <Header />
+      </div>
+    );
   }
 }
 
