@@ -1,10 +1,10 @@
-ul {
-    display: block;
-    width: 130px;
-    list-style-type: none;
-    border-radius: 12px;
-    padding: 10px;
-    margin: 0;
+.selectList {
+  display: block;
+  width: 130px;
+  list-style-type: none;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 0;
 }
 
 .difficulties:before {
@@ -17,27 +17,27 @@ ul {
 }
 
 .difficulties:nth-child(1):before {
-    background: rgb(14, 214, 255);
-  }
+  background: rgb(14, 214, 255);
+}
 
 .difficulties:nth-child(2):before {
-    background: rgb(31, 215, 5);
-  }
+  background: rgb(31, 215, 5);
+}
 
 .difficulties:nth-child(3):before {
-    background: rgb(237, 3, 56);
-  }
+  background: rgb(237, 3, 56);
+}
 
 .groups {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .quest {
-    background: white;
+  background: white;
 }
 
 .challenge {
-    background: rgb(63, 78, 109);
+  background: rgb(63, 78, 109);
 }
 
 .quest li {
@@ -46,14 +46,14 @@ ul {
 }
 
 .quest .previouslySelected {
-    color: #000000;
+  color: #000000;
 }
 
 .challenge li {
-    cursor: pointer;
-    color: #999999;
+  cursor: pointer;
+  color: #999999;
 }
 
 .challenge .previouslySelected {
-    color: #ffffff;
+  color: #ffffff;
 }

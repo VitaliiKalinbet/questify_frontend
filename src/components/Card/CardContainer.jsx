@@ -50,22 +50,23 @@ class CardContainer extends Component {
 
   handleDeleteCard = () => {
     // this.props.deleteCard(id);
+    this.hideDeleteQuestModal();
   };
 
   handleAgreedDeleting = () => {
     this.setState({ agreedDeleting: true });
-    handleDeleteCard();
+    this.handleDeleteCard();
   };
 
   handleCancelDeleting = () => {
-    this.setState({ agreedDeleting: false });
-    hideDeleteQuestModal();
+    // this.setState({ agreedDeleting: false });
+    this.hideDeleteQuestModal();
   };
 
   handleCreateCard = e => {
     e.preventDefault();
     // this.props.createCard({...this.state, Date.now, ....})
-    showCompletedModal();
+    this.showCompletedModal();
   };
 
   handleStarClick = () => {
@@ -95,6 +96,10 @@ class CardContainer extends Component {
         onStarClick={this.handleStarClick}
         onCreateCard={this.handleCreateCard}
         onSaveSelectedItemDifficulties={this.handleSaveSelectedItemDifficulties}
+        onHideCompletedModal={this.hideCompletedModal}
+        showDelQuestModal={this.showDeleteQuestModal}
+        onAgreedDel={this.handleAgreedDeleting}
+        onCancelDel={this.handleCancelDeleting}
       />
     );
   }

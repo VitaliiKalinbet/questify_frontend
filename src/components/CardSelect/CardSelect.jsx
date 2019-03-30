@@ -7,7 +7,7 @@ import s from './CardSelect.module.css';
 
 const CardSelect = ({ items, groups, selected, onClick, isQuest }) => {
   return (
-    <ul className={isQuest ? `${s.quest}` : `${s.challenge}`}>
+    <ul className={isQuest ? `${s.quest} ${s.selectList}` : `${s.challenge} ${s.selectList}`}>
       {items.length > 0 ? (
         items.map(item => (
           <li className={!groups ? `${s.difficulties}` : `${s.groups}`} key={item}>
