@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 // тут импортируете все редюсеры
-import { buttonReducer } from '../createQuestButtonReducer';
+import { buttonReducer } from '../createQuestButtonReducerTest';
 
 const rootReducer = combineReducers({
   createNewQuest: buttonReducer
