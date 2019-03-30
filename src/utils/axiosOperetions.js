@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'https://questify.vbguard.dev/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 export const userLogin = async user => {
   try {
-    const response = await axios.post('/api/login', user);
+    const response = await axios.post('/api/login', {nickname: user});
     return response.data;
   } catch (error) {
     return error;
