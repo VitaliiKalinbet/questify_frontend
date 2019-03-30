@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
+import Bat from './CreateQuestButton/CreateQuestButton';
 
 class App extends Component {
   state = {};
@@ -10,6 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Bat />
         <Router>
           <Route exact path="/" component={LoginPage} />
           <Route path="/dashboard" component={DashboardPage} />

@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Button from './Button';
-import { asyncOperetion } from '../../redux/createQuestButtonReducerTest';
+import { asyncOperetion } from '../../redux/user';
 import s from './CreateQuestButton.module.css';
 
 class createQuestButton extends Component {
   buttonClick = () => {
     const { createQuest } = this.props;
-    createQuest();
+    createQuest('red');
   };
 
   render() {
@@ -26,7 +26,7 @@ createQuestButton.defaultProps = {
 };
 
 const mapDispatchToProps = {
-  createQuest: asyncOperetion.createQuest
+  createQuest: asyncOperetion.loginUser
 };
 
 export default connect(
