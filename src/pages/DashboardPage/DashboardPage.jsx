@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import TodayList from '../../components/Lists/TodayList/TodayList';
+import TomorrowList from '../../components/Lists/TomorrowList/TomorrowList';
+import DoneList from '../../components/Lists/DoneList/DoneList';
+import Header from '../../components/Header/Header';
 
 class DashboardPage extends Component {
   state = {};
@@ -6,7 +10,10 @@ class DashboardPage extends Component {
   render() {
     return (
       <div>
-        <h2>DashboardPage</h2>
+        <Header />
+        <TodayList />
+        <TomorrowList />
+        <DoneList />
       </div>
     );
   }

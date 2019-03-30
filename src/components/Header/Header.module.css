@@ -1,0 +1,32 @@
+.container {
+ background-color: #15395a;
+}
+
+.header {
+  width: 284px;
+  margin: 0 auto;
+  font-family: 'Helvetica Neue Cyr Roman Bold';
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .header {
+    width: 710px;
+    height: 80px;
+  }
+}
+@media (min-width: 1920px) {
+  .header {
+    width: 1736px;
+    height: 90px;
+  }
+}

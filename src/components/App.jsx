@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
-import Bat from './CreateQuestButton/CreateQuestButton';
+// for test
 
 class App extends Component {
   state = {};
