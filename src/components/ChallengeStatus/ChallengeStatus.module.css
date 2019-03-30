@@ -1,0 +1,35 @@
+.challendge {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-right: 20px;
+
+}
+
+.challendgeTrue {
+  composes: challendge;
+  background-color:#00d7ff;
+  background: url('../../assets/images/trophy/trophyT.png');
+}
+
+.challendgeFalse {
+  composes: challendge;
+  background: url('../../assets/images/trophy/trophyF.png');
+  background-color:#3e4e6c;
+}
+
+@media (min-width: 768px) {
+  .challendge{margin-right: 30px;
+  }
+}
+@media (min-width: 1920px) {
+  .challendge{margin-right: 35px;
+  }
+}
