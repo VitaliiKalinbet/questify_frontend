@@ -9,6 +9,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  margin-right: 10px;
+
 }
 
 .challendgeTrue {
@@ -20,4 +22,5 @@
 .challendgeFalse {
   composes: challendge;
   background: url('../../assets/images/trophy/trophyF.png');
+  background-color:#3e4e6c;
 }
