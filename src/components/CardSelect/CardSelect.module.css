@@ -1,0 +1,59 @@
+ul {
+    display: block;
+    width: 130px;
+    list-style-type: none;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 0;
+}
+
+.difficulties:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.difficulties:nth-child(1):before {
+    background: rgb(14, 214, 255);
+  }
+
+.difficulties:nth-child(2):before {
+    background: rgb(31, 215, 5);
+  }
+
+.difficulties:nth-child(3):before {
+    background: rgb(237, 3, 56);
+  }
+
+.groups {
+    text-transform: uppercase;
+}
+
+.quest {
+    background: white;
+}
+
+.challenge {
+    background: rgb(63, 78, 109);
+}
+
+.quest li {
+  cursor: pointer;
+  color: #555555;
+}
+
+.quest .previouslySelected {
+    color: #000000;
+}
+
+.challenge li {
+    cursor: pointer;
+    color: #999999;
+}
+
+.challenge .previouslySelected {
+    color: #ffffff;
+}
