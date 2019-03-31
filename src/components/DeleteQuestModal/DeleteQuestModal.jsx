@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Modal from './modalDelet';
 
@@ -12,8 +13,19 @@ class DeleteQuestModal extends Component {
   };
 
   render() {
-    return <Modal clickCancel={this.clickCancel} clickDelete={this.clickDelete} {...this.props} />;
+    const { onCancelDel, onAgreedDel } = this.props;
+    return <Modal clickCancel={onCancelDel} clickDelete={onAgreedDel} {...this.props} />;
   }
 }
+
+DeleteQuestModal.propTypes = {
+  onCancelDel: PropTypes.func,
+  onAgreedDel: PropTypes.func
+};
+
+DeleteQuestModal.defaultProps = {
+  onCancelDel: () => null,
+  onAgreedDel: () => null
+};
 
 export default DeleteQuestModal;

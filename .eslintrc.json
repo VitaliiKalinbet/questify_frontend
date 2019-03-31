@@ -12,6 +12,7 @@
     ],
     "parser": "babel-eslint",
     "rules": {
+      "import/named": "off",
       "no-undef": "off",
       "no-use-before-define": "off",
       "react/jsx-filename-extension": "off",

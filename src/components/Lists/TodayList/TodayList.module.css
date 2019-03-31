@@ -1,14 +1,13 @@
  .menuList {
-    display: grid;
-    list-style: none;
-    max-width: 1910px;
-    width: 100%;
-    padding: 73px 90px ;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit,minmax(283px, 1fr));
-    
-  }
-  .item {
-    width: 314px;
-    height: 289px;
-  }
+   display: grid;
+   list-style: none;
+   max-width: 1910px;
+   padding: 73px 90px;
+   grid-gap: 10px;
+   grid-template-columns: repeat(auto-fit, minmax(283px, 1fr));
+ }
+
+ .item {
+   width: 314px;
+   height: 289px;
+ }
