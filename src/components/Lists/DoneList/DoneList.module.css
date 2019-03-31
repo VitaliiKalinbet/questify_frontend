@@ -1,0 +1,40 @@
+.menu {
+    width: 1736;
+  }
+.menuList {
+    display: grid;
+    list-style: none;
+    max-width: 1736px;
+    width: 100%;
+    padding: 73px 90px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit,minmax(283px, 1fr));
+  }
+.btnOpen {
+    background-position: center;
+    background-size: contain;
+    background-color: inherit;
+    cursor: pointer;
+    background-image: url('../../../assets/images/icons/done-icon/open-btn.png');
+}
+.btnHide{
+    background-position: center;
+    background-size: contain;
+    background-color: inherit;
+    cursor: pointer;
+    background-image: url('../../../assets/images/icons/done-icon/hide-btn.png'); 
+}
+.doneHeader{
+    display: flex;
+   align-items: center;
+   justify-content: space-between;
+   line-height: 60px;
+   
+}
+.icon{
+    background-color: inherit;
+    width: 1500px;
+    height: 1px;
+    line-height: 20px;
+    background-image: url('../../../assets/images/icons/done-icon/figura-for-done.png');   
+}

@@ -1,14 +1,92 @@
+.listsWrapper{
+  margin-top: 200px;
+}
+.menu {
+  max-width: 320px;
+  width: 100%;
+}
+
 .menuList {
-    display: grid;
-    list-style: none;
-    max-width: 1910px;
-    width: 100%;
-    padding: 73px 90px ;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit,minmax(283px, 1fr));
-    
-  }
-  .item {
-    width: 314px;
-    height: 289px;
-  }
+   display: grid;
+   list-style: none;
+   padding: 0;
+   grid-row-gap: 15px;
+   grid-template-columns: 284px;
+ }
+ .item {
+   background-color: red;
+ }
+ .buttonHide{
+   background-position: center;
+   background-size: contain;
+   background-color: inherit;
+   background-image: url('../../../assets/images/icons/done-icon/hide-btn.png');
+}
+@media (min-width: 740px){
+ .menu {
+   width: 608px;
+ }
+ .menuList {
+   display: grid;
+   list-style: none;
+   padding: 0;
+   grid-column-gap: 40px;
+   grid-row-gap: 24px;
+   grid-template-columns: 284px 284px;
+ }
+}
+
+.btnOpen {
+  background-position: center;
+  background-size: contain;
+  background-color: inherit;
+  cursor: pointer;
+  background-image: url('../../../assets/images/icons/done-icon/open-btn.png');
+}
+.btnHide{
+  background-position: center;
+  background-size: contain;
+  background-color: inherit;
+  cursor: pointer;
+  background-image: url('../../../assets/images/icons/done-icon/hide-btn.png'); 
+}
+.doneHeader{
+  display: flex;
+ align-items: center;
+ justify-content: space-between;
+ line-height: 60px;
+ 
+}
+.icon{
+  background-color: inherit;
+  width: 1500px;
+  height: 1px;
+  line-height: 20px;
+  background-image: url('../../../assets/images/icons/done-icon/figura-for-done.png');   
+}
+
+@media (min-width: 940px){
+ .menu{
+   width: 934px;
+ }
+ .menuList {
+   display: grid;
+   list-style: none;
+   padding: 0;
+   grid-column-gap: 42px;
+   grid-row-gap: 22px;
+   grid-template-columns: 284px 284px 284px;
+ }
+}
+
+@media (min-width: 1120px) {
+ .menuList {
+   grid-template-columns: 314px 314px 314px 314px;
+ }
+}
+
+@media (min-width: 1920px) {
+ .menuList {
+   grid-template-columns: 314px 314px 314px 314px 314px;
+ }
+}

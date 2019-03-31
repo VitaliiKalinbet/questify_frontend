@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Cart = () => (
-  <div width={320} height={240}>
+  <div>
     <h2 className="name">Name</h2>
     <p className="group">Group</p>
     <p className="difficulty">difficulty</p>

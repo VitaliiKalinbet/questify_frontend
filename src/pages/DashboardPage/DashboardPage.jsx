@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import TodayList from '../../components/Lists/TodayList/TodayList';
-import TomorrowList from '../../components/Lists/TomorrowList/TomorrowList';
-import DoneList from '../../components/Lists/DoneList/DoneList';
+import CreateTaskList from '../../components/Lists/TaskList/CreateTaskList';
 import Header from '../../components/Header/Header';
 
 class DashboardPage extends Component {
@@ -11,9 +9,7 @@ class DashboardPage extends Component {
     return (
       <div>
         <Header />
-        <TodayList />
-        <TomorrowList />
-        <DoneList />
+        <CreateTaskList />
       </div>
     );
   }
