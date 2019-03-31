@@ -7,25 +7,31 @@ import s from './CardSelect.module.css';
 
 const CardSelect = ({ items, isGroup, selected, onClick, isQuest, isSelectorOpen }) => {
   return isSelectorOpen ? (
-    <ul className={isQuest ? `${s.quest} ${s.selectList}` : `${s.challenge} ${s.selectList}`}>
-      {items.length > 0 ? (
-        items.map(item => (
-          <li className={!isGroup ? `${s.difficulties} ${s[item]}` : `${s.groups}`} key={item}>
-            <a
-              className={item === selected ? `${s.previouslySelected}}` : undefined}
-              onClick={() => onClick(item, isGroup)}
-            >
-              {item}
-            </a>
-          </li>
-        ))
-      ) : (
-        <span>There is something wrong with a backend</span>
-      )}
-    </ul>
+    <div className={isGroup ? `${s.groupsOpen} ${s[item]}` : `${s.difficultiesOpen}`}>
+      <ul className={isQuest ? `${s.quest} ${s.selectList}` : `${s.challenge} ${s.selectList}`}>
+        {items.length > 0 ? (
+          items.map(item => (
+            <li className={!isGroup ? `${s.difficulties} ${s[item]}` : `${s.groups}`} key={item}>
+              <a
+                className={item === selected ? `${s.previouslySelected}` : undefined}
+                onClick={() => onClick(item, isGroup)}
+              >
+                {item}
+              </a>
+            </li>
+          ))
+        ) : (
+          <span>There is something wrong with a backend</span>
+        )}
+      </ul>
+    </div>
   ) : (
     <a
-      className={`${s.previouslySelected} ${s.difficultyLink} ${s[selected]}`}
+      className={
+        isGroup
+          ? `${s.previouslySelected} ${s[selected]} ${s.groupClosed}`
+          : `${s.previouslySelected} ${s.difficultyLink} ${s[selected]} ${s.difficultyClosed}`
+      }
       onClick={() => onClick(selected, isGroup)}
     >
       {selected}

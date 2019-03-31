@@ -5,7 +5,71 @@
   border-radius: 12px;
   padding: 10px;
   margin: 0;
+  position: absolute;
+  /* top: 20px;
+  left: 10px; */
 }
+
+.groupClosed {
+  position: absolute;
+  top: 210px;
+  left: 10px;
+  text-transform: uppercase;
+  background: red;
+  border-radius: 10px;
+  display: block;
+  width: 100px;
+  height: 25px;
+  /* margin-left: -50px; */
+  /* box-shadow: -10px 0px 0px 0px; */
+  border-radius: 0px 60px 60px 0px;
+}
+
+.groupsOpen {
+    position: absolute;
+    top: 200px;
+    left: 0px;
+}
+
+.difficultyClosed {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+}
+
+.difficultiesOpen {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+/* Work {
+  background-color: #d3f6ce;
+}
+
+Family {
+  background-color: #fee6d5;
+}
+
+Health {
+  background-color: #ccf7ff;
+}
+
+Learning {
+  background-color: #fcf2b7;
+}
+
+Stuff {
+  box-shadow: -10px 0px 0px 0px red;
+  background-color: red;
+  /* eceff1 */
+/* } */ 
+
+/* .previouslySelected {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+} */
 
 .difficulties:before {
   content: '';
