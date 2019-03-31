@@ -59,6 +59,14 @@ const CardView = ({
       // for render Quest by props
       return (
         <div className={s.card}>
+          <CardSelect
+            isGroup={false}
+            isSelectorOpen={isSelectorDifficultiesOpen}
+            isQuest={isQuest}
+            onClick={onSaveSelectedItem}
+            items={DIFFICULTIES}
+            selected={difficulty}
+          />
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
             type="button"
@@ -75,6 +83,14 @@ const CardView = ({
               readOnly
             /> */}
             <p className={s.date}>{GetDate(date)}</p>
+            <CardSelect
+              isGroup
+              isSelectorOpen={isSelectorGroupsOpen}
+              isQuest={isQuest}
+              onClick={onSaveSelectedItem}
+              items={GROUPS}
+              selected={group}
+            />
           </div>
           {/* <button className={s.btnEdit} type="button" />
           <button className={s.btnDelete} type="button" />
@@ -107,7 +123,7 @@ const CardView = ({
   if (mode === 'add') {
     if (isQuest) {
       return (
-        <div className={s.card}>
+        <div className={`${s.card} ${s.addMode}`}>
           <CardSelect
             isGroup={false}
             isSelectorOpen={isSelectorDifficultiesOpen}

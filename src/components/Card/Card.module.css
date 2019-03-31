@@ -1,4 +1,5 @@
 .card {
+    padding: 25px;
     position: relative;
     z-index: 0;
     width: 284px;
@@ -7,6 +8,10 @@
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
     margin-left: 50px;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-radius: 11px;
 }
 
 .box {
@@ -134,4 +139,12 @@
 .buttonStarActive {
     composes: buttonStar;
     background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-active.svg');
+}
+
+.addMode:hover {
+    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+    border-width: 1px;
+    border-color: rgb(0, 215, 255);
+    border-style: solid;
+    border-radius: 11px;
 }
