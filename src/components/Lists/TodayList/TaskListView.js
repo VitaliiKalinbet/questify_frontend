@@ -1,9 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 import Cart from './Cart';
-import s from './TodayList.module.css';
+import s from './TaskList.modules.css';
 
-const defaultQuests = [
+const tasks = [
   {
     isQuest: true,
     _id: '5c9d9f6b1f9b5b1fb73691a1',
@@ -59,29 +59,51 @@ const defaultQuests = [
     done: false,
     updatedAt: Date.now(),
     createdAt: Date.now()
+  },
+  {
+    isQuest: true,
+    _id: 'c9d9fa51f9b5b1fb73691a2',
+    name: 'Create your first quest',
+    group: 'Learning',
+    difficulty: 'Normal',
+    dueData: 124,
+    done: false,
+    updatedAt: Date.now(),
+    createdAt: Date.now()
   }
 ];
 
-const TodayList = () => (
+const TaskListView = () => (
   <div className={s.menu}>
-    <h2 className={s.title}>TodayList</h2>
     <ul className={s.menuList}>
-      {defaultQuests.map(quest => (
-        <li key={quest.id}>
-          <Cart
-            isQuest={quest.isQuest}
-            challengeSendToUser={quest.challengeSendToUser}
-            name={quest.name}
-            group={quest.group}
-            difficulty={quest.difficulty}
-            dueData={quest.dueData}
-            done={quest.done}
-            updatedAt={quest.updatedAt}
-            createdAt={quest.createdAt}
-          />
+      {tasks.map(quest => (
+        <li key={quest.id} className={s.item}>
+          <Cart />
         </li>
       ))}
     </ul>
   </div>
 );
-export default withRouter(TodayList);
+
+/* TaskList.propTypes = {
+  title: PropTypes.string,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      group: PropTypes.string,
+      difficulty: PropTypes.string,
+      challengeSendToUser: PropTypes.bool,
+      isQuest: PropTypes.bool,
+      done: PropTypes.bool,
+      due: PropTypes.number
+    })
+  )
+};
+*/
+TaskListView.defaultProps = {
+  title: '',
+  tasks: []
+};
+
+export default TaskListView;
