@@ -8,6 +8,7 @@ import ChallengeStatus from '../ChallengeStatus/ChallengeStatus';
 import Logout from '../Logout/Logout';
 
 import styles from './Header.module.css';
+import { logout } from '../../redux/auth/authAction';
 
 const Header = ({ user, challengeSendToUser, exit }) => (
   <header className={styles.container}>
@@ -34,7 +35,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = {
-  exit: () => console.log('logout!!!') || { type: '' }
+  exit: logout
 };
 
 export default connect(

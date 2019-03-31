@@ -1,23 +1,16 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://questify.vbguard.dev/';
+axios.defaults.baseURL = 'https://questify.vbguard.dev';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-export const userLogin = async user => {
-  try {
-    const response = await axios.post('/api/login', {nickname: user});
-    return response.data;
-  } catch (error) {
-    return error;
-  }
+
+export const userLogin = user => {
+  return axios.post('/api/login', user);
 };
 
-export const getAllQuestUser = async id => {
-  try {
-    const response = await axios.get(`/api/quest/${id}`);
-    return response.data;
-  } catch (error) {
-    return error;
-  }
-};
+export const send = user =>
+  fetch('https://questify.vbguard.dev/api/login', {
+    method: 'post',
+    body: JSON.stringify(user)
+  });
 
-export default { userLogin };
+export default { userLogin, send };

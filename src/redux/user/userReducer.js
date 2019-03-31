@@ -3,9 +3,9 @@ import action from './actionType';
 const user = (state = null, { type, payload }) => {
   switch (type) {
     case action.SUCCESS:
-      return payload || 'success';
+      return payload;
     case action.ERROR:
-      return payload || 'error';
+      return { error: payload };
     default:
       return state;
   }

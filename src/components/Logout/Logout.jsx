@@ -4,7 +4,7 @@ import styles from './Logout.module.css';
 
 const Logout = ({ exit }) => (
   <div>
-    <button type="button" onClick={exit} className={styles.logout} />
+    <button type="button" onClick={() => exit()} className={styles.logout} />
   </div>
 );
 
