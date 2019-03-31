@@ -2,20 +2,19 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  /* width: 100%;
-  height: 100%; */
-
-  width: 313px;
-  height: 293px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   border-radius: 11px;
   background-color: rgba(21, 57, 90, 0.3);
   z-index: 1999;
 }
 
-.body{
+.body {
   position: absolute;
   top: 37%;
-  left:9%;
+  left: 9%;
   box-sizing: border-box;
   width: 250px;
   height: 145px;
@@ -26,7 +25,8 @@
   font: 400 14px 'HelveticaNeueCyrBlack', sans-serif;
   letter-spacing: 0.9px;
 }
-.text{
+
+.text {
   margin-bottom: 18px;
 }
 
@@ -47,19 +47,18 @@
   cursor: pointer;
 }
 
-.buttonDelete{
-  composes:button;
-  color:#db0938;
-
+.buttonDelete {
+  composes: button;
+  color: #db0938;
 }
 
-.buttonCancel{
+.buttonCancel {
   composes: button;
   color: #24d40c;
   margin-right: 36px;
 }
 
-.buttonCancel::after{
+.buttonCancel::after {
   content: '';
   display: inline-block;
   position: absolute;
@@ -69,4 +68,3 @@
   height: 23px;
   background: #b9c3c8;
 }
-

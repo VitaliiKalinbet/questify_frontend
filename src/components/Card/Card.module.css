@@ -51,6 +51,7 @@
     height: 27px;
     background-position: center;
     background-size: contain;
+    outline: none;
 }
 
 .btnEdit {
