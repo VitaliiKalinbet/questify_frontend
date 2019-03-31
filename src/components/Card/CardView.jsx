@@ -74,30 +74,18 @@ const CardView = ({
           />
           <div className={s.box}>
             <h2 className={s.title}>{name}</h2>
-            {/* <DatePicker
-              dateFormat="MMMM d, yyyy h:mm aa"
-              showTimeSelect
-              selected={startDate}
-              onChange={onPickerSet}
-              customInput={<CustomInput />}
-              readOnly
-            /> */}
+
             <p className={s.date}>{GetDate(date)}</p>
-            <CardSelect
-              isGroup
-              isSelectorOpen={isSelectorGroupsOpen}
-              isQuest={isQuest}
-              onClick={onSaveSelectedItem}
-              items={GROUPS}
-              selected={group}
-            />
           </div>
-          {/* <button className={s.btnEdit} type="button" />
-          <button className={s.btnDelete} type="button" />
-          <button className={s.btnComplete} type="button" />
-          <button className={s.btnStart} type="button">
-            Start
-          </button> */}
+          <CardSelect
+            isGroup
+            isSelectorOpen={isSelectorGroupsOpen}
+            isQuest={isQuest}
+            onClick={onSaveSelectedItem}
+            items={GROUPS}
+            selected={group}
+          />
+
           {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
           {deleteQuestModal && (
             <DeleteQuestModal
