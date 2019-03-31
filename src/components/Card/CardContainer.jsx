@@ -8,7 +8,7 @@ class CardContainer extends Component {
     name: '',
     difficulty: 'Normal',
     group: 'Stuff',
-    date: null,
+    date: new Date(),
     createMode: false,
     editMode: false,
     completeModal: false,
@@ -16,10 +16,18 @@ class CardContainer extends Component {
     agreedDeleting: false,
     isStarActive: false,
     isSelectorDifficultiesOpen: false,
-    isSelectorGroupsOpen: false
+    isSelectorGroupsOpen: false,
+    done: false
   };
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
+
+  handlePickerSet = date => {
+    console.log(Number(date));
+    this.setState({
+      date
+    });
+  };
 
   showCompletedModal = () => {
     this.setState({ completeModal: true });
@@ -41,14 +49,15 @@ class CardContainer extends Component {
     this.setState({ editMode: true });
   };
 
-  handleDeleteCard = () => {
+  handleDeleteCard = id => {
+    console.log(id);
     // this.props.deleteCard(id);
     this.hideDeleteQuestModal();
   };
 
-  handleAgreedDeleting = () => {
+  handleAgreedDeleting = id => {
     this.setState({ agreedDeleting: true });
-    this.handleDeleteCard();
+    this.handleDeleteCard(id);
   };
 
   handleCancelDeleting = () => {
@@ -56,9 +65,19 @@ class CardContainer extends Component {
     this.hideDeleteQuestModal();
   };
 
-  handleCreateCard = e => {
-    e.preventDefault();
+  handleCreateCard = () => {
     // this.props.createCard({...this.state, Date.now, ....})
+    const { name, group, difficulty, date, done, isStarActive } = this.state;
+    const unixDate = Number(date);
+    const newQuest = {
+      name,
+      group,
+      difficulty,
+      unixDate,
+      done,
+      isStarActive
+    };
+    console.log(newQuest);
     this.showCompletedModal();
   };
 
@@ -81,16 +100,18 @@ class CardContainer extends Component {
 
   render() {
     const { mode } = this.props;
-    const { isStarActive } = this.state;
+    const { isStarActive, date } = this.state;
     return mode === 'render' ? (
       <CardView {...this.props} isStarActive={isStarActive} mode={mode} onStarClick={this.handleStarClick} />
     ) : (
       <CardView
         {...this.state}
+        startDate={date}
         mode={mode}
         onChange={this.handleChange}
         onStarClick={this.handleStarClick}
         onCreateCard={this.handleCreateCard}
+        onPickerSet={this.handlePickerSet}
         onSaveSelectedItem={this.handleSaveSelectedItem}
         onHideCompletedModal={this.hideCompletedModal}
         showDelQuestModal={this.showDeleteQuestModal}
