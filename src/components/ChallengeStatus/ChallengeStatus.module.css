@@ -19,12 +19,23 @@
   composes: challendge;
   background-color:rgb(0, 215, 255);
   box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
-
 }
 
 .challendgeFalse {
   composes: challendge;
   background-color:#3e4e6c;
+}
+
+.trophyNoActive {
+  fill: #00365b;
+}
+
+.trophyActive {
+  fill: #7b8aa4;
+}
+
+.trophyNoActive {
+  fill: #00365b;
 }
 
 @media (min-width: 768px) {

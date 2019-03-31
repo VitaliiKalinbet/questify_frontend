@@ -10,7 +10,7 @@ const ChallengeStatus = ({ isQuest }) => (
     {/* <object alt="icon" type="image/svg+xml" data={icon_svg} className={styles.svg}>
       icon
     </object> */}
-    <Trophy />
+    <Trophy className={isQuest ? styles.trophyActive : styles.trophyNoActive} />
   </div>
 );
 
