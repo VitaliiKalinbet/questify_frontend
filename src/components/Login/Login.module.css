@@ -75,20 +75,25 @@
   color:#00d8ff;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
+  -moz-outline:0;
+  
 }
- .login__input:focus{
+ .login__input:focus {
   outline: none;
   background-color: transparent;
-  box-shadow: 0px 10px 20px -7px rgba(11,170,255,0.48);
- }
+  box-shadow: 0px 8px 10px -7px rgba(11,170,255,0.48);
+  -webkit-appearance: none;
+ 
+  }
 
  .login_button{
   display: inline-block;
   position: absolute;
   margin: 0;
   padding: 14px 12px;
-  left:212px;
-  top:40px;
+  left: 212px;
+  top: 40px;
   cursor: pointer;
   font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 15px;
