@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
-import TaskList from './TaskList';
+import TaskListView from './TaskListView';
 import s from './TaskList.modules.css';
 
 class DoneListContainer extends Component {
@@ -9,8 +9,12 @@ class DoneListContainer extends Component {
     isDoneOpen: false
   };
 
-  buttonDoneClick = () => {
+  buttonOpenClick = () => {
     this.setState({ isDoneOpen: true });
+  };
+
+  buttonHideClick = () => {
+    this.setState({ isDoneOpen: false });
   };
 
   render() {
@@ -22,7 +26,7 @@ class DoneListContainer extends Component {
           <button type="button" className={s.btnHide} onClick={this.buttonHideClick} />
           <div className={s.icon} />
         </div>
-        <TaskList />
+        <TaskListView />
       </div>
     ) : (
       <div className={s.listsWrapper}>

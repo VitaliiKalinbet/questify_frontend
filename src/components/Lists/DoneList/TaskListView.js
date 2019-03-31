@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Cart from '../TodayList/Cart';
+import Cart from './Cart';
 import s from './TaskList.modules.css';
 
 const tasks = [
@@ -73,7 +73,7 @@ const tasks = [
   }
 ];
 
-const TaskList = () => (
+const TaskListView = () => (
   <div className={s.menu}>
     <ul className={s.menuList}>
       {tasks.map(quest => (
@@ -101,9 +101,9 @@ const TaskList = () => (
   )
 };
 */
-TaskList.defaultProps = {
+TaskListView.defaultProps = {
   title: '',
   tasks: []
 };
 
-export default TaskList;
+export default TaskListView;

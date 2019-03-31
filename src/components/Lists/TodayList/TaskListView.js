@@ -1,8 +1,9 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import Cart from './Cart';
-import s from './TodayList.module.css';
+import s from './TaskList.modules.css';
 
-const defaultQuests = [
+const tasks = [
   {
     isQuest: true,
     _id: '5c9d9f6b1f9b5b1fb73691a1',
@@ -72,10 +73,10 @@ const defaultQuests = [
   }
 ];
 
-const TodayList = () => (
+const TaskListView = () => (
   <div className={s.menu}>
     <ul className={s.menuList}>
-      {defaultQuests.map(quest => (
+      {tasks.map(quest => (
         <li key={quest.id} className={s.item}>
           <Cart />
         </li>
@@ -83,4 +84,26 @@ const TodayList = () => (
     </ul>
   </div>
 );
-export default TodayList;
+
+/* TaskList.propTypes = {
+  title: PropTypes.string,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      group: PropTypes.string,
+      difficulty: PropTypes.string,
+      challengeSendToUser: PropTypes.bool,
+      isQuest: PropTypes.bool,
+      done: PropTypes.bool,
+      due: PropTypes.number
+    })
+  )
+};
+*/
+TaskListView.defaultProps = {
+  title: '',
+  tasks: []
+};
+
+export default TaskListView;

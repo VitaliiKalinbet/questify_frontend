@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-/* import PropTypes from 'prop-types'; */
-import TaskList from '../TodayList/TodayList';
+// import PropTypes from 'prop-types';
+import TaskListView from './TaskListView';
 import s from './TaskList.modules.css';
 
-class TodayListContainer extends Component {
+class TomorrowListContainer extends Component {
   state = {};
 
   render() {
+    // const { title } = this.props;
     return (
       <div className={s.listsWrapper}>
-        <h2> Today </h2>
-        <TaskList />
+        <h2> Tomorrow </h2>
+        <TaskListView />
       </div>
     );
   }
 }
 
-/* TodayListContainer.propTypes = {
+/* TomorrowListContainer.propTypes = {
   title: PropTypes.string,
   tomorrowList: PropTypes.arrayOf(
     PropTypes.shape({
@@ -33,13 +34,8 @@ class TodayListContainer extends Component {
   )
 }; */
 
-TodayListContainer.defaultProps = {
-  title: '',
-  todayList: []
-};
-
 const mapStateToProps = state => ({
-  todayList: state.todayList
+  tomorrowList: state.tomorrowList
 });
 
-export default connect(mapStateToProps)(TodayListContainer);
+export default connect(mapStateToProps)(TomorrowListContainer);

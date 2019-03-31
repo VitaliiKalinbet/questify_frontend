@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateTaskList from '../../components/Lists/TaskList/CreateTaskList';
+import ListsContainer from '../../components/Lists/ListsContainer';
 import Header from '../../components/Header/Header';
 
 class DashboardPage extends Component {
@@ -9,7 +9,7 @@ class DashboardPage extends Component {
     return (
       <div>
         <Header />
-        <CreateTaskList />
+        <ListsContainer />
       </div>
     );
   }
