@@ -10,18 +10,16 @@
   background-size: cover;
   background-position: center;
   margin-right: 20px;
-
+  background: url('../../assets/images/trophy/trophy.svg');
 }
 
 .challendgeTrue {
   composes: challendge;
   background-color:#00d7ff;
-  background: url('../../assets/images/trophy/trophyT.png');
 }
 
 .challendgeFalse {
   composes: challendge;
-  background: url('../../assets/images/trophy/trophyF.png');
   background-color:#3e4e6c;
 }
 

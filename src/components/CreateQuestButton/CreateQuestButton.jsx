@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import s from './CreateQuestButton.module.css';
 
-class createQuestButton extends Component {
+class CreateQuestButton extends Component {
   buttonClick = () => {
     const { createQuest } = this.props;
     createQuest();
@@ -16,11 +16,11 @@ class createQuestButton extends Component {
   }
 }
 
-createQuestButton.propTypes = {
+CreateQuestButton.propTypes = {
   createQuest: PropTypes.func
 };
 
-createQuestButton.defaultProps = {
+CreateQuestButton.defaultProps = {
   createQuest: () => {}
 };
 
