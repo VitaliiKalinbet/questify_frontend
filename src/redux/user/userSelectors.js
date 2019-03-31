@@ -1,4 +1,4 @@
-const getQuest = state => state.userData.quests;
+const getQuest = state => state.userData.tasks;
 const userName = state => state.user.nickname;
 const userId = state => state.user.id;
 
