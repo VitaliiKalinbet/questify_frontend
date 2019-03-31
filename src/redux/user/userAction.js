@@ -17,8 +17,11 @@ export const Err = error => ({
   payload: error
 });
 
-export default {
-  Request,
-  Success,
-  Err
+export const addQuest = newQuest => {
+  return {
+    type: action.ADD_QUEST,
+    payload: {
+      newQuest
+    }
+  };
 };

@@ -52,21 +52,23 @@ const CardView = ({
   difficulty,
   group,
   isSelectorGroupsOpen,
-  onPickerSet
+  onPickerSet,
+  newQuest
 }) => {
   if (mode === 'render') {
     if (isQuest) {
       // for render Quest by props
       return (
         <div className={s.card}>
-          <CardSelect
-            isGroup={false}
-            isSelectorOpen={isSelectorDifficultiesOpen}
-            isQuest={isQuest}
-            onClick={onSaveSelectedItem}
-            items={DIFFICULTIES}
-            selected={difficulty}
-          />
+
+            <CardSelect
+              isGroup={false}
+              isSelectorOpen={isSelectorDifficultiesOpen}
+              isQuest={isQuest}
+              onClick={onSaveSelectedItem}
+              items={DIFFICULTIES}
+              selected={difficulty}
+            />
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
             type="button"
@@ -77,14 +79,16 @@ const CardView = ({
 
             <p className={s.date}>{GetDate(date)}</p>
           </div>
-          <CardSelect
-            isGroup
-            isSelectorOpen={isSelectorGroupsOpen}
-            isQuest={isQuest}
-            onClick={onSaveSelectedItem}
-            items={GROUPS}
-            selected={group}
-          />
+          <div className={s.controlsContainer}>
+            <CardSelect
+              isGroup
+              isSelectorOpen={isSelectorGroupsOpen}
+              isQuest={isQuest}
+              onClick={onSaveSelectedItem}
+              items={GROUPS}
+              selected={group}
+            />
+          </div>
 
           {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
           {deleteQuestModal && (
@@ -112,14 +116,18 @@ const CardView = ({
     if (isQuest) {
       return (
         <div className={`${s.card} ${s.addMode}`}>
-          <CardSelect
-            isGroup={false}
-            isSelectorOpen={isSelectorDifficultiesOpen}
-            isQuest={isQuest}
-            onClick={onSaveSelectedItem}
-            items={DIFFICULTIES}
-            selected={difficulty}
-          />
+
+
+            <CardSelect
+              isGroup={false}
+              isSelectorOpen={isSelectorDifficultiesOpen}
+              isQuest={isQuest}
+              onClick={onSaveSelectedItem}
+              items={DIFFICULTIES}
+              selected={difficulty}
+            />
+
+
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
             type="button"
@@ -138,25 +146,29 @@ const CardView = ({
               customInput={<CustomInput />}
             />
           </div>
-          <CardSelect
-            isGroup
-            isSelectorOpen={isSelectorGroupsOpen}
-            isQuest={isQuest}
-            onClick={onSaveSelectedItem}
-            items={GROUPS}
-            selected={group}
-          />
-          <ul className={s.btnList}>
-            <li className={s.btnItem}>
-              <button className={s.btnDelete} onClick={showDelQuestModal} type="button" />
-            </li>
-            <li className={s.btnItem}>
-              <button className={s.btnStart} onClick={onCreateCard} type="button">
-                Start
-              </button>
-            </li>
-          </ul>
-          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
+
+          <div className={s.controlsContainer}>
+            <CardSelect
+              isGroup
+              isSelectorOpen={isSelectorGroupsOpen}
+              isQuest={isQuest}
+              onClick={onSaveSelectedItem}
+              items={GROUPS}
+              selected={group}
+            />
+            <ul className={s.btnList}>
+              <li className={s.btnItem}>
+                <button className={s.btnDelete} onClick={showDelQuestModal} type="button" />
+              </li>
+              <li className={s.btnItem}>
+                <button className={s.btnStart} onClick={onCreateCard} type="button">
+                  Start
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} newQuest={newQuest}/>}
           {deleteQuestModal && <DeleteQuestModal onCancelDel={onCancelDel} onAgreedDel={() => onAgreedDel(_id)} />}
         </div>
       );

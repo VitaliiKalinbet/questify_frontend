@@ -7,25 +7,16 @@
   padding: 10px;
   margin: 0;
   position: absolute;
-  /* top: 20px;
-  left: 10px; */
 }
 
 .groupClosed {
-  cursor: pointer;
-  position: absolute;
-  z-index: -1;
-  top: 210px;
-  left: 10px;
+  user-select: none;
   text-transform: uppercase;
-  /* background: red; */
-  border-radius: 10px;
   display: block;
-  width: 130px;
   height: 25px;
-  /* margin-left: -50px; */
-  /* box-shadow: -10px 0px 0px 0px; */
-  border-radius: 0px 60px 60px 0px;
+  line-height: 27px;
+  border-radius: 0 60px 60px 0;
+  padding: 0 25px 0 10px;
 }
 
 .groupsOpen {

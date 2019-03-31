@@ -54,18 +54,21 @@ const defaultQuests = [
 ];
 
 // eslint-disable-next-line react/prop-types
-const TaskListView = ({ addMode }) => (
-  <div className={s.menu}>
-    <ul className={s.menuList}>
-      {addMode && <Card mode="add" />}
-      {defaultQuests.map(quest => (
-        <li key={quest.id} className={s.item}>
-          <Card mode="render" {...quest} />
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+const TaskListView = ({ addMode }) => {
+  console.log(addMode);
+  return (
+    <div className={s.menu}>
+      <ul className={s.menuList}>
+        {addMode && <Card mode="add"/>}
+        {defaultQuests.map(quest => (
+          <li key={quest.id} className={s.item}>
+            <Card mode="render" {...quest} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 /* TaskList.propTypes = {
   title: PropTypes.string,
@@ -88,5 +91,7 @@ TaskListView.defaultProps = {
   tasks: []
 };
 
-const mapStateToProps = store => ({ addMode: userSelectors.getAddMode(store) });
+const mapStateToProps = store => ({
+  addMode: userSelectors.getAddMode(store)
+});
 export default connect(mapStateToProps)(TaskListView);

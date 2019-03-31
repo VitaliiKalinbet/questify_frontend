@@ -20,7 +20,8 @@
 
 @media (min-width: 768px) {
   .header {
-    width: 710px;
+    width: 100%;
+    padding: 0 70px;
     height: 80px;
   }
 }

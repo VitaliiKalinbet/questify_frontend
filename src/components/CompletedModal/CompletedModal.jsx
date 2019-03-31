@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from './modal';
+import { addQuest } from '../../redux/user/userAction';
+import { finishAddMode } from '../../redux/createQuest/createQuestReducer';
 
 class CompletedModal extends Component {
   clickContinue = () => {
-    return console.log('click continue');
+    const {addQuest, newQuest, finishAddMode} = this.props;
+    addQuest(newQuest);
+    finishAddMode();
   };
 
   sliceTextCompleted = text => {
@@ -15,7 +19,7 @@ class CompletedModal extends Component {
   render() {
     const { onHideComplModal } = this.props;
     return (
-      <Modal clickContinue={onHideComplModal} completedText={this.sliceTextCompleted('tetetetetet tetetet etetet')} />
+      <Modal clickContinue={this.clickContinue} completedText={this.sliceTextCompleted('tetetetetet tetetet etetet')} />
     );
   }
 }
@@ -28,4 +32,11 @@ CompletedModal.defaultProps = {
   onHideComplModal: () => null
 };
 
-export default connect()(CompletedModal);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addQuest: (newTask) => dispatch(addQuest(newTask)),
+    finishAddMode: () => dispatch(finishAddMode())
+  }
+};
+
+export default connect(null, mapDispatchToProps)(CompletedModal);

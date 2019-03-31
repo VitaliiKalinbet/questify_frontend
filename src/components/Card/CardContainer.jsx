@@ -29,8 +29,8 @@ class CardContainer extends Component {
     });
   };
 
-  showCompletedModal = () => {
-    this.setState({ completeModal: true });
+  showCompletedModal = (newQuest) => {
+    this.setState({ completeModal: true, newQuest });
   };
 
   hideCompletedModal = () => {
@@ -77,8 +77,7 @@ class CardContainer extends Component {
       done,
       isStarActive
     };
-    console.log(newQuest);
-    this.showCompletedModal();
+    this.showCompletedModal(newQuest);
   };
 
   handleStarClick = () => {
