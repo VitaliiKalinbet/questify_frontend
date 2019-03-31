@@ -24,4 +24,4 @@ CreateQuestButton.defaultProps = {
   createQuest: () => {}
 };
 
-export default connect()(createQuestButton);
+export default connect()(CreateQuestButton);
