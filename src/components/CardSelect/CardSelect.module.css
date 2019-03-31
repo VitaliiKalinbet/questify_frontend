@@ -43,7 +43,7 @@
   left: 10px;
 }
 
-/* Work {
+Work {
   background-color: #d3f6ce;
 }
 
@@ -62,8 +62,7 @@ Learning {
 Stuff {
   box-shadow: -10px 0px 0px 0px red;
   background-color: red;
-  /* eceff1 */
-/* } */ 
+}
 
 /* .previouslySelected {
   position: absolute;
