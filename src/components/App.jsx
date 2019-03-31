@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
@@ -26,10 +26,10 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route exact path="/" component={LoginPage} />
-          <PrivateRoute path="/dashboard" component={DashboardPage} />
-          <Route exact path="/card" render={props => <Card {...props} mode="render" {...obj} />} />
-          <Route exact path="/cardAdd" render={props => <Card {...props} mode="add" {...obj} />} />
+          <Switch>
+            <Route exact path="/" component={LoginPage} />
+            <Route path="/dashboard" component={DashboardPage} />
+          </Switch>
         </Router>
       </div>
     );
