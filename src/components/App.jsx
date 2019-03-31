@@ -27,7 +27,7 @@ class App extends Component {
       <div>
         <Router>
           <Route exact path="/" component={LoginPage} />
-          <Route path="/dashboard" component={DashboardPage} />
+          <PrivateRoute path="/dashboard" component={DashboardPage} />
           <Route exact path="/card" render={props => <Card {...props} mode="render" {...obj} />} />
           <Route exact path="/cardAdd" render={props => <Card {...props} mode="add" {...obj} />} />
         </Router>
