@@ -41,7 +41,7 @@ const list = [
     name: 'Complete 3 quests',
     group: 'Productivity',
     difficulty: 'Hard',
-    date: 1554257003000,
+    date: 1554457003000,
     done: false
   },
   {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Button from './Button';
-import { asyncOperetion } from '../../redux/createQuestButtonReducerTest';
 import s from './CreateQuestButton.module.css';
 
 class CreateQuestButton extends Component {
@@ -25,11 +24,4 @@ CreateQuestButton.defaultProps = {
   createQuest: () => {}
 };
 
-const mapDispatchToProps = {
-  createQuest: asyncOperetion.createQuest
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(CreateQuestButton);
+export default connect()(createQuestButton);

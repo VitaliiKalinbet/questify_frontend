@@ -1,10 +1,15 @@
 /* eslint-disable react/destructuring-assignment */
+/* eslint react/prop-types: 0 */
+/* eslint react/no-unused-prop-types: 0 */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { asyncOperetion } from '../../redux/user';
 import styles from './Login.module.css';
+import { loginUser } from '../../services/api';
 
 const INITIAL_STATE = {
-  nickName: ''
+  nickname: ''
 };
 
 class Login extends Component {
@@ -16,8 +21,10 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // const { signIn } = this.props;
-    // signIn({ ...this.state });
+    const { userLogin, history } = this.props;
+    const { nickname } = this.state;
+    userLogin({ nickname }).then(() => history.push('/dashboard'));
+    loginUser(nickname);
     this.reset();
   };
 
@@ -29,21 +36,6 @@ class Login extends Component {
   };
 
   render() {
-    const input = (
-      <label htmlFor="nickName" className={styles.login__label}>
-        Choose your name to sign up or log in
-        <input
-          className={styles.login__input}
-          onChange={this.handleChange}
-          name="nickName"
-          type="nickName"
-          value={this.state.nickName}
-          required="required"
-          minLength="5"
-          placeholder=""
-        />
-      </label>
-    );
     return (
       <div className={styles.login_container}>
         <h1 className={styles.logo}>Questify</h1>
@@ -51,7 +43,19 @@ class Login extends Component {
           Questify will turn your life into a thrilling game full of amazing quests and exciting challenges.
         </p>
         <form className={styles.login_form} onSubmit={this.handleSubmit}>
-          {input}
+          <label htmlFor="nickname" className={styles.login__label}>
+            <p className={styles.label_text}>Choose your name to sign up or log in</p>
+            <input
+              className={styles.login__input}
+              onChange={this.handleChange}
+              name="nickname"
+              type="nickname"
+              value={this.state.nickname}
+              required="required"
+              minLength="5"
+              placeholder=""
+            />
+          </label>
           <button className={styles.login_button} type="submit">
             go!
           </button>
@@ -61,4 +65,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// Login.propTypes = {
+//   userLogin: PropTypes.func.isRequired
+// };
+
+const mapDispatchToProps = {
+  userLogin: asyncOperetion.loginUser
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
