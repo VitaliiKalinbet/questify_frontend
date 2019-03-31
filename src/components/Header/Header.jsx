@@ -9,13 +9,13 @@ import Logout from '../Logout/Logout';
 
 import styles from './Header.module.css';
 
-const Header = ({ user, challengeSendToUser, exit }) => (
+const Header = ({ user, isQuest, exit }) => (
   <header className={styles.container}>
     <div className={styles.header}>
       <Logo />
       <UserInfo user={user} />
       <div className={styles.right}>
-        <ChallengeStatus challengeSendToUser={challengeSendToUser} />
+        <ChallengeStatus isQuest={isQuest} />
         <Logout exit={exit} />
       </div>
     </div>
@@ -24,13 +24,13 @@ const Header = ({ user, challengeSendToUser, exit }) => (
 
 Header.propTypes = {
   user: PropTypes.string.isRequired,
-  challengeSendToUser: PropTypes.bool.isRequired,
+  isQuest: PropTypes.bool.isRequired,
   exit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => ({
   user: 'John’s Quest Log',
-  challengeSendToUser: false
+  isQuest: true
 });
 
 const mapDispatchToProps = {
