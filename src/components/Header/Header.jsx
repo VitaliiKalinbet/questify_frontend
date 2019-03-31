@@ -30,7 +30,7 @@ Header.propTypes = {
 
 const mapStateToProps = () => ({
   user: 'John’s Quest Log',
-  isQuest: true
+  isQuest: false
 });
 
 const mapDispatchToProps = {
