@@ -3,21 +3,18 @@
   z-index: 999;
   box-sizing: border-box;
   margin: 0;
-  padding: 38px 0  0 30px;
-  width: 313px;
-  height: 293px;
-  /* width: 100%;
-  height: 100%; */
+  padding: 38px 0 0 30px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   border-radius: 11px;
-  background: white  url('../../assets/images/completed_modal_bg.png') center no-repeat;
+  background: white url('../../assets/images/completed_modal_bg.png') center no-repeat;
   box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
   font: 400 15px 'HelveticaNeueCyrRoman', sans-serif;
 }
 
-
-
-
-.text{
+.text {
   padding: 0;
   margin: 0;
   letter-spacing: 0.6px;
@@ -29,7 +26,7 @@
   color: #00d7ff;
 }
 
-.button{
+.button {
   position: absolute;
   padding: 0;
   margin: 0;
@@ -40,14 +37,12 @@
   left: 35%;
   letter-spacing: 0.9px;
   color: #7b8aa4;
-
 }
 
-
-.button::after{
+.button::after {
   content: '';
   position: absolute;
-  width:10px;
+  width: 10px;
   height: 8px;
   background: url('../../assets/images/shape_completed_modal.png') no-repeat center;
   right: -34%;
@@ -61,5 +56,3 @@
 .button:hover {
   cursor: pointer;
 }
-
-

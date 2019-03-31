@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Card.module.css';
 import CardSelect from '../CardSelect/CardSelect';
+import CompletedModal from '../CompletedModal/CompletedModal';
+import DeleteQuestModal from '../DeleteQuestModal/DeleteQuestModal';
+import { DIFFICULTIES, GROUPS } from '../../projectConstantsAndVariables';
 
-const arrDifficulties = ['Easy', 'Normal', 'Hard'];
-
-// components
-// import CompletedModal from '../CompletedModal/CompletedModal';
-// import DeleteQuestModal from '../DeleteQuestModal/DeleteQuestModal';
+// const arrDifficulties = ['Easy', 'Normal', 'Hard'];
 
 // { name, difficulty, group, editMode, completeModal, deleteQuestModal, agreedDeleting }
 /* group, difficulty, dueData, done, updatedAt, _id */
@@ -20,7 +19,18 @@ const CardView = ({
   onChange,
   isStarActive,
   onStarClick,
-  onSaveSelectedItemDifficulties
+  onSaveSelectedItem,
+  onCreateCard,
+  completeModal,
+  deleteQuestModal,
+  onHideCompletedModal,
+  onAgreedDel,
+  onCancelDel,
+  showDelQuestModal,
+  isSelectorDifficultiesOpen,
+  difficulty,
+  group,
+  isSelectorGroupsOpen
 }) => {
   if (mode === 'render') {
     if (isQuest) {
@@ -42,6 +52,14 @@ const CardView = ({
           <button className={s.btnStart} type="button">
             Start
           </button> */}
+          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
+          {deleteQuestModal && (
+            <DeleteQuestModal
+              showDelQuestModal={showDelQuestModal}
+              onCancelDel={onCancelDel}
+              onAgreedDel={onAgreedDel}
+            />
+          )}
         </div>
       );
     }
@@ -61,10 +79,12 @@ const CardView = ({
       return (
         <div className={s.card}>
           <CardSelect
+            isGroup={false}
+            isSelectorOpen={isSelectorDifficultiesOpen}
             isQuest={isQuest}
-            onClick={onSaveSelectedItemDifficulties}
-            items={arrDifficulties}
-            selected="Normal"
+            onClick={onSaveSelectedItem}
+            items={DIFFICULTIES}
+            selected={difficulty}
           />
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
@@ -76,16 +96,26 @@ const CardView = ({
             <input className={s.nameInput} type="text" name="name" value={name} onChange={onChange} />
             <p className={s.date}>{createdAt}</p>
           </div>
+          <CardSelect
+            isGroup
+            isSelectorOpen={isSelectorGroupsOpen}
+            isQuest={isQuest}
+            onClick={onSaveSelectedItem}
+            items={GROUPS}
+            selected={group}
+          />
           <ul className={s.btnList}>
             <li className={s.btnItem}>
-              <button className={s.btnDelete} type="button" />{' '}
+              <button className={s.btnDelete} onClick={showDelQuestModal} type="button" />
             </li>
             <li className={s.btnItem}>
-              <button className={s.btnStart} type="button">
+              <button className={s.btnStart} onClick={onCreateCard} type="button">
                 Start
               </button>
             </li>
           </ul>
+          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
+          {deleteQuestModal && <DeleteQuestModal onCancelDel={onCancelDel} onAgreedDel={onAgreedDel} />}
         </div>
       );
     }
@@ -101,7 +131,18 @@ CardView.propTypes = {
   onChange: PropTypes.func,
   isStarActive: PropTypes.bool,
   onStarClick: PropTypes.func,
-  onSaveSelectedItemDifficulties: PropTypes.func
+  onSaveSelectedItem: PropTypes.func,
+  onCreateCard: PropTypes.func,
+  deleteQuestModal: PropTypes.bool,
+  completeModal: PropTypes.bool,
+  onHideCompletedModal: PropTypes.func,
+  onAgreedDel: PropTypes.func,
+  onCancelDel: PropTypes.func,
+  showDelQuestModal: PropTypes.func,
+  isSelectorDifficultiesOpen: PropTypes.bool,
+  difficulty: PropTypes.string,
+  group: PropTypes.string,
+  isSelectorGroupsOpen: PropTypes.bool
 };
 
 CardView.defaultProps = {
@@ -112,7 +153,18 @@ CardView.defaultProps = {
   onChange: () => null,
   isStarActive: false,
   onStarClick: () => null,
-  onSaveSelectedItemDifficulties: () => null
+  onSaveSelectedItem: () => null,
+  onCreateCard: () => null,
+  deleteQuestModal: false,
+  completeModal: false,
+  onHideCompletedModal: () => null,
+  onAgreedDel: () => null,
+  onCancelDel: () => null,
+  showDelQuestModal: () => null,
+  isSelectorDifficultiesOpen: false,
+  difficulty: '',
+  isSelectorGroupsOpen: false,
+  group: ''
 };
 
 export default CardView;

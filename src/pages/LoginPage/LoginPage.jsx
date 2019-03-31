@@ -5,7 +5,7 @@ class LoginPage extends Component {
   state = {};
 
   render() {
-    return <Login />;
+    return <Login {...this.props} />;
   }
 }
 

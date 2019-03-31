@@ -1,21 +1,17 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import styles from './ChallengeStatus.module.css';
+import { ReactComponent as Trophy } from '../../assets/images/trophy/trophy.svg';
 
-const ChallengeStatus = ({ challengeSendToUser }) => (
-  <div>
-    <svg
-      className={challengeSendToUser ? styles.challendgeTrue : styles.challendgeFalse}
-      width="20px"
-      height="20px"
-      viewbox="0 0 20 20"
-    />
+const ChallengeStatus = ({ isQuest }) => (
+  <div className={isQuest ? styles.challendgeFalse : styles.challendgeTrue}>
+    <Trophy className={isQuest ? styles.trophyActive : styles.trophyNoActive} />
   </div>
 );
 
 ChallengeStatus.propTypes = {
-  challengeSendToUser: PropTypes.bool.isRequired
+  isQuest: PropTypes.bool.isRequired
 };
 
 export default ChallengeStatus;
