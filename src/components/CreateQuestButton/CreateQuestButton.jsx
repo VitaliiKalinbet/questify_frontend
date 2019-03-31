@@ -1,14 +1,17 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { startAddMode } from '../../redux/createQuest/createQuestReducer';
+// import PropTypes from 'prop-types';
 
 import Button from './Button';
 import s from './CreateQuestButton.module.css';
 
 class CreateQuestButton extends Component {
   buttonClick = () => {
-    const { createQuest } = this.props;
-    createQuest();
+    // eslint-disable-next-line no-shadow
+    const { startAddMode } = this.props;
+    startAddMode();
   };
 
   render() {
@@ -16,12 +19,11 @@ class CreateQuestButton extends Component {
   }
 }
 
-CreateQuestButton.propTypes = {
-  createQuest: PropTypes.func
+const mapDispatchToProps = {
+  startAddMode
 };
 
-CreateQuestButton.defaultProps = {
-  createQuest: () => {}
-};
-
-export default connect()(CreateQuestButton);
+export default connect(
+  null,
+  mapDispatchToProps
+)(CreateQuestButton);
