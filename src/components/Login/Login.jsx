@@ -38,30 +38,28 @@ class Login extends Component {
   render() {
     return (
       <div className={styles.login_container}>
-        <div className={styles.login_body}>
-          <h1 className={styles.logo}>Questify</h1>
-          <p className={styles.login__slogan}>
-            Questify will turn your life into a thrilling game full of amazing quests and exciting challenges.
-          </p>
-          <form className={styles.login_form} onSubmit={this.handleSubmit}>
-            <label htmlFor="nickname" className={styles.login__label}>
-              <p className={styles.label_text}>Choose your name to sign up or log in</p>
-              <input
-                className={styles.login__input}
-                onChange={this.handleChange}
-                name="nickname"
-                type="nickname"
-                value={this.state.nickname}
-                required="required"
-                minLength="5"
-                placeholder=""
-              />
-            </label>
-            <button className={styles.login_button} type="submit">
-              go!
-            </button>
-          </form>
-        </div>
+        <span className={styles.logo} />
+        <p className={styles.login__slogan}>
+          Questify will turn your life into a thrilling game full of amazing quests and exciting challenges.
+        </p>
+        <form className={styles.login_form} onSubmit={this.handleSubmit}>
+          <label htmlFor="nickname" className={styles.login__label}>
+            Choose your name to sign up or log in
+            <input
+              className={styles.login__input}
+              onChange={this.handleChange}
+              name="nickname"
+              type="nickname"
+              value={this.state.nickname}
+              required="required"
+              minLength="5"
+              placeholder=""
+            />
+          </label>
+          <button className={styles.login_button} type="submit">
+            go!
+          </button>
+        </form>
       </div>
     );
   }
