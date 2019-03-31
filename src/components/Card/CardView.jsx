@@ -1,21 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DatePicker from 'react-datepicker';
 import s from './Card.module.css';
 import CardSelect from '../CardSelect/CardSelect';
 import CompletedModal from '../CompletedModal/CompletedModal';
 import DeleteQuestModal from '../DeleteQuestModal/DeleteQuestModal';
 import { DIFFICULTIES, GROUPS } from '../../projectConstantsAndVariables';
+import CustomInput from './CustomInput/CustomInput';
+
+// date picker
+import 'react-datepicker/dist/react-datepicker.css';
 
 // const arrDifficulties = ['Easy', 'Normal', 'Hard'];
 
 // { name, difficulty, group, editMode, completeModal, deleteQuestModal, agreedDeleting }
 /* group, difficulty, dueData, done, updatedAt, _id */
 
+const GetDate = unixDate => {
+  const date = new Date(unixDate);
+  let result = '';
+  result += `${date.getFullYear()}/`; // год
+  result += `${date.getMonth() + 1}/`; // месяц, начиная с 0
+  result += `${date.getDay() + 1}.`; // день , начиная с 0
+
+  result += `  ${date.getHours()}:`; // часы
+  result += `${date.getMinutes()}`; // минуты
+
+  console.log(result);
+  return result;
+};
+
 const CardView = ({
+  _id,
   mode,
   isQuest,
   name,
-  createdAt,
+  date,
+  startDate,
   onChange,
   isStarActive,
   onStarClick,
@@ -30,7 +51,8 @@ const CardView = ({
   isSelectorDifficultiesOpen,
   difficulty,
   group,
-  isSelectorGroupsOpen
+  isSelectorGroupsOpen,
+  onPickerSet
 }) => {
   if (mode === 'render') {
     if (isQuest) {
@@ -44,7 +66,15 @@ const CardView = ({
           />
           <div className={s.box}>
             <h2 className={s.title}>{name}</h2>
-            <p className={s.date}>{createdAt}</p>
+            {/* <DatePicker
+              dateFormat="MMMM d, yyyy h:mm aa"
+              showTimeSelect
+              selected={startDate}
+              onChange={onPickerSet}
+              customInput={<CustomInput />}
+              readOnly
+            /> */}
+            <p className={s.date}>{GetDate(date)}</p>
           </div>
           {/* <button className={s.btnEdit} type="button" />
           <button className={s.btnDelete} type="button" />
@@ -57,7 +87,7 @@ const CardView = ({
             <DeleteQuestModal
               showDelQuestModal={showDelQuestModal}
               onCancelDel={onCancelDel}
-              onAgreedDel={onAgreedDel}
+              onAgreedDel={() => onAgreedDel(_id)}
             />
           )}
         </div>
@@ -68,7 +98,7 @@ const CardView = ({
       <div className={s.card}>
         <div className={s.box}>
           <h2 className={s.title}>{name}</h2>
-          <p className={s.date}>{createdAt}</p>
+          <p className={s.date}>{date}</p>
         </div>
       </div>
     );
@@ -94,7 +124,15 @@ const CardView = ({
           <div className={s.box}>
             <h2 className={s.createTitle}>Create new quest</h2>
             <input className={s.nameInput} type="text" name="name" value={name} onChange={onChange} />
-            <p className={s.date}>{createdAt}</p>
+            <DatePicker
+              selected={startDate}
+              timeInputLabel="Time:"
+              onChange={onPickerSet}
+              showTimeInput
+              timeIntervals={15}
+              dateFormat="MMMM d, yyyy h:mm aa"
+              customInput={<CustomInput />}
+            />
           </div>
           <CardSelect
             isGroup
@@ -115,7 +153,7 @@ const CardView = ({
             </li>
           </ul>
           {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} />}
-          {deleteQuestModal && <DeleteQuestModal onCancelDel={onCancelDel} onAgreedDel={onAgreedDel} />}
+          {deleteQuestModal && <DeleteQuestModal onCancelDel={onCancelDel} onAgreedDel={() => onAgreedDel(_id)} />}
         </div>
       );
     }
@@ -127,7 +165,7 @@ CardView.propTypes = {
   mode: PropTypes.string,
   isQuest: PropTypes.bool,
   name: PropTypes.string,
-  createdAt: PropTypes.string,
+  date: PropTypes.number,
   onChange: PropTypes.func,
   isStarActive: PropTypes.bool,
   onStarClick: PropTypes.func,
@@ -142,14 +180,17 @@ CardView.propTypes = {
   isSelectorDifficultiesOpen: PropTypes.bool,
   difficulty: PropTypes.string,
   group: PropTypes.string,
-  isSelectorGroupsOpen: PropTypes.bool
+  isSelectorGroupsOpen: PropTypes.bool,
+  onPickerSet: PropTypes.func,
+  startDate: PropTypes.date,
+  _id: PropTypes.string
 };
 
 CardView.defaultProps = {
   mode: '',
   isQuest: true,
   name: '',
-  createdAt: '',
+  date: 0,
   onChange: () => null,
   isStarActive: false,
   onStarClick: () => null,
@@ -164,7 +205,10 @@ CardView.defaultProps = {
   isSelectorDifficultiesOpen: false,
   difficulty: '',
   isSelectorGroupsOpen: false,
-  group: ''
+  group: '',
+  onPickerSet: () => null,
+  startDate: new Date(),
+  _id: ''
 };
 
 export default CardView;

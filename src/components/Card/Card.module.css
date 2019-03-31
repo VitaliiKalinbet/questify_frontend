@@ -1,5 +1,6 @@
 .card {
     position: relative;
+    z-index: 0;
     width: 284px;
     height: 264px;
     border-radius: 11px;
@@ -40,6 +41,7 @@
     width: 230px;
     border-bottom: 1px solid #00d7ff;
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -95,6 +97,7 @@
     justify-content: space-between;
     width: 90px;
     position: absolute;
+    z-index: -1;
     right: 14px;
     bottom: 10px;
     list-style: none;
