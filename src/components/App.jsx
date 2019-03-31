@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import PrivateRoute from '../hocs/privateRoute';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
+import PrivateRoute from '../hocs/protectedRout';
 
 class App extends Component {
   state = {};
