@@ -1,84 +1,66 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
-import Cart from './Cart';
+import Card from '../../Card/CardContainer';
 import s from './TaskList.modules.css';
+import { userSelectors } from '../../../redux/user';
 
-const tasks = [
+const defaultQuests = [
   {
     isQuest: true,
     _id: '5c9d9f6b1f9b5b1fb73691a1',
     name: 'Create an account',
     group: 'Productivity',
     difficulty: 'Easy',
-    dueData: 124,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
+    date: 1554457003000,
+    done: false
   },
   {
     isQuest: true,
-    _id: 'c9d9fa51f9b5b1fb73691a2',
+    _id: '5c9d9fa51f9b5b1fb73691a2',
     name: 'Create your first quest',
     group: 'Learning',
     difficulty: 'Normal',
-    dueData: 124,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
+    date: 1554400003000,
+    done: false
   },
   {
     isQuest: true,
-    _id: 'c9d9fcf1f9b5b1fb73691a3',
+    _id: '5c9d9fcf1f9b5b1fb73691a3',
     name: 'Accept a challenge',
     group: 'Learning',
     difficulty: 'Normal',
-    dueData: 12422,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
+    date: 1554357003000,
+    done: false
   },
   {
     isQuest: true,
-    _id: 'c9d9fe41f9b5b1fb73691a4',
+    _id: '5c9d9fe41f9b5b1fb73691a4',
     name: 'Complete 3 quests',
     group: 'Productivity',
     difficulty: 'Hard',
-    dueData: 12422,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
+    date: 1554457003000,
+    done: false
   },
   {
     isQuest: true,
-    challengeSendToUser: false,
-    _id: 'c9ddf186e5c254cb5c41556',
+    _id: '5c9ddf186e5c254cb5c41556',
     name: 'Recommend Questify to a friend',
     group: 'Social',
     difficulty: 'Easy',
-    dueData: 18372629654,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
-  },
-  {
-    isQuest: true,
-    _id: 'c9d9fa51f9b5b1fb73691a2',
-    name: 'Create your first quest',
-    group: 'Learning',
-    difficulty: 'Normal',
-    dueData: 124,
-    done: false,
-    updatedAt: Date.now(),
-    createdAt: Date.now()
+    date: 18372629654,
+    done: false
   }
 ];
 
-const TaskListView = () => (
+// eslint-disable-next-line react/prop-types
+const TaskListView = ({ addMode }) => (
   <div className={s.menu}>
     <ul className={s.menuList}>
-      {tasks.map(quest => (
+      {addMode && <Card mode="add" />}
+      {defaultQuests.map(quest => (
         <li key={quest.id} className={s.item}>
-          <Cart />
+          <Card mode="render" {...quest} />
         </li>
       ))}
     </ul>
@@ -106,4 +88,5 @@ TaskListView.defaultProps = {
   tasks: []
 };
 
-export default TaskListView;
+const mapStateToProps = store => ({ addMode: userSelectors.getAddMode(store) });
+export default connect(mapStateToProps)(TaskListView);
