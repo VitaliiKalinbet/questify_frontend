@@ -3,6 +3,7 @@ import TodayList from '../../components/Lists/TodayList/TodayList';
 import TomorrowList from '../../components/Lists/TomorrowList/TomorrowList';
 import DoneList from '../../components/Lists/DoneList/DoneList';
 import Header from '../../components/Header/Header';
+// import CreateQuestButton from '../../components/CreateQuestButton/CreateQuestButton';
 
 class DashboardPage extends Component {
   state = {};
@@ -14,6 +15,7 @@ class DashboardPage extends Component {
         <TodayList />
         <TomorrowList />
         <DoneList />
+        {/* <CreateQuestButton /> */}
       </div>
     );
   }
