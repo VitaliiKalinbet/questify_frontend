@@ -8,7 +8,7 @@ const loginUser = user => dispatch => {
   return userLogin(user)
     .then(({ data: { data } }) => {
       console.log(data);
-      const { tasks } = data;
+      const { tasks, user } = data;
 
       const done = tasks.filter(task => task.done);
       const doneFalse = tasks.filter(task => !task.done);
@@ -18,7 +18,7 @@ const loginUser = user => dispatch => {
       console.log(tomorrowArr);
       const allTheRestArr = allTheRest(doneFalse);
       console.log(allTheRestArr);
-      dispatch(Success({ today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done }));
+      dispatch(Success({user: user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done }));
     })
     .then(() => dispatch(success()))
     .catch(error => dispatch(Err(error)));
