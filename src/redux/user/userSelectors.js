@@ -1,5 +1,5 @@
 const getQuest = state => state.userData.tasks;
-const userName = state =>state.userData.user?  state.userData.user.nickname :'john';
+const userName = state =>state.userData.user?  state.userData.user.nickname :'user undefined';
 const userId = state => state.userData.user._id;
 
 const getTodayList = state => state.userData.today;
