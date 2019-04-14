@@ -6,6 +6,8 @@ import Logo from '../Logo/Logo';
 import UserInfo from '../UserInfo/UserInfo';
 import ChallengeStatus from '../ChallengeStatus/ChallengeStatus';
 import Logout from '../Logout/Logout';
+import {userSelectors} from '../../redux/user'
+
 
 import styles from './Header.module.css';
 import { logout } from '../../redux/auth/authAction';
@@ -29,8 +31,8 @@ Header.propTypes = {
   exit: PropTypes.func.isRequired
 };
 
-const mapStateToProps = () => ({
-  user: 'John’s Quest Log',
+const mapStateToProps = (state) => ({
+  user: userSelectors.userName(state),
   isQuest: false
 });
 
