@@ -19,3 +19,17 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+@media (min-width: 768px) {
+  .button {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .button {
+    width: 30px;
+    height: 30px;
+  }
+}

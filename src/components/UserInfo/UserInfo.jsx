@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import styles from './UserInfo.module.css';
 
 const UserInfo = ({ user }) => {
@@ -8,8 +7,8 @@ const UserInfo = ({ user }) => {
 
   return (
     <div className={styles.user}>
-      <span className={styles.circle}>{getUser(user)}</span>
-      <span className={styles.name}>{user}</span>
+      <div className={styles.circle}>{getUser(user)}</div>
+      <p className={styles.name}>{user}'s Quest Log</p>
     </div>
   );
 };

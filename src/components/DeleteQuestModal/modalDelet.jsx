@@ -9,7 +9,7 @@ const Modal = ({ clickDelete, clickCancel }) => {
       <div className={s.body}>
         <p className={s.text}>Delete this Quest?</p>
         <button className={s.buttonCancel} type="button" onClick={() => clickCancel()}>
-          cencel
+          cancel
         </button>
         <button className={s.buttonDelete} type="button" onClick={() => clickDelete()}>
           delete
