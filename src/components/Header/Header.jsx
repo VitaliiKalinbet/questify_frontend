@@ -2,20 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Logo from '../Logo/Logo';
 import UserInfo from '../UserInfo/UserInfo';
 import ChallengeStatus from '../ChallengeStatus/ChallengeStatus';
 import Logout from '../Logout/Logout';
-import {userSelectors} from '../../redux/user'
-
+import { userSelectors } from '../../redux/user';
 
 import styles from './Header.module.css';
 import { logout } from '../../redux/auth/authAction';
+import logo from '../../assets/logo/logo.png';
 
 const Header = ({ user, isQuest, exit }) => (
   <header className={styles.container}>
     <div className={styles.header}>
-      <Logo />
+      <img className={styles.logostyle} src={logo} alt="Logo" />
       <UserInfo user={user} />
       <div className={styles.right}>
         <ChallengeStatus isQuest={isQuest} />
@@ -31,7 +30,7 @@ Header.propTypes = {
   exit: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: userSelectors.userName(state),
   isQuest: false
 });

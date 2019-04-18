@@ -1,157 +1,181 @@
 .card {
-    padding: 25px;
-    margin: 15px 15px 25px 15px;
-    position: relative;
-    z-index: 0;
-    width: 284px;
-    height: 264px;
-    border-radius: 11px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
-    border-width: 1px;
-    border-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-radius: 11px;
+  padding: 25px;
+  margin: 0 auto 25px;
+  position: relative;
+  z-index: 0;
+  width: 284px;
+  height: 264px;
+  border-radius: 11px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  border-width: 1px;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 11px;
 }
 
 .box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {
-    font-family: HelveticaNeueCyrBold Arial, sans-serif;
-    color: #282828;
-    margin: 0 0 8px;
-    width: 250px;
-    text-align: center;
-    font-size: 23px;
-    line-height: 28px;
+  font-family: HelveticaNeueCyrBold Arial, sans-serif;
+  color: #282828;
+  margin: 0 0 8px;
+  width: 250px;
+  text-align: center;
+  font-size: 23px;
+  line-height: 28px;
 }
 
 .date {
-    font-family: HelveticaNeueCyrRoman Arial, sans-serif;
-    color: #b9c3c8;
-    margin: 0;
-    text-align: center;
-    font-size: 15px;
+  font-family: HelveticaNeueCyrRoman Arial, sans-serif;
+  color: #b9c3c8;
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
 }
 
 .nameInput {
-    color: #00d7ff;
-    outline: none;
-    border: none;
-    width: 230px;
-    border-bottom: 1px solid #00d7ff;
-    font-size: 20px;
-    margin-bottom: 10px;
+  color: #00d7ff;
+  outline: none;
+  border: none;
+  width: 230px;
+  border-bottom: 1px solid #00d7ff;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .btn {
-    cursor: pointer;
-    padding: 0;
-    background-color: inherit;
-    border: none;
-    width: 27px;
-    height: 27px;
-    background-position: center;
-    background-size: contain;
-    outline: none;
+  cursor: pointer;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  width: 27px;
+  height: 27px;
+  background-position: center;
+  background-size: contain;
+  outline: none;
 }
 
 .btnEdit {
-    composes: btn;
-    background-image: url('../../assets/images/icons/save/outline-save-24px.svg');
+  composes: btn;
+  background-image: url('../../assets/images/icons/save/outline-save-24px.svg');
 }
 
 .btnDelete {
-    composes: btn;
-    background-image: url('../../assets/images/icons/delete/baseline-close-24px.svg');
+  composes: btn;
+  background-image: url('../../assets/images/icons/delete/baseline-close-24px.svg');
 }
 
 .btnComplete {
-    composes: btn;
-    background-image: url('../../assets/images/icons/done/baseline-done-24px.svg');
+  composes: btn;
+  background-image: url('../../assets/images/icons/done/baseline-done-24px.svg');
 }
 
 .btnStart {
-    cursor: pointer;
-    padding: 0;
-    background-color: inherit;
-    border: none;
-    text-transform: uppercase;
-    color: #12964a;
-    font-weight: bold;
-    line-height: 30px;
+  cursor: pointer;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  text-transform: uppercase;
+  color: #12964a;
+  font-weight: bold;
+  line-height: 30px;
 }
 
 .createTitle {
-    margin: 0;
-    font-size: 14px;
-    font-family: HelveticaNeueCyrRoman Arial, sans-serif;
-    color: #b9c3c8;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
+  margin: 0;
+  font-size: 14px;
+  font-family: HelveticaNeueCyrRoman Arial, sans-serif;
+  color: #b9c3c8;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .btnList {
-    display: flex;
-    justify-content: space-between;
-    width: 90px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 90px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .btnItem:first-child {
-    border-right: 1px solid #000000;
-    padding-right: 10px;
+  border-right: 1px solid #000000;
+  padding-right: 10px;
 }
 
 .buttonStar {
-    width: 25px;
-    height: 25px;
-    border: none;
-    padding: 0;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: inherit;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    outline: none;
-    cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: inherit;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  outline: none;
+  cursor: pointer;
 }
 
 .buttonStarNotActive {
-    composes: buttonStar;
-    background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg');
+  composes: buttonStar;
+  background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg');
 }
 
 .buttonStarActive {
-    composes: buttonStar;
-    background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-active.svg');
+  composes: buttonStar;
+  background-image: url('../../assets/images/icons/star/favourites-filled-star-symbol-active.svg');
 }
 
 .addMode:hover {
-    box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
-    border-width: 1px;
-    border-color: rgb(0, 215, 255);
-    border-style: solid;
-    border-radius: 11px;
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  border-width: 1px;
+  border-color: rgb(0, 215, 255);
+  border-style: solid;
+  border-radius: 11px;
 }
 
 .controlsContainer {
-    display: flex;
-    position: absolute;
-    z-index: -1;
-    top: 210px;
-    left: 10px;
-    justify-content: space-between;
-    width: calc(100% - 36px);
-    user-select:none;
+  display: flex;
+  position: absolute;
+  z-index: -1;
+  top: 210px;
+  left: 10px;
+  justify-content: space-between;
+  width: calc(100% - 36px);
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 0 32px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 0 30px 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(3n) {
+    margin: 0 0 30px 0;
+  }
 }

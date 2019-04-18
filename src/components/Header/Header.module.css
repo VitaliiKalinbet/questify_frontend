@@ -1,15 +1,20 @@
 .container {
- background-color: #15395a;
+  width: 100%;
+  background-color: #15395a;
 }
 
 .header {
-  width: 284px;
+  width: 400px;
   margin: 0 auto;
   font-family: 'Helvetica Neue Cyr Roman Bold';
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.logostyle {
+  display: block;
 }
 
 .right {
@@ -20,14 +25,14 @@
 
 @media (min-width: 768px) {
   .header {
-    width: 100%;
-    padding: 0 70px;
-    height: 80px;
+    width: 600px;
+    padding: 0;
   }
 }
-@media (min-width: 1920px) {
+
+@media (min-width: 1200px) {
   .header {
-    width: 1736px;
+    width: 1024px;
     height: 90px;
   }
 }

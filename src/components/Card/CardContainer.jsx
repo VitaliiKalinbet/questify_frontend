@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 import CardView from './CardView';
 
 class CardContainer extends Component {
@@ -29,7 +28,7 @@ class CardContainer extends Component {
     });
   };
 
-  showCompletedModal = (newQuest) => {
+  showCompletedModal = newQuest => {
     this.setState({ completeModal: true, newQuest });
   };
 
@@ -132,6 +131,3 @@ CardContainer.defaultProps = {
 };
 
 export default CardContainer;
-
-// redux
-// export default connect(mapStateToProps, mapDispatchToProps)(CardContainer);
