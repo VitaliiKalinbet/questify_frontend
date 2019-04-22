@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from '../../components/Login/Login';
+import s from './LoginPage.module.css';
 
-class LoginPage extends Component {
-  state = {};
-
-  render() {
-    return <Login {...this.props} />;
-  }
-}
+const LoginPage = ({ ...props }) => {
+  return (
+    <div className={s.loginPage}>
+      <Login {...props} />
+    </div>
+  );
+};
 
 export default LoginPage;

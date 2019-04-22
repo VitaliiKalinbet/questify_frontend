@@ -1,0 +1,38 @@
+.loginPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/images/login_page_bg_mobile.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+@media (min-width: 768px) {
+  .loginPage {
+    background-image: url("../../assets/images/login_page_bg_tablet.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .loginPage {
+    background-image: url("../../assets/images/login_page_bg.png");
+    background-repeat: no-repeat;
+    justify-content: flex-start;
+    padding-left: 12%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .loginPage {
+    background-image: url("../../assets/images/login_page_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}
