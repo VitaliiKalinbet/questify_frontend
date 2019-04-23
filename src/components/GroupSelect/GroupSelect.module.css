@@ -1,0 +1,9 @@
+.groupContainer {
+  text-transform: uppercase;
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 0 60px 60px 0;
+  padding: 0 25px 0 0;
+}

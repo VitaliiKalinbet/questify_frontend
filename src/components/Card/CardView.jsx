@@ -60,15 +60,14 @@ const CardView = ({
       // for render Quest by props
       return (
         <div className={s.card}>
-
-            <CardSelect
-              isGroup={false}
-              isSelectorOpen={isSelectorDifficultiesOpen}
-              isQuest={isQuest}
-              onClick={onSaveSelectedItem}
-              items={DIFFICULTIES}
-              selected={difficulty}
-            />
+          <CardSelect
+            isGroup={false}
+            isSelectorOpen={isSelectorDifficultiesOpen}
+            isQuest={isQuest}
+            onClick={onSaveSelectedItem}
+            items={DIFFICULTIES}
+            selected={difficulty}
+          />
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
             type="button"
@@ -116,17 +115,14 @@ const CardView = ({
     if (isQuest) {
       return (
         <div className={`${s.card} ${s.addMode}`}>
-
-
-            <CardSelect
-              isGroup={false}
-              isSelectorOpen={isSelectorDifficultiesOpen}
-              isQuest={isQuest}
-              onClick={onSaveSelectedItem}
-              items={DIFFICULTIES}
-              selected={difficulty}
-            />
-
+          <CardSelect
+            isGroup={false}
+            isSelectorOpen={isSelectorDifficultiesOpen}
+            isQuest={isQuest}
+            onClick={onSaveSelectedItem}
+            items={DIFFICULTIES}
+            selected={difficulty}
+          />
 
           <button
             className={isStarActive ? `${s.buttonStarActive}` : `${s.buttonStarNotActive}`}
@@ -168,7 +164,7 @@ const CardView = ({
             </ul>
           </div>
 
-          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} newQuest={newQuest}/>}
+          {completeModal && <CompletedModal onHideComplModal={onHideCompletedModal} newQuest={newQuest} />}
           {deleteQuestModal && <DeleteQuestModal onCancelDel={onCancelDel} onAgreedDel={() => onAgreedDel(_id)} />}
         </div>
       );

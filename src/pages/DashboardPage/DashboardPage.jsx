@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from '../../components/Container/Container';
+import CardsRow from '../../components/CardsRow/CardsRow';
 import Header from '../../components/Header/Header';
 import CreateQuestButton from '../../components/CreateQuestButton/CreateQuestButton';
 import { userSelectors } from '../../redux/user';
@@ -15,10 +15,10 @@ class DashboardPage extends Component {
     return (
       <>
         <Header />
-        <Container name="today" arr={today} type="today" addMode={addMode} />
-        <Container name="tomorrow" arr={tomorrow} />
-        <Container name="all the rest" arr={allTheRest} />
-        <Container name="done" arr={done} />
+        <CardsRow name="today" arr={today} type="today" addMode={addMode} />
+        <CardsRow name="tomorrow" arr={tomorrow} />
+        <CardsRow name="all the rest" arr={allTheRest} />
+        <CardsRow name="done" arr={done} />
         <CreateQuestButton />
       </>
     );

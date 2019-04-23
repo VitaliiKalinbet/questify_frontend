@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Card from '../Card/CardContainer';
-import s from './Container.module.css';
+import s from './CardsRow.module.css';
 
-const Container = ({ arr, type, addMode, name }) => {
+const Container = ({ name, arr, type, addMode }) => {
   return (
     <section className={s.section}>
       {arr.length > 0 && <p className={s.name}>{name}</p>}

@@ -43,6 +43,7 @@ const CardSelect = ({ items, isGroup, selected, onClick, isQuest, isSelectorOpen
       }
     };
   }
+
   return isSelectorOpen ? (
     <div className={isGroup ? `${s.groupsOpen}` : `${s.difficultiesOpen}`}>
       <ul className={isQuest ? `${s.quest} ${s.selectList}` : `${s.challenge} ${s.selectList}`}>
