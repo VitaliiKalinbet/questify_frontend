@@ -2,24 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './DifficultySelect.module.css';
 
-const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelectedDifficutlyItem }) => {
+const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelectedDifficutlyItem, isQuest }) => {
   if (isOpenDifficultySelect)
     return (
-      <ul className={s.list}>
+      <ul className={isQuest ? s.list : `${s.list} ${s.darkList}`}>
         <li
-          className={difficulty === 'Easy' ? `${s.listItem} ${s.select}` : s.listItem}
+          className={
+            difficulty === 'Easy'
+              ? isQuest
+                ? `${s.listItem} ${s.select}`
+                : `${s.listItem} ${s.whiteText}`
+              : s.listItem
+          }
           onClick={() => handleSaveSelectedDifficutlyItem('Easy')}
         >
           Easy
         </li>
         <li
-          className={difficulty === 'Normal' ? `${s.listItem} ${s.select}` : s.listItem}
+          className={
+            difficulty === 'Normal'
+              ? isQuest
+                ? `${s.listItem} ${s.select}`
+                : `${s.listItem} ${s.whiteText}`
+              : s.listItem
+          }
           onClick={() => handleSaveSelectedDifficutlyItem('Normal')}
         >
           Normal
         </li>
         <li
-          className={difficulty === 'Hard' ? `${s.listItem} ${s.select}` : s.listItem}
+          className={
+            difficulty === 'Hard'
+              ? isQuest
+                ? `${s.listItem} ${s.select}`
+                : `${s.listItem} ${s.whiteText}`
+              : s.listItem
+          }
           onClick={() => handleSaveSelectedDifficutlyItem('Hard')}
         >
           Hard
@@ -34,13 +52,15 @@ const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelect
 DifficultySelect.defaultProps = {
   difficulty: '',
   isOpenDifficultySelect: false,
-  handleSaveSelectedDifficutlyItem: () => {}
+  handleSaveSelectedDifficutlyItem: () => {},
+  isQuest: true
 };
 
 DifficultySelect.propTypes = {
   handleSaveSelectedDifficutlyItem: PropTypes.func,
   difficulty: PropTypes.string,
-  isOpenDifficultySelect: PropTypes.bool
+  isOpenDifficultySelect: PropTypes.bool,
+  isQuest: PropTypes.bool
 };
 
 export default DifficultySelect;

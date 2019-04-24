@@ -39,10 +39,6 @@
   cursor: pointer;
 }
 
-.starContainer {
-  cursor: pointer;
-}
-
 .cardMain {
   display: flex;
   flex-direction: column;
@@ -56,16 +52,16 @@
   padding: 22px;
 }
 
-.star {
-  width: 22px;
-  height: 21px;
+.trophy {
+  fill: #00d7ff;
+  width: 20px;
+  height: 20px;
 }
 
 .dateTimeContainer {
   position: relative;
   display: flex;
   align-items: center;
-
 }
 
 .dateTimeContainer input {
@@ -76,6 +72,7 @@
   font-size: 15px;
   color: #b9c3c8;
   cursor: pointer;
+  background-color: #15395a;
 }
 
 .dateTimeContainer>div>div {
@@ -91,10 +88,9 @@
   width: 250px;
   text-align: center;
   font-family: 'HelveticaNeueCyr', sans-serif;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 28px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: white;
 }
 
@@ -102,16 +98,10 @@
   text-transform: uppercase;
   text-align: center;
   font-family: 'HelveticaNeueCyr', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
-  line-height: 28px;
-  margin-bottom: 1rem;
-  color: grey;
-}
-
-.groupsContainer {
-  position: relative;
-  cursor: pointer;
+  margin-bottom: 0.5rem;
+  color: #b9c3c8;
 }
 
 .ArrowForGroupSelect {
@@ -123,7 +113,7 @@
 }
 
 .toolsContainer {
-  width: 90px;
+  width: 95px;
   display: flex;
   justify-content: space-between;
   align-items: center;

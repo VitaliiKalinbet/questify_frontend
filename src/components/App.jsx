@@ -14,7 +14,7 @@ const challenge = {
   difficulty: 'Normal',
   done: false,
   dueDate: '2019-03-30T19:14:07.691Z',
-  group: 'Learning',
+  group: 'Productivity',
   isQuest: false,
   name: 'Read a book The brain that changes itself by Norman Doidge',
   updatedAt: '2019-04-22T17:44:22.004Z',

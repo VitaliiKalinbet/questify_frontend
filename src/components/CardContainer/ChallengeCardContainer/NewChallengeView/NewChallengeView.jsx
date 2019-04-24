@@ -6,14 +6,14 @@ import 'react-datetime/css/react-datetime.css';
 
 import DeleteQuestModal from '../../../DeleteQuestModal/DeleteQuestModal';
 import DifficultySelect from '../../../DifficultySelect/DifficultySelect';
-// import GroupSelect from '../../../GroupSelect/GroupSelect';
+import GroupSelect from '../../../GroupSelect/GroupSelect';
 import s from './NewChallengeView.module.css';
-import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
+import TpophySvg from '../../../../assets/images/trophy/TpophySvg';
 import dropDownArrow from '../../../../assets/images/icons/drop-down-arrow.png';
 import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSvg';
 import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 
-const NewChallengeView = (
+const NewChallengeView = ({
   isDeleteModalOpen,
   toggleDeleteModal,
   difficulty,
@@ -23,14 +23,15 @@ const NewChallengeView = (
   toggleDifficultySelect,
   isOpenDifficultySelect,
   handleChangeDueDate,
-  handleSaveSelectedDifficutlyItem
-) => {
-  console.log('NewChallengeView group', group);
+  handleSaveSelectedDifficutlyItem,
+  isQuest
+}) => {
   return (
     <div className={s.card}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
+            isQuest={isQuest}
             handleSaveSelectedDifficutlyItem={handleSaveSelectedDifficutlyItem}
             isOpenDifficultySelect={isOpenDifficultySelect}
             difficulty={difficulty}
@@ -38,7 +39,7 @@ const NewChallengeView = (
           <img className={s.dropDownArrow} src={dropDownArrow} alt="dropDownArrow" />
         </div>
         <div className={s.starContainer}>
-          <img className={s.star} src={activeStar} alt="star" />
+          <TpophySvg className={s.trophy} />
         </div>
       </header>
       <main className={s.cardMain}>
@@ -56,8 +57,8 @@ const NewChallengeView = (
       </main>
       <footer className={s.cardFooter}>
         <div className={s.groupsContainer}>
-          {/* <GroupSelect group={group} /> */}
-          {group}
+          <GroupSelect group={group} />
+          {/* {group} */}
         </div>
         <div className={s.toolsContainer}>
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
@@ -72,6 +73,7 @@ const NewChallengeView = (
 };
 
 NewChallengeView.propTypes = {
+  isQuest: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
   handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,

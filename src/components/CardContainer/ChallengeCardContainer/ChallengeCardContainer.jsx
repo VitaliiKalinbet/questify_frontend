@@ -11,9 +11,8 @@ class ChallengeCardContainer extends Component {
     dueDate: this.props.task.dueDate,
     group: this.props.task.group,
     name: this.props.task.name,
-
+    isQuest: this.props.task.isQuest,
     isOpenDifficultySelect: false,
-
     isDeleteModalOpen: false,
     isCompletedModalOpen: false
   };
@@ -61,12 +60,22 @@ class ChallengeCardContainer extends Component {
   };
 
   render() {
-    const { mode, difficulty, dueDate, group, name, isOpenDifficultySelect, isDeleteModalOpen } = this.state;
-    console.log('ChallengeCardContainer group', group);
+    const {
+      mode,
+      difficulty,
+      dueDate,
+      group,
+      name,
+      isOpenDifficultySelect,
+      isDeleteModalOpen,
+      isCompletedModalOpen,
+      isQuest
+    } = this.state;
     return (
       <>
         {mode === 'newChallenge' && (
           <NewChallengeView
+            isQuest={isQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
             handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
@@ -79,8 +88,33 @@ class ChallengeCardContainer extends Component {
             name={name}
           />
         )}
-        {mode === 'edit' && <EditChallengeView />}
-        {mode === 'render' && <ChallengeView />}
+        {mode === 'edit' && (
+          <EditChallengeView
+            isQuest={isQuest}
+            isCompletedModalOpen={isCompletedModalOpen}
+            toggleCompletedModal={this.toggleCompletedModal}
+            onModeRender={this.onModeRender}
+            isDeleteModalOpen={isDeleteModalOpen}
+            toggleDeleteModal={this.toggleDeleteModal}
+            handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
+            handleChangeDueDate={this.handleChangeDueDate}
+            isOpenDifficultySelect={isOpenDifficultySelect}
+            toggleDifficultySelect={this.toggleDifficultySelect}
+            difficulty={difficulty}
+            dueDate={dueDate}
+            group={group}
+            name={name}
+          />
+        )}
+        {mode === 'render' && (
+          <ChallengeView
+            onModeEdit={this.onModeEdit}
+            difficulty={difficulty}
+            dueDate={dueDate}
+            group={group}
+            name={name}
+          />
+        )}
       </>
     );
   }

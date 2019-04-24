@@ -49,6 +49,12 @@
   z-index: 1;
 }
 
+.darkList {
+  background-color: rgb(66, 79, 138);
+}
+
+
+
 .listItem {
   font-family: 'HelveticaNeueCyr', sans-serif;
   font-size: 15px;
@@ -88,4 +94,8 @@
   border-radius: 50%;
   margin-right: 10px;
   background-color: #ff0335;
+}
+
+.whiteText {
+  color: white;
 }

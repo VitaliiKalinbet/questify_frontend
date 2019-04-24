@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import QuestCardContainer from './QuestCardContainer/QuestCardContainer';
 import ChallengeCardContainer from './ChallengeCardContainer/ChallengeCardContainer';
 
-// task в пропсах это объект для рендера, и это или квест или челендж (тут определяем что это)
 const CardContainer = ({ task }) => {
   return <>{task.isQuest ? <QuestCardContainer task={task} /> : <ChallengeCardContainer task={task} />}</>;
 };
@@ -32,29 +31,29 @@ CardContainer.propTypes = {
 export default CardContainer;
 
 // Пример объекта челенджа:
-// {
+// const challenge = {
 //   challengeSendToUser: false,
-//   createdAt: "2019-04-22T17:44:22.004Z",
-//   difficulty: "Normal",
+//   createdAt: '2019-04-22T17:44:22.004Z',
+//   difficulty: 'Normal',
 //   done: false,
-//   dueDate: "2019-03-30T19:14:07.691Z",
-//   group: "Learning",
+//   dueDate: '2019-03-30T19:14:07.691Z',
+//   group: 'Productivity',
 //   isQuest: false,
-//   name: "Read a book The brain that changes itself by Norman Doidge",
-//   updatedAt: "2019-04-22T17:44:22.004Z",
-//   _id: "5c9fc3ac8a9f77611f74e779"
-// }
+//   name: 'Read a book The brain that changes itself by Norman Doidge',
+//   updatedAt: '2019-04-22T17:44:22.004Z',
+//   _id: '5c9fc3ac8a9f77611f74e779'
+// };
 
 // Пример объекта квеста:
-// {
-//   createdAt: "2019-04-22T17:44:21.993Z",
-//   difficulty: "Hard",
+// const task = {
+//   createdAt: '2019-04-22T17:44:21.993Z',
+//   difficulty: 'Hard',
 //   done: false,
-//   dueDate: "2019-03-30T19:14:07.686Z",
-//   group: "Productivity",
+//   dueDate: '2019-03-30T19:14:07.686Z',
+//   group: 'Productivity',
 //   isPriority: false,
 //   isQuest: true,
-//   name: "Complete 3 quests",
-//   updatedAt: "2019-04-22T17:44:21.993Z",
-//   _id: "5c9fc0988a9f77611f74e76e"
-// }
+//   name: 'Complete 3 quests',
+//   updatedAt: '2019-04-22T17:44:21.993Z',
+//   _id: '5c9fc0988a9f77611f74e76e'
+// };
