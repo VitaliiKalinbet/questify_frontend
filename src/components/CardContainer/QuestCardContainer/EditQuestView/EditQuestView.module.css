@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  margin: 0 auto 25px;
+  width: 284px;
+  height: 264px;
+  border-radius: 11px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  border: 1px solid #00d7ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+}
+
+.difficultySelect_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropDownArrow {
+  width: 12px;
+  height: 12px;
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.starContainer {
+  cursor: pointer;
+}
+
+.cardMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+}
+
+.star {
+  width: 22px;
+  height: 21px;
+}
+
+.dateTimeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+}
+
+.dateTimeContainer input {
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-size: 15px;
+  color: #b9c3c8;
+  cursor: pointer;
+}
+
+.dateTimeContainer>div>div {
+  top: 30px;
+  left: -20px;
+}
+
+.calendarIcon {
+  fill: #00d7ff;
+}
+
+.title {
+  width: 250px;
+  text-align: center;
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #00d7ff;
+}
+
+.title::placeholder {
+  font-size: 17px;
+}
+
+.groupsContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.ArrowForGroupSelect {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.toolsContainer {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.saveSvg {
+  fill: #00d7ff;
+  cursor: pointer;
+}
+
+.closeSvg {
+  fill: #da0837;
+  cursor: pointer;
+}
+
+.doneSvg {
+  fill: #24d40c;
+  cursor: pointer;
+}
+
+.strip {
+  width: 2px;
+  height: 30px;
+  background-color: #e5e6e7;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 0 32px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 0 30px 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(3n) {
+    margin: 0 0 30px 0;
+  }
+}
