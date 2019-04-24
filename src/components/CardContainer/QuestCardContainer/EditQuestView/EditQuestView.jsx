@@ -32,11 +32,11 @@ const EditQuestView = ({
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
   handleSaveSelectedGroupItem,
-  onModeRender,
   isDeleteModalOpen,
   toggleDeleteModal,
   isCompletedModalOpen,
-  toggleCompletedModal
+  toggleCompletedModal,
+  onSave
 }) => {
   return (
     <div className={s.card}>
@@ -81,7 +81,7 @@ const EditQuestView = ({
           />
         </div>
         <div className={s.toolsContainer}>
-          <SaveSvg className={s.saveSvg} onClick={onModeRender} />
+          <SaveSvg className={s.saveSvg} onClick={onSave} />
           <div className={s.strip} />
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
@@ -100,7 +100,6 @@ EditQuestView.propTypes = {
   isCompletedModalOpen: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
-  onModeRender: PropTypes.func.isRequired,
   handleSaveSelectedGroupItem: PropTypes.func.isRequired,
   handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,
   handleChangeDueDate: PropTypes.func.isRequired,

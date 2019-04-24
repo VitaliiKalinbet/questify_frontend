@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
+import { saveQuest } from '../../../redux/user/userAction';
 
 class QuestCardContainer extends Component {
   state = {
@@ -76,6 +78,52 @@ class QuestCardContainer extends Component {
     });
   };
 
+  handleReturnOldAndNewQuest = () => {
+    const {
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    } = this.state;
+
+    const newQuest = {
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    };
+
+    const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
+
+    const questFromProp = {
+      dueDate,
+      isQuest,
+      isPriority,
+      _id,
+      name,
+      group,
+      difficulty,
+      done,
+      createdAt,
+      updatedAt
+    };
+    return { questFromProp, newQuest };
+  };
+
+  handleCreateCard = () => {
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest;
+    this.showCompletedModal({ ...questFromProp, ...newQuest });
+  };
+
+  handleSaveQuest = () => {
+    const { saveQuest } = this.props;
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    return saveQuest(questFromProp, { ...questFromProp, ...newQuest });
+  };
+
   toggleDeleteModal = () => {
     this.setState(prevState => ({
       isDeleteModalOpen: !prevState.isDeleteModalOpen
@@ -119,7 +167,6 @@ class QuestCardContainer extends Component {
             isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
-            onModeRender={this.onModeRender}
             handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
             handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
             handleChangeDueDate={this.handleChangeDueDate}
@@ -134,6 +181,7 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            onSave={this.handleSaveQuest}
           />
         )}
         {mode === 'newQuest' && (
@@ -180,5 +228,11 @@ QuestCardContainer.propTypes = {
   }),
   mode: PropTypes.string
 };
+const mapDispatch = dispath => ({
+  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest))
+});
 
-export default QuestCardContainer;
+export default connect(
+  null,
+  mapDispatch
+)(QuestCardContainer);

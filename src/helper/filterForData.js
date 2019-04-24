@@ -4,17 +4,15 @@ const innit = {
   allTheRest: 'allTheRest'
 };
 
-const getDay = date => {
-  //get date with task and today
+export const getDay = date => {
+  // get date with task and today
+  const DAY = 24 * 60 * 59 * 1000;
   const today = new Date();
   const taskDayUnix = new Date(date);
-  const taskDay = taskDayUnix.getDate();
-  const currentDate = today.getDate();
-  const currentMonth = today.getMonth();
-  const taskMonth = taskDayUnix.getMonth();
-  if (taskMonth < currentMonth || taskMonth == currentMonth && taskDay <= currentDate) return innit.today;
-  if (taskDay + 1 === currentDate && taskMonth === currentMonth) return innit.tomorrow;
-  if (taskDay + 1 > currentDate && taskMonth > currentMonth) return innit.allTheRest;
+  const subtraction = taskDayUnix - today;
+  if (subtraction < DAY) return innit.today;
+  if (subtraction > DAY && subtraction < DAY * 2) return innit.tomorrow;
+  return innit.allTheRest;
 };
 
 export const today = tasks => {
@@ -37,5 +35,5 @@ export const filter = data => {
   const tomorrowArr = tomorrow(doneFalse);
   const allTheRestArr = allTheRest(doneFalse);
 
-  return { user: user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done };
+  return { user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done };
 };

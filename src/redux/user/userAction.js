@@ -25,3 +25,22 @@ export const addQuest = newQuest => {
     }
   };
 };
+
+export const saveQuest = (oldQuest, savedQuest) => {
+  return {
+    type: action.SAVE_QUEST,
+    payload: {
+      oldQuest,
+      savedQuest
+    }
+  };
+};
+
+export const moveToDone = questIsDone => {
+  return {
+    type: action.DONE_QUEST,
+    payload: {
+      questIsDone: { ...questIsDone, done: true }
+    }
+  };
+};
