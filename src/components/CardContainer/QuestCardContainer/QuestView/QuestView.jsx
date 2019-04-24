@@ -7,9 +7,9 @@ import s from './QuestView.module.css';
 import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
 import notActiveStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg';
 
-const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit }) => {
+const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done }) => {
   return (
-    <div className={s.card} onClick={onModeEdit}>
+    <div className={s.card} onClick={!done && onModeEdit}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />

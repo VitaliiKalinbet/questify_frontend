@@ -11,6 +11,7 @@ class QuestCardContainer extends Component {
     mode: this.props.mode,
     difficulty: this.props.task.difficulty,
     dueDate: this.props.task.dueDate,
+    done: this.props.task.done,
     group: this.props.task.group,
     isPriority: this.props.task.isPriority,
     name: this.props.task.name,
@@ -144,6 +145,7 @@ class QuestCardContainer extends Component {
       group,
       isPriority,
       name,
+      done,
       isOpenDifficultySelect,
       isOpenGroupSelect,
       isDeleteModalOpen,
@@ -158,6 +160,7 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            done={done}
             onModeEdit={this.onModeEdit}
           />
         )}
