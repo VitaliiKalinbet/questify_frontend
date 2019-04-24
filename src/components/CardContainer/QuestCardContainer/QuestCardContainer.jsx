@@ -6,26 +6,30 @@ import NewQuestView from './NewQuestView/NewQuestView';
 
 class QuestCardContainer extends Component {
   state = {
-    mode: 'render',
+    mode: this.props.mode,
     difficulty: this.props.task.difficulty,
     dueDate: this.props.task.dueDate,
     group: this.props.task.group,
     isPriority: this.props.task.isPriority,
     name: this.props.task.name,
     isOpenDifficultySelect: false,
-    isOpenGroupSelect: false
+    isOpenGroupSelect: false,
+    isDeleteModalOpen: false,
+    isCompletedModalOpen: false
   };
   // mode это режим карточки квеста, может быть 'render', 'edit', 'newQuest'
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
-      isOpenDifficultySelect: !prevState.isOpenDifficultySelect
+      isOpenDifficultySelect: !prevState.isOpenDifficultySelect,
+      isOpenGroupSelect: false
     }));
   };
 
   toggleOpenGroupSelect = () => {
     this.setState(prevState => ({
-      isOpenGroupSelect: !prevState.isOpenGroupSelect
+      isOpenGroupSelect: !prevState.isOpenGroupSelect,
+      isOpenDifficultySelect: false
     }));
   };
 
@@ -35,9 +39,52 @@ class QuestCardContainer extends Component {
     });
   };
 
+  onModeRender = () => {
+    this.setState({
+      mode: 'render'
+    });
+  };
+
   toggleIsPriority = () => {
     this.setState(prevState => ({
       isPriority: !prevState.isPriority
+    }));
+  };
+
+  handelChangeNameQuest = e => {
+    const value = e.target.value;
+    this.setState({
+      name: value
+    });
+  };
+
+  handleChangeDueDate = e => {
+    this.setState({
+      dueDate: new Date(e.valueOf())
+    });
+  };
+
+  handleSaveSelectedDifficutlyItem = difficultValue => {
+    this.setState({
+      difficulty: difficultValue
+    });
+  };
+
+  handleSaveSelectedGroupItem = groupValue => {
+    this.setState({
+      group: groupValue
+    });
+  };
+
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      isDeleteModalOpen: !prevState.isDeleteModalOpen
+    }));
+  };
+
+  toggleCompletedModal = () => {
+    this.setState(prevState => ({
+      isCompletedModalOpen: !prevState.isCompletedModalOpen
     }));
   };
 
@@ -50,7 +97,9 @@ class QuestCardContainer extends Component {
       isPriority,
       name,
       isOpenDifficultySelect,
-      isOpenGroupSelect
+      isOpenGroupSelect,
+      isDeleteModalOpen,
+      isCompletedModalOpen
     } = this.state;
     return (
       <>
@@ -66,6 +115,15 @@ class QuestCardContainer extends Component {
         )}
         {mode === 'edit' && (
           <EditQuestView
+            toggleCompletedModal={this.toggleCompletedModal}
+            isCompletedModalOpen={isCompletedModalOpen}
+            isDeleteModalOpen={isDeleteModalOpen}
+            toggleDeleteModal={this.toggleDeleteModal}
+            onModeRender={this.onModeRender}
+            handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
+            handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
+            handleChangeDueDate={this.handleChangeDueDate}
+            handelChangeNameQuest={this.handelChangeNameQuest}
             toggleOpenGroupSelect={this.toggleOpenGroupSelect}
             isOpenGroupSelect={isOpenGroupSelect}
             toggleIsPriority={this.toggleIsPriority}
@@ -78,11 +136,34 @@ class QuestCardContainer extends Component {
             name={name}
           />
         )}
-        {mode === 'newQuest' && <NewQuestView />}
+        {mode === 'newQuest' && (
+          <NewQuestView
+            isDeleteModalOpen={isDeleteModalOpen}
+            toggleDeleteModal={this.toggleDeleteModal}
+            handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
+            handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
+            handleChangeDueDate={this.handleChangeDueDate}
+            handelChangeNameQuest={this.handelChangeNameQuest}
+            toggleOpenGroupSelect={this.toggleOpenGroupSelect}
+            isOpenGroupSelect={isOpenGroupSelect}
+            toggleIsPriority={this.toggleIsPriority}
+            isOpenDifficultySelect={isOpenDifficultySelect}
+            toggleDifficultySelect={this.toggleDifficultySelect}
+            difficulty={difficulty}
+            dueDate={dueDate}
+            group={group}
+            isPriority={isPriority}
+            name={name}
+          />
+        )}
       </>
     );
   }
 }
+
+QuestCardContainer.defaultProps = {
+  mode: 'newQuest'
+};
 
 QuestCardContainer.propTypes = {
   task: PropTypes.shape({
@@ -96,7 +177,8 @@ QuestCardContainer.propTypes = {
     name: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired
-  })
+  }),
+  mode: PropTypes.string
 };
 
 export default QuestCardContainer;

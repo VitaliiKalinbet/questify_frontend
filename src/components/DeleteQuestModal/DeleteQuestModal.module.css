@@ -13,11 +13,11 @@
 
 .body {
   position: absolute;
-  top: 37%;
-  left: 9%;
+  top: 30%;
+  left: 5%;
   box-sizing: border-box;
-  width: 250px;
-  height: 145px;
+  width: 252px;
+  height: 110px;
   padding-top: 30px;
   background: white;
   border-radius: 11px;
@@ -42,7 +42,9 @@
   font-family: "HelveticaNeueCyrBlack", sans-serif;
 }
 
-.button:focus, .button:hover, .button:active {
+.button:focus,
+.button:hover,
+.button:active {
   outline: none;
   cursor: pointer;
 }

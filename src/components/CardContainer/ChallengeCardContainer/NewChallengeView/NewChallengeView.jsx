@@ -1,11 +1,85 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 
-const NewChallengeView = () => {
+import DeleteQuestModal from '../../../DeleteQuestModal/DeleteQuestModal';
+import DifficultySelect from '../../../DifficultySelect/DifficultySelect';
+// import GroupSelect from '../../../GroupSelect/GroupSelect';
+import s from './NewChallengeView.module.css';
+import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
+import dropDownArrow from '../../../../assets/images/icons/drop-down-arrow.png';
+import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSvg';
+import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
+
+const NewChallengeView = (
+  isDeleteModalOpen,
+  toggleDeleteModal,
+  difficulty,
+  dueDate,
+  group,
+  name,
+  toggleDifficultySelect,
+  isOpenDifficultySelect,
+  handleChangeDueDate,
+  handleSaveSelectedDifficutlyItem
+) => {
+  console.log('NewChallengeView group', group);
   return (
-    <div>
-      <h2>NewChallengeView</h2>
+    <div className={s.card}>
+      <header className={s.cardHeader}>
+        <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
+          <DifficultySelect
+            handleSaveSelectedDifficutlyItem={handleSaveSelectedDifficutlyItem}
+            isOpenDifficultySelect={isOpenDifficultySelect}
+            difficulty={difficulty}
+          />
+          <img className={s.dropDownArrow} src={dropDownArrow} alt="dropDownArrow" />
+        </div>
+        <div className={s.starContainer}>
+          <img className={s.star} src={activeStar} alt="star" />
+        </div>
+      </header>
+      <main className={s.cardMain}>
+        <h4 className={s.challangeTitle}>challange</h4>
+        <h2 className={s.title}>{name}</h2>
+        <div className={s.dateTimeContainer}>
+          <Datetime
+            closeOnSelect
+            dateFormat="DD.MM.YYYY"
+            onChange={handleChangeDueDate}
+            defaultValue={moment(dueDate)}
+          />
+          <CalendarIcon className={s.calendarIcon} />
+        </div>
+      </main>
+      <footer className={s.cardFooter}>
+        <div className={s.groupsContainer}>
+          {/* <GroupSelect group={group} /> */}
+          {group}
+        </div>
+        <div className={s.toolsContainer}>
+          <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
+          <div className={s.strip} />
+          <p className={s.start}>start</p>
+        </div>
+      </footer>
+
+      {isDeleteModalOpen && <DeleteQuestModal onCancelDel={toggleDeleteModal} />}
     </div>
   );
+};
+
+NewChallengeView.propTypes = {
+  toggleDeleteModal: PropTypes.func.isRequired,
+  isDeleteModalOpen: PropTypes.bool.isRequired,
+  handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,
+  handleChangeDueDate: PropTypes.func.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  dueDate: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default NewChallengeView;

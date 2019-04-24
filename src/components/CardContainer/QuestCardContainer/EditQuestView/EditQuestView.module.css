@@ -11,10 +11,11 @@
   border-radius: 11px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid #00d7ff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .cardHeader {
@@ -61,6 +62,32 @@
   height: 21px;
 }
 
+.dateTimeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+}
+
+.dateTimeContainer input {
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-size: 15px;
+  color: #b9c3c8;
+  cursor: pointer;
+}
+
+.dateTimeContainer>div>div {
+  top: 30px;
+  left: -20px;
+}
+
+.calendarIcon {
+  fill: #00d7ff;
+}
+
 .title {
   width: 250px;
   text-align: center;
@@ -69,14 +96,15 @@
   font-weight: bold;
   line-height: 28px;
   margin-bottom: 1rem;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #00d7ff;
 }
 
-.date {
-  font-family: 'HelveticaNeueCyr', sans-serif;
-  color: #b9c3c8;
-  margin: 0;
-  text-align: center;
-  font-size: 15px;
+.title::placeholder {
+  font-size: 17px;
 }
 
 .groupsContainer {
@@ -90,4 +118,32 @@
   position: absolute;
   top: 10px;
   right: 5px;
+}
+
+.toolsContainer {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.saveSvg {
+  fill: #00d7ff;
+  cursor: pointer;
+}
+
+.closeSvg {
+  fill: #da0837;
+  cursor: pointer;
+}
+
+.doneSvg {
+  fill: #24d40c;
+  cursor: pointer;
+}
+
+.strip {
+  width: 2px;
+  height: 30px;
+  background-color: #e5e6e7;
 }

@@ -7,3 +7,27 @@
   border-radius: 0 60px 60px 0;
   padding: 0 25px 0 0;
 }
+
+.list {
+  width: 140px;
+  background-color: #fff;
+  list-style: none;
+  position: absolute;
+  top: -115px;
+  left: -23px;
+  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  padding: 12px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.listItem {
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  color: rgba(182, 196, 202, 255);
+}
+
+.select {
+  color: black;
+}
