@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import QuestCardContainer from './QuestCardContainer/QuestCardContainer';
 import ChallengeCardContainer from './ChallengeCardContainer/ChallengeCardContainer';
 
-const CardContainer = ({ task }) => {
-  return <>{task.isQuest ? <QuestCardContainer task={task} /> : <ChallengeCardContainer task={task} />}</>;
+const CardContainer = ({ task, mode }) => {
+  return <>{task.isQuest ? <QuestCardContainer mode={mode} task={task} /> : <ChallengeCardContainer task={task} />}</>;
 };
 
 CardContainer.defaultProps = {
@@ -25,7 +25,8 @@ CardContainer.propTypes = {
     name: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired
-  })
+  }),
+  mode: PropTypes.string.isRequired
 };
 
 export default CardContainer;

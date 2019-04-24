@@ -15,7 +15,7 @@
   font-size: 1rem;
   color: #00375b;
   text-transform: uppercase;
-  margin-left: 30px;
+  margin: 1rem 0 1rem 30px;
 }
 
 @media (min-width: 768px) {
@@ -25,12 +25,16 @@
   }
 
   .name {
-    margin-left: 0;
+    margin: 1rem 0 1rem 0;
   }
 }
 
 @media (min-width: 1200px) {
   .section {
     width: 1024px;
+  }
+
+  .name {
+    margin: 2rem 0 2rem 0;
   }
 }

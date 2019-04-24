@@ -6,11 +6,10 @@ import GroupSelect from '../../../GroupSelect/GroupSelect';
 import s from './QuestView.module.css';
 import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
 import notActiveStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg';
-import editIcon from '../../../../assets/images/icons/edit/edit.png';
 
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit }) => {
   return (
-    <div className={s.card}>
+    <div className={s.card} onClick={onModeEdit}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
@@ -27,7 +26,6 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit })
         <div>
           <GroupSelect group={group} />
         </div>
-        <img onClick={onModeEdit} className={s.editIcon} src={editIcon} alt="edit icon" />
       </footer>
     </div>
   );

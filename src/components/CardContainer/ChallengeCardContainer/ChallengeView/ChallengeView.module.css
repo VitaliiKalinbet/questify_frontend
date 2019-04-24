@@ -5,7 +5,7 @@
 }
 
 .card {
-  margin: 1rem;
+  margin: 0 auto 25px;
   width: 284px;
   height: 264px;
   border-radius: 11px;
@@ -85,7 +85,7 @@
 }
 
 .title {
-  width: 250px;
+  width: 260px;
   text-align: center;
   font-family: 'HelveticaNeueCyr', sans-serif;
   font-size: 18px;
@@ -141,4 +141,28 @@
   width: 22px;
   display: block;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 0 32px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 0 30px 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(3n) {
+    margin: 0 0 30px 0;
+  }
 }

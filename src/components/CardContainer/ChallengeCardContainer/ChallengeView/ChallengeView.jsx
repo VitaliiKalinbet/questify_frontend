@@ -8,11 +8,10 @@ import DifficultySelect from '../../../DifficultySelect/DifficultySelect';
 import GroupSelect from '../../../GroupSelect/GroupSelect';
 import s from './ChallengeView.module.css';
 import TpophySvg from '../../../../assets/images/trophy/TpophySvg';
-import editIcon from '../../../../assets/images/icons/edit/edit.png';
 
 const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit }) => {
   return (
-    <div className={s.card}>
+    <div className={s.card} onClick={onModeEdit}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
@@ -32,7 +31,6 @@ const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit }) => {
         <div className={s.groupsContainer}>
           <GroupSelect group={group} />
         </div>
-        <img onClick={onModeEdit} className={s.editIconStyle} src={editIcon} alt="editIcon" />
       </footer>
     </div>
   );

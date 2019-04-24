@@ -162,7 +162,7 @@ class QuestCardContainer extends Component {
 }
 
 QuestCardContainer.defaultProps = {
-  mode: 'newQuest'
+  mode: 'render'
 };
 
 QuestCardContainer.propTypes = {
