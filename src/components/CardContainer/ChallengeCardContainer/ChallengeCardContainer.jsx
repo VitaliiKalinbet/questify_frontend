@@ -14,8 +14,18 @@ class ChallengeCardContainer extends Component {
     isQuest: this.props.task.isQuest,
     isOpenDifficultySelect: false,
     isDeleteModalOpen: false,
-    isCompletedModalOpen: false
+    isCompletedModalOpen: false,
+    challengeSendToUser: this.props.task.challengeSendToUser
   };
+
+  componentDidMount() {
+    const { challengeSendToUser } = this.state;
+    if (challengeSendToUser) {
+      this.setState({
+        mode: 'render'
+      });
+    }
+  }
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
@@ -141,16 +151,3 @@ ChallengeCardContainer.propTypes = {
 };
 
 export default ChallengeCardContainer;
-
-// const challenge = {
-//   challengeSendToUser: false,
-//   createdAt: '2019-04-22T17:44:22.004Z',
-//   difficulty: 'Normal',
-//   done: false,
-//   dueDate: '2019-03-30T19:14:07.691Z',
-//   group: 'Learning',
-//   isQuest: false,
-//   name: 'Read a book The brain that changes itself by Norman Doidge',
-//   updatedAt: '2019-04-22T17:44:22.004Z',
-//   _id: '5c9fc3ac8a9f77611f74e779'
-// };
