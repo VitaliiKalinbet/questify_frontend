@@ -30,7 +30,8 @@ const NewQuestView = ({
   handleSaveSelectedDifficutlyItem,
   handleSaveSelectedGroupItem,
   isDeleteModalOpen,
-  toggleDeleteModal
+  toggleDeleteModal,
+  onDelete
 }) => {
   return (
     <div className={s.card}>
@@ -81,7 +82,7 @@ const NewQuestView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
     </div>
   );
 };

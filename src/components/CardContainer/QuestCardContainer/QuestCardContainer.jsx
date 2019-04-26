@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import moment from 'moment';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
+import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
 
 class QuestCardContainer extends Component {
   state = {
     mode: this.props.mode,
     difficulty: this.props.task.difficulty,
-    dueDate: this.props.task.dueDate,
-    group: this.props.task.group,
+    dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
+    // dueDate: this.props.task.dueDate,
+    done: this.props.task.done || false,
+    group: this.props.task.group || 'STUFF',
     isPriority: this.props.task.isPriority,
     name: this.props.task.name,
     isOpenDifficultySelect: false,
@@ -72,10 +77,9 @@ class QuestCardContainer extends Component {
     });
   };
 
-  handleChangeDueDate = e => {
+  handleChangeDueDate = event => {
     this.setState({
-      // dueDate: new Date(e.valueOf())
-      dueDate: e.valueOf()
+      dueDate: moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ')
     });
   };
 
@@ -91,6 +95,52 @@ class QuestCardContainer extends Component {
     });
   };
 
+  handleReturnOldAndNewQuest = () => {
+    const {
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    } = this.state;
+
+    const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
+    const questFromProp = {
+      dueDate,
+      isQuest,
+      isPriority,
+      _id,
+      name,
+      group,
+      difficulty,
+      done,
+      createdAt,
+      updatedAt
+    };
+    const newQuest = {
+      ...questFromProp,
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    };
+
+    return { questFromProp, newQuest };
+  };
+
+  handleCreateCard = () => {
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest;
+    this.showCompletedModal({ ...questFromProp, ...newQuest });
+  };
+
+  handleSaveQuest = () => {
+    const { saveQuest } = this.props;
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    return saveQuest(questFromProp, { ...questFromProp, ...newQuest });
+  };
+
   toggleDeleteModal = () => {
     this.setState(prevState => ({
       isDeleteModalOpen: !prevState.isDeleteModalOpen
@@ -103,6 +153,14 @@ class QuestCardContainer extends Component {
     }));
   };
 
+  handleDeleteQuest = () => {
+    const {
+      task: { _id: id, dueDate },
+      deleteQuest
+    } = this.props;
+    deleteQuest({ id, dueDate });
+  };
+
   render() {
     const {
       mode,
@@ -111,12 +169,14 @@ class QuestCardContainer extends Component {
       group,
       isPriority,
       name,
+      done,
       isOpenDifficultySelect,
       isOpenGroupSelect,
       isDeleteModalOpen,
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
+    console.log(this.props.task);
     return (
       <>
         {mode === 'render' && (
@@ -127,6 +187,7 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            done={done}
             onModeEdit={this.onModeEdit}
           />
         )}
@@ -136,7 +197,6 @@ class QuestCardContainer extends Component {
             isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
-            onModeRender={this.onModeRender}
             handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
             handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
             handleChangeDueDate={this.handleChangeDueDate}
@@ -151,10 +211,31 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            onSave={this.handleSaveQuest}
+            onDelete={this.handleDeleteQuest}
           />
         )}
         {mode === 'newQuest' && (
+          // <
+          //   isDeleteModalOpen={isDeleteModalOpen}
+          //   toggleDeleteModal={this.toggleDeleteModal}
+          //   handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
+          //   handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
+          //   handleChangeDueNewQuestViewDate={this.handleChangeDueDate}
+          //   handelChangeNameQuest={this.handelChangeNameQuest}
+          //   toggleOpenGroupSelect={this.toggleOpenGroupSelect}
+          //   isOpenGroupSelect={isOpenGroupSelect}
+          //   toggleIsPriority={this.toggleIsPriority}
+          //   isOpenDifficultySelect={isOpenDifficultySelect}
+          //   toggleDifficultySelect={this.toggleDifficultySelect}
+          //   difficulty={difficulty}
+          //   dueDate={dueDate}
+          //   group={group}
+          //   isPriority={isPriority}
+          //   name={name}
           <NewQuestView
+            toggleCompletedModal={this.toggleCompletedModal}
+            isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
             handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
@@ -171,6 +252,8 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            onSave={this.handleSaveQuest}
+            onDelete={this.handleDeleteQuest}
           />
         )}
       </>
@@ -179,12 +262,15 @@ class QuestCardContainer extends Component {
 }
 
 QuestCardContainer.defaultProps = {
-  mode: 'render'
+  mode: 'render',
+  createdAt: '',
+  updatedAt: '',
+  dueDate: '',
+  _id: ''
 };
 
 QuestCardContainer.propTypes = {
   task: PropTypes.shape({
-    createdAt: PropTypes.string.isRequired,
     difficulty: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
     dueDate: PropTypes.string.isRequired,
@@ -192,10 +278,18 @@ QuestCardContainer.propTypes = {
     isPriority: PropTypes.bool.isRequired,
     isQuest: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    _id: PropTypes.string
   }),
   mode: PropTypes.string
 };
+const mapDispatch = dispath => ({
+  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
+  deleteQuest: param => dispath(deleteQuest(param))
+});
 
-export default QuestCardContainer;
+export default connect(
+  null,
+  mapDispatch
+)(QuestCardContainer);

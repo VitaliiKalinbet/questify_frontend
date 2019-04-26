@@ -25,6 +25,7 @@ const NewChallengeView = ({
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
   isQuest,
+  onDelete,
   onModeRender
 }) => {
   return (
@@ -70,13 +71,13 @@ const NewChallengeView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
     </div>
   );
 };
 
 NewChallengeView.propTypes = {
-  onModeRender: PropTypes.bool.isRequired,
+  onModeRender: PropTypes.func.isRequired,
   isQuest: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,

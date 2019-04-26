@@ -19,7 +19,7 @@ import DoneSvg from '../../../../assets/images/icons/doneSvg/DoneSvg';
 
 const EditQuestView = ({
   difficulty,
-  dueDate,
+  // dueDate,
   group,
   toggleIsPriority,
   isPriority,
@@ -32,11 +32,12 @@ const EditQuestView = ({
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
   handleSaveSelectedGroupItem,
-  onModeRender,
   isDeleteModalOpen,
   toggleDeleteModal,
   isCompletedModalOpen,
-  toggleCompletedModal
+  toggleCompletedModal,
+  onSave,
+  onDelete
 }) => {
   return (
     <div className={s.card}>
@@ -66,7 +67,8 @@ const EditQuestView = ({
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
-            defaultValue={moment(dueDate)}
+            defaultValue={moment(new Date())} // for test
+            // defaultValue={dueDate}
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
@@ -81,7 +83,7 @@ const EditQuestView = ({
           />
         </div>
         <div className={s.toolsContainer}>
-          <SaveSvg className={s.saveSvg} onClick={onModeRender} />
+          <SaveSvg className={s.saveSvg} onClick={onSave} />
           <div className={s.strip} />
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
@@ -89,7 +91,7 @@ const EditQuestView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal name={name} />}
     </div>
   );
@@ -100,7 +102,6 @@ EditQuestView.propTypes = {
   isCompletedModalOpen: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
-  onModeRender: PropTypes.func.isRequired,
   handleSaveSelectedGroupItem: PropTypes.func.isRequired,
   handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,
   handleChangeDueDate: PropTypes.func.isRequired,

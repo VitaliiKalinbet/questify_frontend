@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
+import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
 
 class ChallengeCardContainer extends Component {
   state = {
@@ -76,6 +77,15 @@ class ChallengeCardContainer extends Component {
     }));
   };
 
+  handleDeleteQuest = () => {
+    const {
+      task: { _id: id, dueDate },
+      deleteQuest
+    } = this.props;
+    deleteQuest({ id, dueDate });
+    console.log('qwerty');
+  };
+
   render() {
     const {
       mode,
@@ -105,6 +115,7 @@ class ChallengeCardContainer extends Component {
             dueDate={dueDate}
             group={group}
             name={name}
+            onDelete={this.handleDeleteQuest}
           />
         )}
         {mode === 'edit' && (
@@ -123,6 +134,7 @@ class ChallengeCardContainer extends Component {
             dueDate={dueDate}
             group={group}
             name={name}
+            onDelete={this.handleDeleteQuest}
           />
         )}
         {mode === 'render' && (
@@ -160,4 +172,12 @@ ChallengeCardContainer.propTypes = {
   mode: PropTypes.string
 };
 
-export default ChallengeCardContainer;
+const mapDispatch = dispath => ({
+  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
+  deleteQuest: param => dispath(deleteQuest(param))
+});
+
+export default connect(
+  null,
+  mapDispatch
+)(ChallengeCardContainer);

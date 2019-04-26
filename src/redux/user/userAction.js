@@ -25,3 +25,33 @@ export const addQuest = newQuest => {
     }
   };
 };
+
+export const saveQuest = (oldQuest, savedQuest) => {
+  return {
+    type: action.SAVE_QUEST,
+    payload: {
+      oldQuest,
+      savedQuest
+    }
+  };
+};
+
+export const deleteQuest = quest => {
+  return {
+    type: action.DELETE_QUEST,
+    payload: {
+      oldQuest: { dueDate: '' },
+      savedQuest: { dueDate: '' },
+      deleteQuest: quest
+    }
+  };
+};
+
+export const moveToDone = questIsDone => {
+  return {
+    type: action.DONE_QUEST,
+    payload: {
+      questIsDone: { ...questIsDone, done: true }
+    }
+  };
+};
