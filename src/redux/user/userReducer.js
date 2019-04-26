@@ -20,15 +20,26 @@ const user = (state = null, { type, payload }) => {
       };
 
     case action.SAVE_QUEST:
-      console.log(payload);
+      // console.log(payload);
       const { dueDate: oldQuestDate } = payload.oldQuest;
       const { dueDate: savedQuestDate } = payload.savedQuest;
       const oldArr = state[`${setNameOfArr(oldQuestDate)}`];
-      console.log(oldArr);
+
+      console.log('old: ', payload.oldQuest, 'new: ', payload.savedQuest);
+
+      if (setNameOfArr(oldQuestDate) === setNameOfArr(savedQuestDate))
+        return {
+          ...state,
+          ...{
+            [setNameOfArr(oldQuestDate)]: oldArr.map(item =>
+              item._id === payload.oldQuest._id ? payload.savedQuest : item
+            )
+          }
+        };
       return {
         ...state,
-        ...{ [setNameOfArr(savedQuestDate)]: [payload.savedQuest, ...state[setNameOfArr(savedQuestDate)]] },
-        ...{ [setNameOfArr(oldQuestDate)]: oldArr.filter(item => item._id !== payload.oldQuest._id) }
+        ...{ [setNameOfArr(oldQuestDate)]: oldArr.filter(item => item._id !== payload.oldQuest._id) },
+        ...{ [setNameOfArr(savedQuestDate)]: [...state[setNameOfArr(savedQuestDate)], payload.savedQuest] }
       };
 
     case action.DONE_QUEST:

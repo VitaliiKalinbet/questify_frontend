@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
@@ -61,9 +62,13 @@ class QuestCardContainer extends Component {
     });
   };
 
-  handleChangeDueDate = e => {
+  handleChangeDueDate = event => {
+    // console.log(e._i);
+    // const
+
+    console.log(moment(event._i).format('YYYY-MM-DDTHH:mm:ss.sssZ'));
     this.setState({
-      dueDate: new Date(e.valueOf())
+      dueDate: moment(event._i).format('YYYY-MM-DDTHH:mm:ss.sssZ')
     });
   };
 
@@ -97,7 +102,6 @@ class QuestCardContainer extends Component {
     };
 
     const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
-
     const questFromProp = {
       dueDate,
       isQuest,
@@ -110,7 +114,8 @@ class QuestCardContainer extends Component {
       createdAt,
       updatedAt
     };
-    return { questFromProp, newQuest };
+    const obj = { ...questFromProp, ...newQuest };
+    return { questFromProp, obj };
   };
 
   handleCreateCard = () => {

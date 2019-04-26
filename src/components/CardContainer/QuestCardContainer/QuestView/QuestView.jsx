@@ -9,7 +9,7 @@ import notActiveStar from '../../../../assets/images/icons/star/favourites-fille
 
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done }) => {
   return (
-    <div className={s.card} onClick={!done && onModeEdit}>
+    <div className={s.card} onClick={!done ? onModeEdit : null}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
