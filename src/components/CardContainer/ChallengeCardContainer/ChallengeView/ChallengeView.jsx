@@ -8,8 +8,9 @@ import DifficultySelect from '../../../DifficultySelect/DifficultySelect';
 import GroupSelect from '../../../GroupSelect/GroupSelect';
 import s from './ChallengeView.module.css';
 import TpophySvg from '../../../../assets/images/trophy/TpophySvg';
+import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 
-const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit }) => {
+const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit, isFireIconOn }) => {
   return (
     <div className={s.card} onClick={onModeEdit}>
       <header className={s.cardHeader}>
@@ -25,6 +26,7 @@ const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit }) => {
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
           <Datetime closeOnSelect dateFormat="DD.MM.YYYY" defaultValue={moment(dueDate)} />
+          {isFireIconOn && <FireSvg className={s.fire} />}
         </div>
       </main>
       <footer className={s.cardFooter}>
@@ -37,6 +39,7 @@ const ChallengeView = ({ difficulty, dueDate, group, name, onModeEdit }) => {
 };
 
 ChallengeView.propTypes = {
+  isFireIconOn: PropTypes.bool.isRequired,
   onModeEdit: PropTypes.func.isRequired,
   difficulty: PropTypes.string.isRequired,
   dueDate: PropTypes.string.isRequired,

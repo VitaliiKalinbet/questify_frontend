@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
@@ -14,8 +15,24 @@ class ChallengeCardContainer extends Component {
     isQuest: this.props.task.isQuest,
     isOpenDifficultySelect: false,
     isDeleteModalOpen: false,
-    isCompletedModalOpen: false
+    isCompletedModalOpen: false,
+    challengeSendToUser: this.props.task.challengeSendToUser,
+    isFireIconOn: false
   };
+
+  componentDidMount() {
+    const { challengeSendToUser, isFireIconOn, dueDate } = this.state;
+    if (challengeSendToUser) {
+      this.setState({
+        mode: 'render'
+      });
+    }
+    if (new Date(dueDate).getTime() < Date.now()) {
+      this.setState({
+        isFireIconOn: true
+      });
+    }
+  }
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
@@ -69,12 +86,14 @@ class ChallengeCardContainer extends Component {
       isOpenDifficultySelect,
       isDeleteModalOpen,
       isCompletedModalOpen,
-      isQuest
+      isQuest,
+      isFireIconOn
     } = this.state;
     return (
       <>
         {mode === 'newChallenge' && (
           <NewChallengeView
+            onModeRender={this.onModeRender}
             isQuest={isQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
@@ -108,6 +127,7 @@ class ChallengeCardContainer extends Component {
         )}
         {mode === 'render' && (
           <ChallengeView
+            isFireIconOn={isFireIconOn}
             onModeEdit={this.onModeEdit}
             difficulty={difficulty}
             dueDate={dueDate}
@@ -141,16 +161,3 @@ ChallengeCardContainer.propTypes = {
 };
 
 export default ChallengeCardContainer;
-
-// const challenge = {
-//   challengeSendToUser: false,
-//   createdAt: '2019-04-22T17:44:22.004Z',
-//   difficulty: 'Normal',
-//   done: false,
-//   dueDate: '2019-03-30T19:14:07.691Z',
-//   group: 'Learning',
-//   isQuest: false,
-//   name: 'Read a book The brain that changes itself by Norman Doidge',
-//   updatedAt: '2019-04-22T17:44:22.004Z',
-//   _id: '5c9fc3ac8a9f77611f74e779'
-// };
