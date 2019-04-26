@@ -21,9 +21,18 @@ const user = (state = null, { type, payload }) => {
         [setNameOfArr(newQuestDate)]: [payload.newQuest, ...state[setNameOfArr(newQuestDate)]]
       };
 
+    case action.DELETE_QUEST:
+      const { dueDate: deleteQuestDate = new Date() } = payload.deleteQuest;
+      const arr = state[`${setNameOfArr(deleteQuestDate)}`];
+      return {
+        ...state,
+        [setNameOfArr(deleteQuestDate)]: arr.filter(item => item._id !== payload.deleteQuest.id)
+        // done: [...state.done, payload.questIsDone]
+      };
+
     case action.SAVE_QUEST:
-      const { dueDate: oldQuestDate } = payload.oldQuest;
-      const { dueDate: savedQuestDate } = payload.savedQuest;
+      const { dueDate: oldQuestDate = new Date() } = payload.oldQuest;
+      const { dueDate: savedQuestDate = new Date() } = payload.savedQuest;
       const oldArr = state[`${setNameOfArr(oldQuestDate)}`];
       if (setNameOfArr(oldQuestDate) === setNameOfArr(savedQuestDate)) {
         return {
@@ -42,7 +51,7 @@ const user = (state = null, { type, payload }) => {
       };
 
     case action.DONE_QUEST:
-      const { dueDate: doneQuestDate } = payload.questIsDone.dueDate;
+      const { dueDate: doneQuestDate = new Date() } = payload.questIsDone.dueDate;
       const currentArr = state[`${setNameOfArr(doneQuestDate)}`];
       return {
         ...state,

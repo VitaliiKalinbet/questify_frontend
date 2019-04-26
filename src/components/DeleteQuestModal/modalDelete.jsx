@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import s from './DeleteQuestModal.module.css';
 
-const Modal = ({ clickDelete, clickCancel }) => {
+const Modal = ({ onDelete }) => {
   return (
     <div className={s.wrapper}>
       <div className={s.body}>
@@ -11,7 +11,7 @@ const Modal = ({ clickDelete, clickCancel }) => {
         <button className={s.buttonCancel} type="button" onClick={() => clickCancel()}>
           cancel
         </button>
-        <button className={s.buttonDelete} type="button" onClick={() => clickDelete()}>
+        <button className={s.buttonDelete} type="button" onClick={onDelete}>
           delete
         </button>
       </div>
@@ -20,13 +20,13 @@ const Modal = ({ clickDelete, clickCancel }) => {
 };
 
 Modal.propTypes = {
-  clickDelete: PropTypes.func,
-  clickCancel: PropTypes.func
+  // clickDelete: PropTypes.func,
+  // clickCancel: PropTypes.func
 };
 
 Modal.defaultProps = {
-  clickDelete: () => {},
-  clickCancel: () => {}
+  // clickDelete: () => {},
+  // clickCancel: () => {}
 };
 
 export default Modal;

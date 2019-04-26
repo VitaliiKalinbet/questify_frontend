@@ -5,7 +5,7 @@ import moment from 'moment';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
-import { saveQuest } from '../../../redux/user/userAction';
+import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
 
 class QuestCardContainer extends Component {
   state = {
@@ -139,6 +139,14 @@ class QuestCardContainer extends Component {
     }));
   };
 
+  handleDeleteQuest = () => {
+    const {
+      task: { _id: id, dueDate },
+      deleteQuest
+    } = this.props;
+    deleteQuest({ id, dueDate });
+  };
+
   render() {
     const {
       mode,
@@ -187,6 +195,7 @@ class QuestCardContainer extends Component {
             isPriority={isPriority}
             name={name}
             onSave={this.handleSaveQuest}
+            onDelete={this.handleDeleteQuest}
           />
         )}
         {mode === 'newQuest' && (
@@ -234,7 +243,8 @@ QuestCardContainer.propTypes = {
   mode: PropTypes.string
 };
 const mapDispatch = dispath => ({
-  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest))
+  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
+  deleteQuest: param => dispath(deleteQuest(param))
 });
 
 export default connect(

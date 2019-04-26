@@ -24,7 +24,8 @@ const NewChallengeView = ({
   isOpenDifficultySelect,
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
-  isQuest
+  isQuest,
+  onDelete
 }) => {
   return (
     <div className={s.card}>
@@ -67,7 +68,7 @@ const NewChallengeView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
     </div>
   );
 };

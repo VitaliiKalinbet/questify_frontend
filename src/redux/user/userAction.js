@@ -36,6 +36,17 @@ export const saveQuest = (oldQuest, savedQuest) => {
   };
 };
 
+export const deleteQuest = quest => {
+  return {
+    type: action.DELETE_QUEST,
+    payload: {
+      oldQuest: { dueDate: '' },
+      savedQuest: { dueDate: '' },
+      deleteQuest: quest
+    }
+  };
+};
+
 export const moveToDone = questIsDone => {
   return {
     type: action.DONE_QUEST,
