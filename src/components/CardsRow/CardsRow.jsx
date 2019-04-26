@@ -1,12 +1,10 @@
 /* eslint react/prop-types: 0 */
-
 import React from 'react';
-// import Card from '../Card/CardContainer';
 import newId from 'uuid/v4';
 import CardContainer from '../CardContainer/CardContainer';
 import s from './CardsRow.module.css';
 
-const Container = ({ name, arr, type, addMode }) => {
+const CardsRow = ({ name, arr, type, addMode }) => {
   return (
     <section className={s.section}>
       {arr.length > 0 && <p className={s.name}>{name}</p>}
@@ -20,4 +18,4 @@ const Container = ({ name, arr, type, addMode }) => {
   );
 };
 
-export default Container;
+export default CardsRow;

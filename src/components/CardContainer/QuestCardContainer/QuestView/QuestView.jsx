@@ -7,8 +7,9 @@ import { getDay } from '../../../../helper/filterForData';
 import s from './QuestView.module.css';
 import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
 import notActiveStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg';
+import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 
-const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done }) => {
+const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done, isFireIconOn }) => {
   const time = moment(dueDate).format('HH:MM');
   const dayCategory = getDay(new Date(dueDate));
   return (
@@ -23,7 +24,10 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, d
       </header>
       <main className={s.cardMain}>
         <h2 className={s.title}>{name}</h2>
-        <p className={s.date}>{`${dayCategory}, ${time}`}</p>
+        <div className={s.date_fire_container}>
+          <p className={s.date}>{`${dayCategory}, ${time}`}</p>
+          {isFireIconOn && <FireSvg className={s.fire} />}
+        </div>
       </main>
       <footer className={s.cardFooter}>
         <div>
@@ -35,6 +39,7 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, d
 };
 
 QuestView.propTypes = {
+  isFireIconOn: PropTypes.bool.isRequired,
   difficulty: PropTypes.string.isRequired,
   dueDate: PropTypes.string.isRequired,
   group: PropTypes.string.isRequired,

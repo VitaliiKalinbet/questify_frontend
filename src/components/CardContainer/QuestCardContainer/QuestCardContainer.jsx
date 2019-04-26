@@ -20,9 +20,23 @@ class QuestCardContainer extends Component {
     isOpenDifficultySelect: false,
     isOpenGroupSelect: false,
     isDeleteModalOpen: false,
-    isCompletedModalOpen: false
+    isCompletedModalOpen: false,
+    isFireIconOn: false
   };
   // mode это режим карточки квеста, может быть 'render', 'edit', 'newQuest'
+
+  componentDidMount() {
+    const { dueDate } = this.state;
+    if (new Date(dueDate).getTime() < Date.now()) {
+      this.setState({
+        isFireIconOn: true
+      });
+    } else {
+      this.setState({
+        isFireIconOn: false
+      });
+    }
+  }
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
@@ -159,12 +173,14 @@ class QuestCardContainer extends Component {
       isOpenDifficultySelect,
       isOpenGroupSelect,
       isDeleteModalOpen,
-      isCompletedModalOpen
+      isCompletedModalOpen,
+      isFireIconOn
     } = this.state;
     return (
       <>
         {mode === 'render' && (
           <QuestView
+            isFireIconOn={isFireIconOn}
             difficulty={difficulty}
             dueDate={dueDate}
             group={group}

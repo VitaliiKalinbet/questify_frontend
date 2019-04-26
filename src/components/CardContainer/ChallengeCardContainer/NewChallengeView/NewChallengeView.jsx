@@ -25,7 +25,8 @@ const NewChallengeView = ({
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
   isQuest,
-  onDelete
+  onDelete,
+  onModeRender
 }) => {
   return (
     <div className={s.card}>
@@ -64,7 +65,9 @@ const NewChallengeView = ({
         <div className={s.toolsContainer}>
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
-          <p className={s.start}>start</p>
+          <p className={s.start} onClick={onModeRender}>
+            start
+          </p>
         </div>
       </footer>
 
@@ -74,6 +77,7 @@ const NewChallengeView = ({
 };
 
 NewChallengeView.propTypes = {
+  onModeRender: PropTypes.bool.isRequired,
   isQuest: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,

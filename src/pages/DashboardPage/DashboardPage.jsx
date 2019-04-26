@@ -3,24 +3,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardsRow from '../../components/CardsRow/CardsRow';
+import DoneCardsRow from '../../components/DoneCardsRow/DoneCardsRow';
 import Header from '../../components/Header/Header';
 import CreateQuestButton from '../../components/CreateQuestButton/CreateQuestButton';
 import { userSelectors } from '../../redux/user';
+import s from './Dashboard.module.css';
 
 class DashboardPage extends Component {
-  state = {};
+  state = {
+    activeCard: ''
+  };
+
+  setActiveCard = () => {};
 
   render() {
     const { today, tomorrow, done, allTheRest, addMode } = this.props;
     return (
-      <>
+      <div className={s.dashboardContainer}>
         <Header />
         <CardsRow name="today" arr={today} type="today" addMode={addMode} />
         <CardsRow name="tomorrow" arr={tomorrow} />
         <CardsRow name="all the rest" arr={allTheRest} />
-        <CardsRow name="done" arr={done} />
+        <DoneCardsRow name="done" arr={done} />
         <CreateQuestButton />
-      </>
+      </div>
     );
   }
 }
