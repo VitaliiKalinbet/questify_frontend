@@ -77,7 +77,7 @@ const NewChallengeView = ({
 };
 
 NewChallengeView.propTypes = {
-  onModeRender: PropTypes.bool.isRequired,
+  onModeRender: PropTypes.func.isRequired,
   isQuest: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,

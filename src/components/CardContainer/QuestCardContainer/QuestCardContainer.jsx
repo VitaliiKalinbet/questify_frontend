@@ -13,8 +13,8 @@ class QuestCardContainer extends Component {
     difficulty: this.props.task.difficulty,
     dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
     // dueDate: this.props.task.dueDate,
-    done: this.props.task.done,
-    group: this.props.task.group,
+    done: this.props.task.done || false,
+    group: this.props.task.group || 'STUFF',
     isPriority: this.props.task.isPriority,
     name: this.props.task.name,
     isOpenDifficultySelect: false,
@@ -176,6 +176,7 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
+    console.log(this.props.task);
     return (
       <>
         {mode === 'render' && (
@@ -215,7 +216,26 @@ class QuestCardContainer extends Component {
           />
         )}
         {mode === 'newQuest' && (
+          // <
+          //   isDeleteModalOpen={isDeleteModalOpen}
+          //   toggleDeleteModal={this.toggleDeleteModal}
+          //   handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
+          //   handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
+          //   handleChangeDueNewQuestViewDate={this.handleChangeDueDate}
+          //   handelChangeNameQuest={this.handelChangeNameQuest}
+          //   toggleOpenGroupSelect={this.toggleOpenGroupSelect}
+          //   isOpenGroupSelect={isOpenGroupSelect}
+          //   toggleIsPriority={this.toggleIsPriority}
+          //   isOpenDifficultySelect={isOpenDifficultySelect}
+          //   toggleDifficultySelect={this.toggleDifficultySelect}
+          //   difficulty={difficulty}
+          //   dueDate={dueDate}
+          //   group={group}
+          //   isPriority={isPriority}
+          //   name={name}
           <NewQuestView
+            toggleCompletedModal={this.toggleCompletedModal}
+            isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
             handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
@@ -232,6 +252,8 @@ class QuestCardContainer extends Component {
             group={group}
             isPriority={isPriority}
             name={name}
+            onSave={this.handleSaveQuest}
+            onDelete={this.handleDeleteQuest}
           />
         )}
       </>
@@ -240,12 +262,15 @@ class QuestCardContainer extends Component {
 }
 
 QuestCardContainer.defaultProps = {
-  mode: 'render'
+  mode: 'render',
+  createdAt: '',
+  updatedAt: '',
+  dueDate: '',
+  _id: ''
 };
 
 QuestCardContainer.propTypes = {
   task: PropTypes.shape({
-    createdAt: PropTypes.string.isRequired,
     difficulty: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
     dueDate: PropTypes.string.isRequired,
@@ -253,8 +278,9 @@ QuestCardContainer.propTypes = {
     isPriority: PropTypes.bool.isRequired,
     isQuest: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    _id: PropTypes.string
   }),
   mode: PropTypes.string
 };
