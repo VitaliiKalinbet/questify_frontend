@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
@@ -15,14 +16,20 @@ class ChallengeCardContainer extends Component {
     isOpenDifficultySelect: false,
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
-    challengeSendToUser: this.props.task.challengeSendToUser
+    challengeSendToUser: this.props.task.challengeSendToUser,
+    isFireIconOn: false
   };
 
   componentDidMount() {
-    const { challengeSendToUser } = this.state;
+    const { challengeSendToUser, isFireIconOn, dueDate } = this.state;
     if (challengeSendToUser) {
       this.setState({
         mode: 'render'
+      });
+    }
+    if (new Date(dueDate).getTime() < Date.now()) {
+      this.setState({
+        isFireIconOn: true
       });
     }
   }
@@ -79,12 +86,14 @@ class ChallengeCardContainer extends Component {
       isOpenDifficultySelect,
       isDeleteModalOpen,
       isCompletedModalOpen,
-      isQuest
+      isQuest,
+      isFireIconOn
     } = this.state;
     return (
       <>
         {mode === 'newChallenge' && (
           <NewChallengeView
+            onModeRender={this.onModeRender}
             isQuest={isQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
@@ -118,6 +127,7 @@ class ChallengeCardContainer extends Component {
         )}
         {mode === 'render' && (
           <ChallengeView
+            isFireIconOn={isFireIconOn}
             onModeEdit={this.onModeEdit}
             difficulty={difficulty}
             dueDate={dueDate}
