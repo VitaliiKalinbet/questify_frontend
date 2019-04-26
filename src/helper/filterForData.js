@@ -1,7 +1,7 @@
 const innit = {
-  today: 'today',
-  tomorrow: 'tomrrow',
-  allTheRest: 'allTheRest'
+  today: 'Today',
+  tomorrow: 'Tomorrow',
+  allTheRest: 'All the rest'
 };
 
 export const getDay = date => {

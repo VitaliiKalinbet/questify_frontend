@@ -19,7 +19,7 @@ import DoneSvg from '../../../../assets/images/icons/doneSvg/DoneSvg';
 
 const EditQuestView = ({
   difficulty,
-  dueDate,
+  // dueDate,
   group,
   toggleIsPriority,
   isPriority,
@@ -66,7 +66,8 @@ const EditQuestView = ({
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
-            defaultValue={moment(dueDate)}
+            defaultValue={moment(new Date())} // for test
+            // defaultValue={dueDate}
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>

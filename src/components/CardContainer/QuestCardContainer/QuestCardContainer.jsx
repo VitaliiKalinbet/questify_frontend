@@ -11,7 +11,8 @@ class QuestCardContainer extends Component {
   state = {
     mode: this.props.mode,
     difficulty: this.props.task.difficulty,
-    dueDate: this.props.task.dueDate,
+    dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
+    // dueDate: this.props.task.dueDate,
     done: this.props.task.done,
     group: this.props.task.group,
     isPriority: this.props.task.isPriority,
@@ -63,12 +64,8 @@ class QuestCardContainer extends Component {
   };
 
   handleChangeDueDate = event => {
-    // console.log(e._i);
-    // const
-
-    console.log(moment(event._i).format('YYYY-MM-DDTHH:mm:ss.sssZ'));
     this.setState({
-      dueDate: moment(event._i).format('YYYY-MM-DDTHH:mm:ss.sssZ')
+      dueDate: moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ')
     });
   };
 
@@ -93,14 +90,6 @@ class QuestCardContainer extends Component {
       isPriority: stateIsIsPriority
     } = this.state;
 
-    const newQuest = {
-      name: stateName,
-      group: stateGroup,
-      difficulty: stateDifficulty,
-      dueDate: stateDate,
-      isPriority: stateIsIsPriority
-    };
-
     const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
     const questFromProp = {
       dueDate,
@@ -114,8 +103,16 @@ class QuestCardContainer extends Component {
       createdAt,
       updatedAt
     };
-    const obj = { ...questFromProp, ...newQuest };
-    return { questFromProp, obj };
+    const newQuest = {
+      ...questFromProp,
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    };
+
+    return { questFromProp, newQuest };
   };
 
   handleCreateCard = () => {

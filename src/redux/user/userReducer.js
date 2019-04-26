@@ -3,8 +3,10 @@ import authAction from '../auth/authActionType';
 import { getDay } from '../../helper/filterForData';
 
 const setNameOfArr = date => {
-  if (getDay(date) === 'today') return 'today';
-  if (getDay(date) === 'tomorrow') return 'tomorrow';
+  const time = new Date(date);
+  console.log(getDay(time));
+  if (getDay(time) === 'Today') return 'today';
+  if (getDay(time) === 'Tomorrow') return 'tomorrow';
   return 'allTheRest';
 };
 
@@ -13,21 +15,17 @@ const user = (state = null, { type, payload }) => {
     case action.SUCCESS:
       return payload;
     case action.ADD_QUEST:
-      const { dueDate: newQuestDate } = payload.newQuest;
+      const { dueDate: newQuestDate = new Date() } = payload.newQuest;
       return {
         ...state,
         [setNameOfArr(newQuestDate)]: [payload.newQuest, ...state[setNameOfArr(newQuestDate)]]
       };
 
     case action.SAVE_QUEST:
-      // console.log(payload);
       const { dueDate: oldQuestDate } = payload.oldQuest;
       const { dueDate: savedQuestDate } = payload.savedQuest;
       const oldArr = state[`${setNameOfArr(oldQuestDate)}`];
-
-      console.log('old: ', payload.oldQuest, 'new: ', payload.savedQuest);
-
-      if (setNameOfArr(oldQuestDate) === setNameOfArr(savedQuestDate))
+      if (setNameOfArr(oldQuestDate) === setNameOfArr(savedQuestDate)) {
         return {
           ...state,
           ...{
@@ -36,6 +34,7 @@ const user = (state = null, { type, payload }) => {
             )
           }
         };
+      }
       return {
         ...state,
         ...{ [setNameOfArr(oldQuestDate)]: oldArr.filter(item => item._id !== payload.oldQuest._id) },
