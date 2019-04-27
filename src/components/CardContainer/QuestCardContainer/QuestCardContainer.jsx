@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import userSelectors from '../../../redux/user/userSelectors';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
+import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
 class QuestCardContainer extends Component {
@@ -183,6 +185,7 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
+    const { addMode, finishAddMode } = this.props;
     return (
       <>
         {mode === 'render' && (
@@ -222,24 +225,7 @@ class QuestCardContainer extends Component {
             moveToDone={this.handleDoneQuest}
           />
         )}
-        {mode === 'newQuest' && (
-          // <
-          //   isDeleteModalOpen={isDeleteModalOpen}
-          //   toggleDeleteModal={this.toggleDeleteModal}
-          //   handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
-          //   handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
-          //   handleChangeDueNewQuestViewDate={this.handleChangeDueDate}
-          //   handelChangeNameQuest={this.handelChangeNameQuest}
-          //   toggleOpenGroupSelect={this.toggleOpenGroupSelect}
-          //   isOpenGroupSelect={isOpenGroupSelect}
-          //   toggleIsPriority={this.toggleIsPriority}
-          //   isOpenDifficultySelect={isOpenDifficultySelect}
-          //   toggleDifficultySelect={this.toggleDifficultySelect}
-          //   difficulty={difficulty}
-          //   dueDate={dueDate}
-          //   group={group}
-          //   isPriority={isPriority}
-          //   name={name}
+        {addMode && mode === 'newQuest' && (
           <NewQuestView
             toggleCompletedModal={this.toggleCompletedModal}
             isCompletedModalOpen={isCompletedModalOpen}
@@ -260,7 +246,7 @@ class QuestCardContainer extends Component {
             isPriority={isPriority}
             name={name}
             onSave={this.handleSaveQuest}
-            onDelete={this.handleDeleteQuest}
+            onDelete={finishAddMode}
           />
         )}
       </>
@@ -291,13 +277,19 @@ QuestCardContainer.propTypes = {
   }),
   mode: PropTypes.string
 };
+
+const mapState = state => ({
+  addMode: userSelectors.getAddMode(state)
+});
+
 const mapDispatch = dispath => ({
   saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
   deleteQuest: param => dispath(deleteQuest(param)),
+  finishAddMode: () => dispath(finishAddMode()),
   moveToDone: questIsDone => dispath(moveToDone(questIsDone))
 });
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(QuestCardContainer);

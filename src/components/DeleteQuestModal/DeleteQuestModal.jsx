@@ -14,13 +14,8 @@ class DeleteQuestModal extends Component {
 
   render() {
     // const { onCancelDel, onAgreedDel, onDelete } = this.props;
-    const { onDelete } = this.props;
-    return (
-      <Modal
-        // clickCancel={onCancelDel}
-        onDelete={onDelete}
-      />
-    );
+    const { onCancelDel, onDelete } = this.props;
+    return <Modal clickCancel={onCancelDel} onDelete={onDelete} />;
   }
 }
 
