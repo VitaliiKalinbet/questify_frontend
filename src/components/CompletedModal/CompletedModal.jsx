@@ -17,18 +17,19 @@ class CompletedModal extends Component {
   };
 
   render() {
-    const { name } = this.props;
-    return <Modal clickContinue={this.clickContinue} completedText={name} />;
+    // console.log()
+    const { name, moveToDone } = this.props;
+    return <Modal clickContinue={this.clickContinue} moveToDone={moveToDone} completedText={name} />;
   }
 }
 
 CompletedModal.propTypes = {
-  onHideComplModal: PropTypes.func,
-  name: PropTypes.string.isRequired
+  // onHideComplModal: PropTypes.func,
+  // name: PropTypes.string.isRequired
 };
 
 CompletedModal.defaultProps = {
-  onHideComplModal: () => null
+  // onHideComplModal: () => null
 };
 
 const mapDispatchToProps = dispatch => {

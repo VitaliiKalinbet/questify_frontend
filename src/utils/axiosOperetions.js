@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://questify.vbguard.dev';
+// axios.defaults.baseURL = 'https://questify.vbguard.dev';
+axios.defaults.baseURL = 'http://localhost:5000/';
 
 export const userLogin = user => {
   return axios.post('/api/login', user);

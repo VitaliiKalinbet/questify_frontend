@@ -5,7 +5,7 @@ import moment from 'moment';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
-import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
+import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
 class QuestCardContainer extends Component {
   state = {
@@ -141,6 +141,13 @@ class QuestCardContainer extends Component {
     return saveQuest(questFromProp, { ...questFromProp, ...newQuest });
   };
 
+  handleDoneQuest = () => {
+    const { moveToDone } = this.props;
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    // this.onModeRender();
+    return moveToDone({ ...questFromProp, ...newQuest });
+  };
+
   toggleDeleteModal = () => {
     this.setState(prevState => ({
       isDeleteModalOpen: !prevState.isDeleteModalOpen
@@ -176,7 +183,6 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    console.log(this.props.task);
     return (
       <>
         {mode === 'render' && (
@@ -213,6 +219,7 @@ class QuestCardContainer extends Component {
             name={name}
             onSave={this.handleSaveQuest}
             onDelete={this.handleDeleteQuest}
+            moveToDone={this.handleDoneQuest}
           />
         )}
         {mode === 'newQuest' && (
@@ -286,7 +293,8 @@ QuestCardContainer.propTypes = {
 };
 const mapDispatch = dispath => ({
   saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
-  deleteQuest: param => dispath(deleteQuest(param))
+  deleteQuest: param => dispath(deleteQuest(param)),
+  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
 });
 
 export default connect(

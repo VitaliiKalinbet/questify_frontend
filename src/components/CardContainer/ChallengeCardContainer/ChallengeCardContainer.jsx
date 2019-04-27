@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
-import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
+import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
 class ChallengeCardContainer extends Component {
   state = {
     mode: this.props.mode,
     difficulty: this.props.task.difficulty,
     dueDate: this.props.task.dueDate,
+    done: this.props.task.done,
     group: this.props.task.group,
     name: this.props.task.name,
     isQuest: this.props.task.isQuest,
@@ -77,13 +78,68 @@ class ChallengeCardContainer extends Component {
     }));
   };
 
+  handleReturnOldAndNewQuest = () => {
+    const {
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    } = this.state;
+
+    const {
+      dueDate,
+      isQuest,
+      isPriority,
+      _id,
+      name,
+      group,
+      difficulty,
+      done,
+      createdAt,
+      updatedAt,
+      challengeSendToUser
+    } = this.props.task;
+    const questFromProp = {
+      dueDate,
+      isQuest,
+      isPriority,
+      _id,
+      name,
+      group,
+      difficulty,
+      done,
+      challengeSendToUser,
+      createdAt,
+      updatedAt
+    };
+    const newQuest = {
+      ...questFromProp,
+
+      name: stateName,
+      group: stateGroup,
+      difficulty: stateDifficulty,
+      dueDate: stateDate,
+      isPriority: stateIsIsPriority
+    };
+
+    return { questFromProp, newQuest };
+  };
+
   handleDeleteQuest = () => {
     const {
       task: { _id: id, dueDate },
       deleteQuest
     } = this.props;
     deleteQuest({ id, dueDate });
-    console.log('qwerty');
+  };
+
+  handleDoneQuest = () => {
+    this.setState({ mode: 'render' });
+    const { moveToDone } = this.props;
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    return moveToDone({ ...questFromProp, ...newQuest });
   };
 
   render() {
@@ -92,6 +148,7 @@ class ChallengeCardContainer extends Component {
       difficulty,
       dueDate,
       group,
+      done,
       name,
       isOpenDifficultySelect,
       isDeleteModalOpen,
@@ -99,9 +156,20 @@ class ChallengeCardContainer extends Component {
       isQuest,
       isFireIconOn
     } = this.state;
+    console.log(mode);
     return (
       <>
-        {mode === 'newChallenge' && (
+        {(done === true || mode === 'render') && (
+          <ChallengeView
+            isFireIconOn={isFireIconOn}
+            onModeEdit={this.onModeEdit}
+            difficulty={difficulty}
+            dueDate={dueDate}
+            group={group}
+            name={name}
+          />
+        )}
+        {!done && mode === 'newChallenge' && (
           <NewChallengeView
             onModeRender={this.onModeRender}
             isQuest={isQuest}
@@ -118,7 +186,7 @@ class ChallengeCardContainer extends Component {
             onDelete={this.handleDeleteQuest}
           />
         )}
-        {mode === 'edit' && (
+        {!done && mode === 'edit' && (
           <EditChallengeView
             isQuest={isQuest}
             isCompletedModalOpen={isCompletedModalOpen}
@@ -135,16 +203,7 @@ class ChallengeCardContainer extends Component {
             group={group}
             name={name}
             onDelete={this.handleDeleteQuest}
-          />
-        )}
-        {mode === 'render' && (
-          <ChallengeView
-            isFireIconOn={isFireIconOn}
-            onModeEdit={this.onModeEdit}
-            difficulty={difficulty}
-            dueDate={dueDate}
-            group={group}
-            name={name}
+            moveToDone={this.handleDoneQuest}
           />
         )}
       </>
@@ -174,7 +233,8 @@ ChallengeCardContainer.propTypes = {
 
 const mapDispatch = dispath => ({
   saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
-  deleteQuest: param => dispath(deleteQuest(param))
+  deleteQuest: param => dispath(deleteQuest(param)),
+  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
 });
 
 export default connect(

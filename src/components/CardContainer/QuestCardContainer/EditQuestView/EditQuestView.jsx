@@ -37,7 +37,8 @@ const EditQuestView = ({
   isCompletedModalOpen,
   toggleCompletedModal,
   onSave,
-  onDelete
+  onDelete,
+  moveToDone
 }) => {
   return (
     <div className={s.card}>
@@ -92,7 +93,7 @@ const EditQuestView = ({
       </footer>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-      {isCompletedModalOpen && <CompletedModal name={name} />}
+      {isCompletedModalOpen && <CompletedModal name={name} moveToDone={moveToDone} />}
     </div>
   );
 };
