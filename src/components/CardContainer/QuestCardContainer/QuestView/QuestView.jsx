@@ -26,7 +26,7 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, d
         <h2 className={s.title}>{name}</h2>
         <div className={s.date_fire_container}>
           <p className={s.date}>{`${dayCategory}, ${time}`}</p>
-          {isFireIconOn && <FireSvg className={s.fire} />}
+          {!done && isFireIconOn && <FireSvg className={s.fire} />}
         </div>
       </main>
       <footer className={s.cardFooter}>

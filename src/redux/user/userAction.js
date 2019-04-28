@@ -1,5 +1,12 @@
 import action from './actionType';
 
+const initPayload = {
+  oldQuest: { dueDate: '' },
+  newQuest: { dueDate: '' },
+  doneQuest: { dueDate: '' },
+  savedQuest: { dueDate: '' }
+};
+
 export const Request = () => ({
   type: action.REQUEST
 });
@@ -20,38 +27,27 @@ export const Err = error => ({
 export const addQuest = newQuest => {
   return {
     type: action.ADD_QUEST,
-    payload: {
-      newQuest
-    }
+    payload: { ...initPayload, ...newQuest }
   };
 };
 
 export const saveQuest = (oldQuest, savedQuest) => {
   return {
     type: action.SAVE_QUEST,
-    payload: {
-      oldQuest,
-      savedQuest
-    }
+    payload: { ...initPayload, ...oldQuest, ...savedQuest }
   };
 };
 
-export const deleteQuest = quest => {
+export const deleteQuest = deleteQuest => {
   return {
     type: action.DELETE_QUEST,
-    payload: {
-      oldQuest: { dueDate: '' },
-      savedQuest: { dueDate: '' },
-      deleteQuest: quest
-    }
+    payload: { ...initPayload, ...deleteQuest }
   };
 };
 
 export const moveToDone = questIsDone => {
   return {
     type: action.DONE_QUEST,
-    payload: {
-      questIsDone: { ...questIsDone, done: true }
-    }
+    payload: { ...initPayload, ...questIsDone, done: true }
   };
 };

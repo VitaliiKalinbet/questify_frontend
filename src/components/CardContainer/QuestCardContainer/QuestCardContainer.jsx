@@ -9,6 +9,7 @@ import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
+const getFireIconOn = time => new Date(time).getTime() < Date.now();
 class QuestCardContainer extends Component {
   state = {
     mode: this.props.mode,
@@ -29,15 +30,11 @@ class QuestCardContainer extends Component {
 
   componentDidMount() {
     const { dueDate } = this.state;
-    if (new Date(dueDate).getTime() < Date.now()) {
-      this.setState({
-        isFireIconOn: true
-      });
-    } else {
-      this.setState({
-        isFireIconOn: false
-      });
-    }
+    console.log('isFireIconOn: ', getFireIconOn(dueDate));
+
+    this.setState({
+      isFireIconOn: getFireIconOn(dueDate)
+    });
   }
 
   toggleDifficultySelect = () => {
@@ -80,8 +77,10 @@ class QuestCardContainer extends Component {
   };
 
   handleChangeDueDate = event => {
+    const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
     this.setState({
-      dueDate: moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ')
+      isFireIconOn: getFireIconOn(changedDate),
+      dueDate: changedDate
     });
   };
 

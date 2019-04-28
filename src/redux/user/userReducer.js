@@ -4,7 +4,6 @@ import { getDay } from '../../helper/filterForData';
 
 const setNameOfArr = date => {
   const time = new Date(date);
-  console.log(getDay(time));
   if (getDay(time) === 'Today') return 'today';
   if (getDay(time) === 'Tomorrow') return 'tomorrow';
   return 'allTheRest';
@@ -14,6 +13,7 @@ const user = (state = null, { type, payload }) => {
   switch (type) {
     case action.SUCCESS:
       return payload;
+
     case action.ADD_QUEST:
       const { dueDate: newQuestDate = new Date() } = payload.newQuest;
       return {

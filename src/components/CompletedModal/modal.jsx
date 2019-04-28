@@ -8,7 +8,13 @@ const modalCompleted = ({ completedText, clickContinue, moveToDone }) => {
       <p className={s.text}>
         COMPLETED: <span className={s.span}> {completedText}</span>
       </p>
-      <button className={s.button} type="button" onClick={moveToDone}>
+      <button
+        className={s.button}
+        type="button"
+        onClick={() => {
+          moveToDone(), clickContinue();
+        }}
+      >
         Continue
       </button>
     </div>

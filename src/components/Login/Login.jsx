@@ -9,7 +9,7 @@ import styles from './Login.module.css';
 import { loginUser } from '../../services/api';
 
 const INITIAL_STATE = {
-  nickname: 'qwerty'
+  nickname: ''
 };
 
 class Login extends Component {
