@@ -12,8 +12,8 @@ const newQuest = {
   group: 'Stuff',
   isPriority: false,
   isQuest: true,
-  name: ''
-  // _id: '5c9fc0758a9f77611f74e76d'
+  name: '',
+  _id: newId()
 };
 
 const CardsRow = ({ name, arr, type, addMode }) => {
@@ -23,7 +23,7 @@ const CardsRow = ({ name, arr, type, addMode }) => {
       <div className={s.container}>
         {type === 'today' && addMode && <CardContainer mode="newQuest" task={newQuest} />}
         {arr.map(task => (
-          <CardContainer mode="render" task={task} key={task._id || newId()} />
+          <CardContainer mode="render" task={task || newQuest} key={task._id || newId()} />
         ))}
       </div>
     </section>

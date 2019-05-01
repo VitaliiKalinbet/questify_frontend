@@ -7,13 +7,14 @@ import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
-import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
+import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
 const getFireIconOn = time => new Date(time).getTime() < Date.now();
 class QuestCardContainer extends Component {
   state = {
     mode: this.props.mode,
-    difficulty: this.props.task.difficulty,
+    difficulty: this.props.task.difficulty || 'Easy',
+    // difficulty: this.props.task.difficulty,
     dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
     // dueDate: this.props.task.dueDate,
     done: this.props.task.done || false,
@@ -30,7 +31,6 @@ class QuestCardContainer extends Component {
 
   componentDidMount() {
     const { dueDate } = this.state;
-    console.log('isFireIconOn: ', getFireIconOn(dueDate));
 
     this.setState({
       isFireIconOn: getFireIconOn(dueDate)
@@ -135,6 +135,15 @@ class QuestCardContainer extends Component {
     this.showCompletedModal({ ...questFromProp, ...newQuest });
   };
 
+  handleAddQuest = () => {
+    const { addQuest, finishAddMode } = this.props;
+    const { newQuest } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    addQuest(newQuest);
+    finishAddMode();
+    // this.render();
+  };
+
   handleSaveQuest = () => {
     const { saveQuest } = this.props;
     const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
@@ -226,6 +235,7 @@ class QuestCardContainer extends Component {
         )}
         {addMode && mode === 'newQuest' && (
           <NewQuestView
+            handleAddQuest={this.handleAddQuest}
             toggleCompletedModal={this.toggleCompletedModal}
             isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
@@ -256,6 +266,7 @@ class QuestCardContainer extends Component {
 QuestCardContainer.defaultProps = {
   mode: 'render',
   createdAt: '',
+  difficulty: '',
   updatedAt: '',
   dueDate: '',
   _id: ''
@@ -263,7 +274,7 @@ QuestCardContainer.defaultProps = {
 
 QuestCardContainer.propTypes = {
   task: PropTypes.shape({
-    difficulty: PropTypes.string.isRequired,
+    difficulty: PropTypes.string,
     done: PropTypes.bool.isRequired,
     dueDate: PropTypes.string.isRequired,
     group: PropTypes.string.isRequired,
@@ -282,7 +293,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispath => ({
-  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
+  addQuest: newQuest => dispath(addQuest(newQuest)),
+  saveQuest: (oldQuest, changedQuest) => dispath(saveQuest(oldQuest, changedQuest)),
   deleteQuest: param => dispath(deleteQuest(param)),
   finishAddMode: () => dispath(finishAddMode()),
   moveToDone: questIsDone => dispath(moveToDone(questIsDone))

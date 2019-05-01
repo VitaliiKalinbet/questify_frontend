@@ -7,7 +7,6 @@ const loginUser = user => dispatch => {
   dispatch(Request());
   return userLogin(user)
     .then(({ data: { data } }) => {
-      console.log(data);
       dispatch(Success(filter(data)));
     })
     .then(() => dispatch(success()))

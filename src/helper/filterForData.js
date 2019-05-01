@@ -15,6 +15,13 @@ export const getDay = date => {
   return innit.allTheRest;
 };
 
+export const setNameOfArr = date => {
+  const time = new Date(date);
+  if (getDay(time) === 'Today') return 'today';
+  if (getDay(time) === 'Tomorrow') return 'tomorrow';
+  return 'allTheRest';
+};
+
 export const today = tasks => {
   return tasks.filter(task => getDay(task.dueDate) === innit.today);
 };
@@ -37,3 +44,19 @@ export const filter = data => {
 
   return { user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done };
 };
+
+// export const filter = data => {
+//   const { tasks, user } = data;
+//   const newTasks = tasks.map(i => {
+//     i.dueDate = moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ');
+//     return i;
+//   });
+//   console.log(newTasks);
+//   const done = newTasks.filter(task => task.done);
+//   const doneFalse = newTasks.filter(task => !task.done);
+//   const todayArr = today(doneFalse);
+//   const tomorrowArr = tomorrow(doneFalse);
+//   const allTheRestArr = allTheRest(doneFalse);
+
+//   return { user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done };
+// };

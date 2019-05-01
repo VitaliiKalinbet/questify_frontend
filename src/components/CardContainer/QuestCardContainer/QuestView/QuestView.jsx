@@ -11,7 +11,7 @@ import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done, isFireIconOn }) => {
   const time = moment(dueDate).format('HH:MM');
-  const dayCategory = getDay(new Date(dueDate));
+  const dayCategory = getDay(dueDate);
   return (
     <div className={s.card} onClick={!done ? onModeEdit : null}>
       <header className={s.cardHeader}>

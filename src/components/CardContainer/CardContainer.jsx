@@ -5,9 +5,7 @@ import userSelectors from '../../redux/user/userSelectors';
 import QuestCardContainer from './QuestCardContainer/QuestCardContainer';
 import ChallengeCardContainer from './ChallengeCardContainer/ChallengeCardContainer';
 
-const CardContainer = ({ task, mode, addMode }) => {
-  // console.log(task);
-  // if (addMode) return <QuestCardContainer mode="newQuest" task={task} />;
+const CardContainer = ({ task, mode }) => {
   return <>{task.isQuest ? <QuestCardContainer mode={mode} task={task} /> : <ChallengeCardContainer task={task} />}</>;
 };
 
@@ -16,20 +14,24 @@ CardContainer.defaultProps = {
   challengeSendToUser: false,
   createdAt: '',
   updatedAt: '',
+  difficulty: '',
+  done: false,
   dueDate: '',
+  name: '',
+  group: '',
   _id: ''
 };
 
 CardContainer.propTypes = {
   task: PropTypes.shape({
     challengeSendToUser: PropTypes.bool,
-    difficulty: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
+    difficulty: PropTypes.string,
+    done: PropTypes.bool,
     dueDate: PropTypes.string,
-    group: PropTypes.string.isRequired,
+    group: PropTypes.string,
     isPriority: PropTypes.bool,
-    isQuest: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    isQuest: PropTypes.bool,
+    name: PropTypes.string,
     createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
     _id: PropTypes.string

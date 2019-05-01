@@ -1,40 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from './modal';
-import { addQuest } from '../../redux/user/userAction';
 import { finishAddMode } from '../../redux/createQuest/createQuestReducer';
 
-class CompletedModal extends Component {
-  clickContinue = () => {
-    const { addQuest, newQuest, finishAddMode } = this.props;
-    addQuest(newQuest);
-    finishAddMode();
-  };
+const sliceTextCompleted = text => {
+  return text.length > 20 ? `${text.slice(0, 20)}...` : text;
+};
 
-  sliceTextCompleted = text => {
-    return text.length > 20 ? `${text.slice(0, 20)}...` : text;
-  };
-
-  render() {
-    // console.log()
-    const { name, moveToDone } = this.props;
-    return <Modal clickContinue={this.clickContinue} moveToDone={moveToDone} completedText={name} />;
-  }
-}
+// const CompletedModal = (finishAddMode, name, moveToDone) => {
+const CompletedModal = ({ finishAddMode, moveToDone, name }) => {
+  return (
+    <Modal
+      clickContinue={() => {
+        finishAddMode(), moveToDone();
+      }}
+      completedText={sliceTextCompleted(name)}
+    />
+  );
+};
 
 CompletedModal.propTypes = {
-  // onHideComplModal: PropTypes.func,
-  // name: PropTypes.string.isRequired
+  finishAddMode: PropTypes.func
 };
 
 CompletedModal.defaultProps = {
-  // onHideComplModal: () => null
+  finishAddMode: () => null
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addQuest: newTask => dispatch(addQuest(newTask)),
     finishAddMode: () => dispatch(finishAddMode())
   };
 };

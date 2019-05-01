@@ -143,6 +143,7 @@
   color: #00d7ff;
   font-family: 'HelveticaNeueCyr', sans-serif;
   font-size: 18px;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

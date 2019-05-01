@@ -156,7 +156,6 @@ class ChallengeCardContainer extends Component {
       isQuest,
       isFireIconOn
     } = this.state;
-    console.log(mode);
     return (
       <>
         {(done === true || mode === 'render') && (
@@ -212,21 +211,30 @@ class ChallengeCardContainer extends Component {
 }
 
 ChallengeCardContainer.defaultProps = {
-  mode: 'newChallenge'
+  challengeSendToUser: false,
+  mode: 'newChallenge',
+  createdAt: '',
+  difficulty: 'Easy',
+  updatedAt: '',
+  dueDate: '',
+  group: 'STUFF',
+  name: '',
+  isQuest: true,
+  _id: ''
 };
 
 ChallengeCardContainer.propTypes = {
   task: PropTypes.shape({
-    createdAt: PropTypes.string.isRequired,
-    difficulty: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
-    dueDate: PropTypes.string.isRequired,
-    group: PropTypes.string.isRequired,
-    challengeSendToUser: PropTypes.bool.isRequired,
-    isQuest: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired
+    challengeSendToUser: PropTypes.bool,
+    createdAt: PropTypes.string,
+    difficulty: PropTypes.string,
+    done: PropTypes.bool,
+    dueDate: PropTypes.string,
+    group: PropTypes.string,
+    isQuest: PropTypes.bool,
+    name: PropTypes.string,
+    updatedAt: PropTypes.string,
+    _id: PropTypes.string
   }),
   mode: PropTypes.string
 };
