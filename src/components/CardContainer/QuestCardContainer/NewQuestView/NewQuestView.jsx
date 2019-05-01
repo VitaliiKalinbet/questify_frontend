@@ -21,6 +21,7 @@ const NewQuestView = ({
   toggleIsPriority,
   isPriority,
   name,
+  handleAddQuest,
   toggleDifficultySelect,
   isOpenDifficultySelect,
   toggleOpenGroupSelect,
@@ -78,7 +79,9 @@ const NewQuestView = ({
         <div className={s.toolsContainer}>
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
-          <p className={s.start}>start</p>
+          <p className={s.start} onClick={handleAddQuest}>
+            start
+          </p>
         </div>
       </footer>
 

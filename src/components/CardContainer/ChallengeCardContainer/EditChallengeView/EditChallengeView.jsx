@@ -31,7 +31,8 @@ const EditChallengeView = ({
   toggleCompletedModal,
   isCompletedModalOpen,
   isQuest,
-  onDelete
+  onDelete,
+  moveToDone
 }) => {
   return (
     <div className={s.card}>
@@ -76,7 +77,7 @@ const EditChallengeView = ({
       </footer>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-      {isCompletedModalOpen && <CompletedModal name={name} />}
+      {isCompletedModalOpen && <CompletedModal moveToDone={moveToDone} name={name} />}
     </div>
   );
 };

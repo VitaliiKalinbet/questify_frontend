@@ -31,7 +31,7 @@ class DoneCardsRow extends Component {
         )}
         {isDoneCardsRowOpen && (
           <div className={s.container}>
-            {type === 'today' && addMode && <CardContainer mode="newQuest" />}
+            {/* {type === 'today' && addMode && <CardContainer mode="newQuest" />} */}
             {arr.map(task => (
               <CardContainer mode="render" task={task} key={task.dueDate} />
             ))}

@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import userSelectors from '../../../redux/user/userSelectors';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
-import { saveQuest, deleteQuest } from '../../../redux/user/userAction';
+import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
+import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
+const getFireIconOn = time => new Date(time).getTime() < Date.now();
 class QuestCardContainer extends Component {
   state = {
     mode: this.props.mode,
-    difficulty: this.props.task.difficulty,
+    difficulty: this.props.task.difficulty || 'Easy',
+    // difficulty: this.props.task.difficulty,
     dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
     // dueDate: this.props.task.dueDate,
     done: this.props.task.done || false,
@@ -27,15 +31,10 @@ class QuestCardContainer extends Component {
 
   componentDidMount() {
     const { dueDate } = this.state;
-    if (new Date(dueDate).getTime() < Date.now()) {
-      this.setState({
-        isFireIconOn: true
-      });
-    } else {
-      this.setState({
-        isFireIconOn: false
-      });
-    }
+
+    this.setState({
+      isFireIconOn: getFireIconOn(dueDate)
+    });
   }
 
   toggleDifficultySelect = () => {
@@ -78,8 +77,10 @@ class QuestCardContainer extends Component {
   };
 
   handleChangeDueDate = event => {
+    const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
     this.setState({
-      dueDate: moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ')
+      isFireIconOn: getFireIconOn(changedDate),
+      dueDate: changedDate
     });
   };
 
@@ -134,11 +135,27 @@ class QuestCardContainer extends Component {
     this.showCompletedModal({ ...questFromProp, ...newQuest });
   };
 
+  handleAddQuest = () => {
+    const { addQuest, finishAddMode } = this.props;
+    const { newQuest } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    addQuest(newQuest);
+    finishAddMode();
+    // this.render();
+  };
+
   handleSaveQuest = () => {
     const { saveQuest } = this.props;
     const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
     this.onModeRender();
     return saveQuest(questFromProp, { ...questFromProp, ...newQuest });
+  };
+
+  handleDoneQuest = () => {
+    const { moveToDone } = this.props;
+    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    // this.onModeRender();
+    return moveToDone({ ...questFromProp, ...newQuest });
   };
 
   toggleDeleteModal = () => {
@@ -176,7 +193,7 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    console.log(this.props.task);
+    const { addMode, finishAddMode } = this.props;
     return (
       <>
         {mode === 'render' && (
@@ -213,27 +230,12 @@ class QuestCardContainer extends Component {
             name={name}
             onSave={this.handleSaveQuest}
             onDelete={this.handleDeleteQuest}
+            moveToDone={this.handleDoneQuest}
           />
         )}
-        {mode === 'newQuest' && (
-          // <
-          //   isDeleteModalOpen={isDeleteModalOpen}
-          //   toggleDeleteModal={this.toggleDeleteModal}
-          //   handleSaveSelectedGroupItem={this.handleSaveSelectedGroupItem}
-          //   handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
-          //   handleChangeDueNewQuestViewDate={this.handleChangeDueDate}
-          //   handelChangeNameQuest={this.handelChangeNameQuest}
-          //   toggleOpenGroupSelect={this.toggleOpenGroupSelect}
-          //   isOpenGroupSelect={isOpenGroupSelect}
-          //   toggleIsPriority={this.toggleIsPriority}
-          //   isOpenDifficultySelect={isOpenDifficultySelect}
-          //   toggleDifficultySelect={this.toggleDifficultySelect}
-          //   difficulty={difficulty}
-          //   dueDate={dueDate}
-          //   group={group}
-          //   isPriority={isPriority}
-          //   name={name}
+        {addMode && mode === 'newQuest' && (
           <NewQuestView
+            handleAddQuest={this.handleAddQuest}
             toggleCompletedModal={this.toggleCompletedModal}
             isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
@@ -253,7 +255,7 @@ class QuestCardContainer extends Component {
             isPriority={isPriority}
             name={name}
             onSave={this.handleSaveQuest}
-            onDelete={this.handleDeleteQuest}
+            onDelete={finishAddMode}
           />
         )}
       </>
@@ -264,6 +266,7 @@ class QuestCardContainer extends Component {
 QuestCardContainer.defaultProps = {
   mode: 'render',
   createdAt: '',
+  difficulty: '',
   updatedAt: '',
   dueDate: '',
   _id: ''
@@ -271,7 +274,7 @@ QuestCardContainer.defaultProps = {
 
 QuestCardContainer.propTypes = {
   task: PropTypes.shape({
-    difficulty: PropTypes.string.isRequired,
+    difficulty: PropTypes.string,
     done: PropTypes.bool.isRequired,
     dueDate: PropTypes.string.isRequired,
     group: PropTypes.string.isRequired,
@@ -284,12 +287,20 @@ QuestCardContainer.propTypes = {
   }),
   mode: PropTypes.string
 };
+
+const mapState = state => ({
+  addMode: userSelectors.getAddMode(state)
+});
+
 const mapDispatch = dispath => ({
-  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
-  deleteQuest: param => dispath(deleteQuest(param))
+  addQuest: newQuest => dispath(addQuest(newQuest)),
+  saveQuest: (oldQuest, changedQuest) => dispath(saveQuest(oldQuest, changedQuest)),
+  deleteQuest: param => dispath(deleteQuest(param)),
+  finishAddMode: () => dispath(finishAddMode()),
+  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
 });
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(QuestCardContainer);

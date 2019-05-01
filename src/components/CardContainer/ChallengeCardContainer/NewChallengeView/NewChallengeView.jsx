@@ -76,17 +76,29 @@ const NewChallengeView = ({
   );
 };
 
+NewChallengeView.defaultProps = {
+  // challengeSendToUser: false,
+  // mode: 'newChallenge',
+  // createdAt: '',
+  difficulty: 'Easy',
+  // updatedAt: '',
+  // dueDate: '',
+  group: 'STUFF',
+  isQuest: true
+  // _id: ''
+};
+
 NewChallengeView.propTypes = {
   onModeRender: PropTypes.func.isRequired,
-  isQuest: PropTypes.bool.isRequired,
+  isQuest: PropTypes.bool,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
   handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,
   handleChangeDueDate: PropTypes.func.isRequired,
-  difficulty: PropTypes.string.isRequired,
-  dueDate: PropTypes.string.isRequired,
-  group: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  difficulty: PropTypes.string,
+  dueDate: PropTypes.string,
+  group: PropTypes.string,
+  name: PropTypes.string
 };
 
 export default NewChallengeView;
