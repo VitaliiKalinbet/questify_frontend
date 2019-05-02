@@ -1,4 +1,3 @@
-
 import action from './actionType';
 
 const initPayload = {
@@ -26,20 +25,15 @@ export const Err = error => ({
 });
 
 export const addQuest = newQuest => {
-  console.log(newQuest);
-  const hasId = () => !!(newQuest && newQuest.hasOwnProperty(`${_id}`));
-  const setId = obj => {
-    if (hasId) return obj._id;
-    return {};
-  };
   return {
     type: action.ADD_QUEST,
     payload: { ...initPayload, newQuest }
-    // payload: { ...initPayload, newQuest: { ...newQuest, ...setId(newQuest) } }
   };
 };
 
-export const saveQuest = (oldQuest, savedQuest) => {
+export const saveQuest = dispatch => (oldQuest, savedQuest) => {
+  console.log(oldQuest, savedQuest);
+  dispatch(axios);
   return {
     type: action.SAVE_QUEST,
     payload: { ...initPayload, oldQuest, savedQuest: { ...oldQuest, ...savedQuest } }
@@ -56,6 +50,6 @@ export const deleteQuest = deleteQuest => {
 export const moveToDone = questIsDone => {
   return {
     type: action.DONE_QUEST,
-    payload: { ...initPayload, questIsDone: { ...questIsDone, done: true, dueDate: String(new Date()) } }
+    payload: { ...initPayload, questIsDone: { ...questIsDone, done: true } }
   };
 };

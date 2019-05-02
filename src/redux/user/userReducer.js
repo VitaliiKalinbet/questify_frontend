@@ -8,7 +8,10 @@ const user = (state = null, { type, payload }) => {
       return payload;
 
     case action.ADD_QUEST:
-      const newQuestDate = new Date();
+      console.log(payload);
+      const { dueDate: newQuestDate = new Date() } = payload.newQuest;
+      // const newQuestDate = new Date();
+
       return {
         ...state,
         [setNameOfArr(newQuestDate)]: [payload.newQuest, ...state[setNameOfArr(newQuestDate)]]
