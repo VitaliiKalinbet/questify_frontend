@@ -29,7 +29,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .dropDownArrow {
@@ -73,6 +72,18 @@
   color: #b9c3c8;
   cursor: pointer;
   background-color: #15395a;
+}
+
+.date {
+  font-family: 'HelveticaNeueCyr', sans-serif;
+  color: #b9c3c8;
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+.date::first-letter {
+  text-transform: uppercase;
 }
 
 .dateTimeContainer>div>div {
@@ -141,6 +152,12 @@
   width: 22px;
   display: block;
   cursor: pointer;
+}
+
+.date_fire_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fire {

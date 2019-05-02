@@ -1,4 +1,3 @@
-import newId from 'uuid/v4';
 
 import action from './actionType';
 
@@ -57,6 +56,6 @@ export const deleteQuest = deleteQuest => {
 export const moveToDone = questIsDone => {
   return {
     type: action.DONE_QUEST,
-    payload: { ...initPayload, questIsDone: { ...questIsDone, done: true } }
+    payload: { ...initPayload, questIsDone: { ...questIsDone, done: true, dueDate: String(new Date()) } }
   };
 };

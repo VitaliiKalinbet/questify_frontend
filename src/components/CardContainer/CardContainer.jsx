@@ -11,7 +11,7 @@ const CardContainer = ({ task, mode, name }) => {
       {task.isQuest ? (
         <QuestCardContainer mode={mode} name={name} task={task} />
       ) : (
-        <ChallengeCardContainer task={task} />
+        <ChallengeCardContainer task={task} name={name} />
       )}
     </>
   );

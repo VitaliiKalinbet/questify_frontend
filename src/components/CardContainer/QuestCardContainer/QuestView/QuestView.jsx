@@ -9,7 +9,6 @@ import notActiveStar from '../../../../assets/images/icons/star/favourites-fille
 import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName, onModeEdit, done, isFireIconOn }) => {
-  // const time = moment(dueDate);
   const notDoneFormatTime = moment(dueDate).format('hh:mm');
   const doneFormatTime = moment(dueDate).format('MMMM DD, hh:mm');
   const isActiveFireIcon = !done && categoryName === 'today';
