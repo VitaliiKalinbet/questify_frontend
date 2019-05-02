@@ -12,14 +12,15 @@ import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/use
 const getFireIconOn = time => new Date(time).getTime() < Date.now();
 class QuestCardContainer extends Component {
   state = {
+    updatedFields: {},
     mode: this.props.mode,
     difficulty: this.props.task.difficulty || 'Easy',
-    // difficulty: this.props.task.difficulty,
-    dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
-    // dueDate: this.props.task.dueDate,
+    dueDate: this.props.task.dueDate,
     done: this.props.task.done || false,
     group: this.props.task.group || 'STUFF',
     isPriority: this.props.task.isPriority,
+    // difficulty: this.props.task.difficulty,
+    // dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
     name: this.props.task.name,
     isOpenDifficultySelect: false,
     isOpenGroupSelect: false,
@@ -65,35 +66,40 @@ class QuestCardContainer extends Component {
 
   toggleIsPriority = () => {
     this.setState(prevState => ({
-      isPriority: !prevState.isPriority
+      isPriority: !prevState.isPriority,
+      updatedFields: { ...prevState.updatedFields, isPriority: !prevState.isPriority } // add all
     }));
   };
 
   handelChangeNameQuest = e => {
     const value = e.target.value;
-    this.setState({
-      name: value
-    });
+    this.setState(prevState => ({
+      name: value,
+      updatedFields: { ...prevState.updatedFields, name: value }
+    }));
   };
 
   handleChangeDueDate = event => {
     const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
-    this.setState({
+    this.setState(prevState => ({
       isFireIconOn: getFireIconOn(changedDate),
-      dueDate: changedDate
-    });
+      dueDate: changedDate,
+      updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
+    }));
   };
 
   handleSaveSelectedDifficutlyItem = difficultValue => {
-    this.setState({
-      difficulty: difficultValue
-    });
+    this.setState(prevState => ({
+      difficulty: difficultValue,
+      updatedFields: { ...prevState.updatedFields, difficulty: difficultValue }
+    }));
   };
 
   handleSaveSelectedGroupItem = groupValue => {
-    this.setState({
-      group: groupValue
-    });
+    this.setState(prevState => ({
+      group: groupValue,
+      updatedFields: { ...prevState.updatedFields, group: groupValue }
+    }));
   };
 
   handleReturnOldAndNewQuest = () => {
@@ -102,7 +108,8 @@ class QuestCardContainer extends Component {
       group: stateGroup,
       difficulty: stateDifficulty,
       dueDate: stateDate,
-      isPriority: stateIsIsPriority
+      isPriority: stateIsIsPriority,
+      updatedFields
     } = this.state;
 
     const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
@@ -118,44 +125,44 @@ class QuestCardContainer extends Component {
       createdAt,
       updatedAt
     };
-    const newQuest = {
-      ...questFromProp,
-      name: stateName,
-      group: stateGroup,
-      difficulty: stateDifficulty,
-      dueDate: stateDate,
-      isPriority: stateIsIsPriority
-    };
 
-    return { questFromProp, newQuest };
+    // const newQuest =
+    //  {
+    //   // ...questFromProp,
+    //   name: stateName,
+    //   group: stateGroup,
+    //   difficulty: stateDifficulty,
+    //   dueDate: stateDate,
+    //   isPriority: stateIsIsPriority
+    // };
+
+    return { questFromProp, updatedFields };
   };
 
   handleCreateCard = () => {
-    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest;
-    this.showCompletedModal({ ...questFromProp, ...newQuest });
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest;
+    this.showCompletedModal({ ...questFromProp, ...updatedFields });
   };
 
   handleAddQuest = () => {
     const { addQuest, finishAddMode } = this.props;
-    const { newQuest } = this.handleReturnOldAndNewQuest();
+    const { updatedFields } = this.handleReturnOldAndNewQuest();
     this.onModeRender();
-    addQuest(newQuest);
     finishAddMode();
-    // this.render();
+    addQuest(updatedFields);
   };
 
   handleSaveQuest = () => {
     const { saveQuest } = this.props;
-    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     this.onModeRender();
-    return saveQuest(questFromProp, { ...questFromProp, ...newQuest });
+    return saveQuest(questFromProp, updatedFields);
   };
 
   handleDoneQuest = () => {
     const { moveToDone } = this.props;
-    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
-    // this.onModeRender();
-    return moveToDone({ ...questFromProp, ...newQuest });
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
+    return moveToDone({ ...questFromProp, ...updatedFields });
   };
 
   toggleDeleteModal = () => {
@@ -193,11 +200,12 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    const { addMode, finishAddMode } = this.props;
+    const { addMode, finishAddMode, name: categoryName } = this.props;
     return (
       <>
         {mode === 'render' && (
           <QuestView
+            categoryName={categoryName}
             isFireIconOn={isFireIconOn}
             difficulty={difficulty}
             dueDate={dueDate}
@@ -294,7 +302,7 @@ const mapState = state => ({
 
 const mapDispatch = dispath => ({
   addQuest: newQuest => dispath(addQuest(newQuest)),
-  saveQuest: (oldQuest, changedQuest) => dispath(saveQuest(oldQuest, changedQuest)),
+  saveQuest: (oldQuest, savedQuest) => dispath(saveQuest(oldQuest, savedQuest)),
   deleteQuest: param => dispath(deleteQuest(param)),
   finishAddMode: () => dispath(finishAddMode()),
   moveToDone: questIsDone => dispath(moveToDone(questIsDone))

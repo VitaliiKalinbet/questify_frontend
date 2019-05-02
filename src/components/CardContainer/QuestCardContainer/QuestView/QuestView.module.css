@@ -64,6 +64,10 @@
   font-size: 15px;
 }
 
+.date::first-letter {
+  text-transform: uppercase;
+}
+
 .editIcon {
   width: 22px;
   display: block;

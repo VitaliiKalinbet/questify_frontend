@@ -156,16 +156,19 @@ class ChallengeCardContainer extends Component {
       isQuest,
       isFireIconOn
     } = this.state;
+    const { name: categoryName } = this.props;
     return (
       <>
         {(done === true || mode === 'render') && (
           <ChallengeView
+            categoryName={categoryName}
             isFireIconOn={isFireIconOn}
             onModeEdit={this.onModeEdit}
             difficulty={difficulty}
             dueDate={dueDate}
             group={group}
             name={name}
+            done={done}
           />
         )}
         {!done && mode === 'newChallenge' && (

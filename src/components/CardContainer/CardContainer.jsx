@@ -5,8 +5,16 @@ import userSelectors from '../../redux/user/userSelectors';
 import QuestCardContainer from './QuestCardContainer/QuestCardContainer';
 import ChallengeCardContainer from './ChallengeCardContainer/ChallengeCardContainer';
 
-const CardContainer = ({ task, mode }) => {
-  return <>{task.isQuest ? <QuestCardContainer mode={mode} task={task} /> : <ChallengeCardContainer task={task} />}</>;
+const CardContainer = ({ task, mode, name }) => {
+  return (
+    <>
+      {task.isQuest ? (
+        <QuestCardContainer mode={mode} name={name} task={task} />
+      ) : (
+        <ChallengeCardContainer task={task} name={name} />
+      )}
+    </>
+  );
 };
 
 CardContainer.defaultProps = {

@@ -8,7 +8,10 @@ const user = (state = null, { type, payload }) => {
       return payload;
 
     case action.ADD_QUEST:
-      const newQuestDate = new Date();
+      console.log(payload);
+      const { dueDate: newQuestDate = new Date() } = payload.newQuest;
+      // const newQuestDate = new Date();
+
       return {
         ...state,
         [setNameOfArr(newQuestDate)]: [payload.newQuest, ...state[setNameOfArr(newQuestDate)]]
@@ -27,8 +30,6 @@ const user = (state = null, { type, payload }) => {
       const { dueDate: oldQuestDate = new Date() } = payload.oldQuest;
       const { dueDate: savedQuestDate = new Date() } = payload.savedQuest;
       const oldArr = state[`${setNameOfArr(oldQuestDate)}`];
-      console.log(setNameOfArr(oldQuestDate), setNameOfArr(savedQuestDate));
-      console.log(oldQuestDate, savedQuestDate);
       if (setNameOfArr(oldQuestDate) === setNameOfArr(savedQuestDate)) {
         return {
           ...state,
