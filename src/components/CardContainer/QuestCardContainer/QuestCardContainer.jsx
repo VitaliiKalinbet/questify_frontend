@@ -193,11 +193,12 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    const { addMode, finishAddMode } = this.props;
+    const { addMode, finishAddMode, name: categoryName } = this.props;
     return (
       <>
         {mode === 'render' && (
           <QuestView
+            categoryName={categoryName}
             isFireIconOn={isFireIconOn}
             difficulty={difficulty}
             dueDate={dueDate}

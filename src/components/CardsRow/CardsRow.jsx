@@ -23,7 +23,7 @@ const CardsRow = ({ name, arr, type, addMode }) => {
       <div className={s.container}>
         {type === 'today' && addMode && <CardContainer mode="newQuest" task={newQuest} />}
         {arr.map(task => (
-          <CardContainer mode="render" task={task || newQuest} key={task._id || newId()} />
+          <CardContainer mode="render" name={name} task={task || newQuest} key={task._id || newId()} />
         ))}
       </div>
     </section>

@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import DifficultySelect from '../../../DifficultySelect/DifficultySelect';
 import GroupSelect from '../../../GroupSelect/GroupSelect';
-import { getDay } from '../../../../helper/filterForData';
 import s from './QuestView.module.css';
 import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
 import notActiveStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg';
 import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 
-const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, done, isFireIconOn }) => {
-  const time = moment(dueDate).format('HH:MM');
-  const dayCategory = getDay(dueDate);
+const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName, onModeEdit, done, isFireIconOn }) => {
+  // const time = moment(dueDate);
+  const notDoneFormatTime = moment(dueDate).format('hh:mm');
+  const doneFormatTime = moment(dueDate).format('MMMM DD, hh:mm');
+  const isActiveFireIcon = !done && categoryName === 'today';
+  const dateFormate = done ? (
+    <p className={s.date}>{doneFormatTime}</p>
+  ) : (
+    <p className={s.date}>{`${categoryName}, ${notDoneFormatTime}`}</p>
+  );
   return (
     <div className={s.card} onClick={!done ? onModeEdit : null}>
       <header className={s.cardHeader}>
@@ -25,8 +31,8 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, onModeEdit, d
       <main className={s.cardMain}>
         <h2 className={s.title}>{name}</h2>
         <div className={s.date_fire_container}>
-          <p className={s.date}>{`${dayCategory}, ${time}`}</p>
-          {!done && isFireIconOn && <FireSvg className={s.fire} />}
+          {dateFormate}
+          {isActiveFireIcon && isFireIconOn && <FireSvg className={s.fire} />}
         </div>
       </main>
       <footer className={s.cardFooter}>
