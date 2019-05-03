@@ -1,11 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import newId from 'uuid/v4';
 import userSelectors from '../../redux/user/userSelectors';
 import QuestCardContainer from './QuestCardContainer/QuestCardContainer';
 import ChallengeCardContainer from './ChallengeCardContainer/ChallengeCardContainer';
 
-const CardContainer = ({ task, mode, name }) => {
+const defaultTask = {
+  difficulty: 'Easy',
+  done: false,
+  dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+  group: 'Stuff',
+  isPriority: false,
+  isQuest: true,
+  name: '',
+  _id: newId()
+};
+
+const CardContainer = ({ task = { ...defaultTask }, mode, name }) => {
   return (
     <>
       {task.isQuest ? (
