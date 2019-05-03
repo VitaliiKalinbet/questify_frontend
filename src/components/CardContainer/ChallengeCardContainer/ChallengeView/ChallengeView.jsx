@@ -13,7 +13,7 @@ import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 const ChallengeView = ({ difficulty, dueDate, done, group, name, categoryName, onModeEdit, isFireIconOn }) => {
   const notDoneFormatTime = moment(dueDate).format('hh:mm');
   const doneFormatTime = moment(dueDate).format('MMMM DD, hh:mm');
-  const isActiveFireIcon = !done && categoryName === 'today';
+  // const isActiveFireIcon = !done && categoryName === 'today';
   const dateFormate = done ? (
     <p className={s.date}>{doneFormatTime}</p>
   ) : (
@@ -32,13 +32,9 @@ const ChallengeView = ({ difficulty, dueDate, done, group, name, categoryName, o
       <main className={s.cardMain}>
         <h4 className={s.challangeTitle}>challange</h4>
         <h2 className={s.title}>{name}</h2>
-        {/* <div className={s.dateTimeContainer}>
-          <Datetime closeOnSelect dateFormat="DD.MM.YYYY" defaultValue={moment(dueDate)} />
-          {isFireIconOn && <FireSvg className={s.fire} />}
-        </div> */}
         <div className={s.date_fire_container}>
           {dateFormate}
-          {isActiveFireIcon && isFireIconOn && <FireSvg className={s.fire} />}
+          {isFireIconOn && <FireSvg className={s.fire} />}
         </div>
       </main>
       <footer className={s.cardFooter}>

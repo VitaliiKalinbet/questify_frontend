@@ -3,13 +3,13 @@
 /* eslint react/no-unused-prop-types: 0 */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import { asyncOperetion } from '../../redux/user';
 import styles from './Login.module.css';
-import { loginUser } from '../../services/api';
+// import { loginUser } from '../../services/api';
 
 const INITIAL_STATE = {
-  nickname: 'qwerty'
+  nickname: ''
 };
 
 class Login extends Component {
@@ -24,7 +24,7 @@ class Login extends Component {
     const { userLogin, history } = this.props;
     const { nickname } = this.state;
     userLogin({ nickname }).then(() => history.push('/dashboard'));
-    loginUser(nickname);
+    // loginUser(nickname);
     this.reset();
   };
 
@@ -65,9 +65,9 @@ class Login extends Component {
   }
 }
 
-// Login.propTypes = {
-//   userLogin: PropTypes.func.isRequired
-// };
+Login.propTypes = {
+  userLogin: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = {
   userLogin: asyncOperetion.loginUser

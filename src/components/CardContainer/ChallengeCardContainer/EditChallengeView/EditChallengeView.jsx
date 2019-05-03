@@ -27,7 +27,7 @@ const EditChallengeView = ({
   isOpenDifficultySelect,
   handleChangeDueDate,
   handleSaveSelectedDifficutlyItem,
-  onModeRender,
+  handleSaveQuest,
   toggleCompletedModal,
   isCompletedModalOpen,
   isQuest,
@@ -68,7 +68,7 @@ const EditChallengeView = ({
           <GroupSelect group={group} />
         </div>
         <div className={s.toolsContainer}>
-          <SaveSvg className={s.saveSvg} onClick={onModeRender} />
+          <SaveSvg className={s.saveSvg} onClick={handleSaveQuest} />
           <div className={s.strip} />
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
@@ -86,7 +86,7 @@ EditChallengeView.propTypes = {
   isQuest: PropTypes.bool.isRequired,
   isCompletedModalOpen: PropTypes.bool.isRequired,
   toggleCompletedModal: PropTypes.func.isRequired,
-  onModeRender: PropTypes.func.isRequired,
+  handleSaveQuest: PropTypes.func.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
   handleSaveSelectedDifficutlyItem: PropTypes.func.isRequired,
