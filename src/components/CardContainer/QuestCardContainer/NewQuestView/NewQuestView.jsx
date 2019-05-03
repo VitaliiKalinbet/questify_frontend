@@ -51,6 +51,8 @@ const NewQuestView = ({
       </header>
       <main className={s.cardMain}>
         <input
+          minLength="3"
+          required
           autoFocus
           className={s.title}
           onChange={handelChangeNameQuest}

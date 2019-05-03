@@ -14,17 +14,16 @@ const defaultTask = {
   group: 'Stuff',
   isPriority: false,
   isQuest: true,
-  name: '',
-  _id: newId()
+  name: ''
 };
 
-const CardContainer = ({ task = { ...defaultTask }, mode, name }) => {
+const CardContainer = ({ task = { ...defaultTask, _id: newId() }, mode, name }) => {
   return (
     <>
       {task.isQuest ? (
         <QuestCardContainer mode={mode} name={name} task={task} />
       ) : (
-        <ChallengeCardContainer task={task} name={name} />
+        <ChallengeCardContainer task={task} name={name} mode={mode} />
       )}
     </>
   );

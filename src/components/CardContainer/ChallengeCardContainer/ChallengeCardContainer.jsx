@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
+const getFireIconOn = (time, nowDate) =>
+  new Date(time).getDay() < nowDate.getDay() &&
+  new Date(time).getMonth() <= nowDate.getMonth() &&
+  new Date(time).getFullYear() <= nowDate.getFullYear();
 class ChallengeCardContainer extends Component {
   state = {
-    mode: this.props.mode,
+    updatedFields: {},
+    mode: this.props.task.challengeSendToUser ? this.props.mode : 'newChallenge',
     difficulty: this.props.task.difficulty,
     dueDate: this.props.task.dueDate,
     done: this.props.task.done,
@@ -23,17 +29,16 @@ class ChallengeCardContainer extends Component {
   };
 
   componentDidMount() {
-    const { challengeSendToUser, isFireIconOn, dueDate } = this.state;
+    const { challengeSendToUser, dueDate } = this.state;
     if (challengeSendToUser) {
       this.setState({
         mode: 'render'
       });
     }
-    if (new Date(dueDate).getTime() < Date.now()) {
-      this.setState({
-        isFireIconOn: true
-      });
-    }
+
+    this.setState({
+      isFireIconOn: getFireIconOn(dueDate, new Date())
+    });
   }
 
   toggleDifficultySelect = () => {
@@ -54,10 +59,13 @@ class ChallengeCardContainer extends Component {
     });
   };
 
-  handleChangeDueDate = e => {
-    this.setState({
-      dueDate: new Date(e.valueOf())
-    });
+  handleChangeDueDate = event => {
+    const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
+    this.setState(prevState => ({
+      isFireIconOn: getFireIconOn(changedDate, new Date()),
+      dueDate: changedDate,
+      updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
+    }));
   };
 
   handleSaveSelectedDifficutlyItem = difficultValue => {
@@ -79,51 +87,9 @@ class ChallengeCardContainer extends Component {
   };
 
   handleReturnOldAndNewQuest = () => {
-    const {
-      name: stateName,
-      group: stateGroup,
-      difficulty: stateDifficulty,
-      dueDate: stateDate,
-      isPriority: stateIsIsPriority
-    } = this.state;
-
-    const {
-      dueDate,
-      isQuest,
-      isPriority,
-      _id,
-      name,
-      group,
-      difficulty,
-      done,
-      createdAt,
-      updatedAt,
-      challengeSendToUser
-    } = this.props.task;
-    const questFromProp = {
-      dueDate,
-      isQuest,
-      isPriority,
-      _id,
-      name,
-      group,
-      difficulty,
-      done,
-      challengeSendToUser,
-      createdAt,
-      updatedAt
-    };
-    const newQuest = {
-      ...questFromProp,
-
-      name: stateName,
-      group: stateGroup,
-      difficulty: stateDifficulty,
-      dueDate: stateDate,
-      isPriority: stateIsIsPriority
-    };
-
-    return { questFromProp, newQuest };
+    const { updatedFields } = this.state;
+    const questFromProp = this.props.task;
+    return { questFromProp, updatedFields };
   };
 
   handleDeleteQuest = () => {
@@ -135,11 +101,41 @@ class ChallengeCardContainer extends Component {
   };
 
   handleDoneQuest = () => {
-    this.setState({ mode: 'render' });
-    const { moveToDone } = this.props;
-    const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
-    this.onModeRender();
-    return moveToDone({ ...questFromProp, ...newQuest });
+    this.setState({ mode: 'render' }, () => {
+      const { moveToDone } = this.props;
+      const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
+      this.onModeRender();
+      return moveToDone({ ...questFromProp, ...newQuest });
+    });
+  };
+
+  handleAddQuest = () => {
+    const { saveQuest } = this.props;
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
+    console.log('updatedFields', updatedFields);
+    // this.onModeRender();
+    // saveQuest({ ...questFromProp, ...updatedFields });
+    this.setState(
+      prevState => ({
+        challengeSendToUser: true,
+        mode: 'render',
+        updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
+      }),
+      () => saveQuest(questFromProp, updatedFields)
+    );
+  };
+
+  handleSaveQuest = () => {
+    const { saveQuest } = this.props;
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
+    this.setState(
+      prevState => ({
+        challengeSendToUser: true,
+        mode: 'render',
+        updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
+      }),
+      () => saveQuest(questFromProp, updatedFields)
+    );
   };
 
   render() {
@@ -173,7 +169,7 @@ class ChallengeCardContainer extends Component {
         )}
         {!done && mode === 'newChallenge' && (
           <NewChallengeView
-            onModeRender={this.onModeRender}
+            handleAddChallange={this.handleAddQuest}
             isQuest={isQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
@@ -193,7 +189,7 @@ class ChallengeCardContainer extends Component {
             isQuest={isQuest}
             isCompletedModalOpen={isCompletedModalOpen}
             toggleCompletedModal={this.toggleCompletedModal}
-            onModeRender={this.onModeRender}
+            handleSaveQuest={this.handleSaveQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
             handleSaveSelectedDifficutlyItem={this.handleSaveSelectedDifficutlyItem}
@@ -215,7 +211,7 @@ class ChallengeCardContainer extends Component {
 
 ChallengeCardContainer.defaultProps = {
   challengeSendToUser: false,
-  mode: 'newChallenge',
+  // mode: 'newChallenge',
   createdAt: '',
   difficulty: 'Easy',
   updatedAt: '',
@@ -239,7 +235,7 @@ ChallengeCardContainer.propTypes = {
     updatedAt: PropTypes.string,
     _id: PropTypes.string
   }),
-  mode: PropTypes.string
+  mode: PropTypes.string.isRequired
 };
 
 const mapDispatch = dispath => ({

@@ -10,7 +10,10 @@ import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
-const getFireIconOn = time => new Date(time).getTime() < Date.now();
+const getFireIconOn = (time, nowDate) =>
+  new Date(time).getDay() < nowDate.getDay() &&
+  new Date(time).getMonth() <= nowDate.getMonth() &&
+  new Date(time).getFullYear() <= nowDate.getFullYear();
 class QuestCardContainer extends Component {
   state = {
     updatedFields: {},
@@ -20,8 +23,6 @@ class QuestCardContainer extends Component {
     done: this.props.task.done || false,
     group: this.props.task.group || 'STUFF',
     isPriority: this.props.task.isPriority,
-    // difficulty: this.props.task.difficulty,
-    // dueDate: moment(new Date()).format('YYYY-MM-DDTHH:mm:ss.sssZ'), // for frontend test
     name: this.props.task.name,
     isOpenDifficultySelect: false,
     isOpenGroupSelect: false,
@@ -30,13 +31,12 @@ class QuestCardContainer extends Component {
     isFireIconOn: false,
     _id: this.props.task._id || newId()
   };
-  // mode это режим карточки квеста, может быть 'render', 'edit', 'newQuest'
 
   componentDidMount() {
     const { dueDate } = this.state;
 
     this.setState({
-      isFireIconOn: getFireIconOn(dueDate)
+      isFireIconOn: getFireIconOn(dueDate, new Date())
     });
   }
 
@@ -84,7 +84,7 @@ class QuestCardContainer extends Component {
   handleChangeDueDate = event => {
     const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
     this.setState(prevState => ({
-      isFireIconOn: getFireIconOn(changedDate),
+      isFireIconOn: getFireIconOn(changedDate, new Date()),
       dueDate: changedDate,
       updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
     }));
@@ -136,6 +136,7 @@ class QuestCardContainer extends Component {
   };
 
   handleAddQuest = () => {
+    if (this.state.name.length < 3) return;
     const { addQuest, finishAddMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     console.log('updatedFields', updatedFields);
