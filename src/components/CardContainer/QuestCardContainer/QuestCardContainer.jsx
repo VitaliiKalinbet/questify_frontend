@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import newId from 'uuid/v4';
 import userSelectors from '../../../redux/user/userSelectors';
 import QuestView from './QuestView/QuestView';
 import EditQuestView from './EditQuestView/EditQuestView';
@@ -26,7 +27,8 @@ class QuestCardContainer extends Component {
     isOpenGroupSelect: false,
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
-    isFireIconOn: false
+    isFireIconOn: false,
+    _id: this.props.task._id || newId()
   };
   // mode это режим карточки квеста, может быть 'render', 'edit', 'newQuest'
 
@@ -125,17 +127,6 @@ class QuestCardContainer extends Component {
       createdAt,
       updatedAt
     };
-
-    // const newQuest =
-    //  {
-    //   // ...questFromProp,
-    //   name: stateName,
-    //   group: stateGroup,
-    //   difficulty: stateDifficulty,
-    //   dueDate: stateDate,
-    //   isPriority: stateIsIsPriority
-    // };
-
     return { questFromProp, updatedFields };
   };
 
@@ -146,10 +137,11 @@ class QuestCardContainer extends Component {
 
   handleAddQuest = () => {
     const { addQuest, finishAddMode } = this.props;
-    const { updatedFields } = this.handleReturnOldAndNewQuest();
+    const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
+    console.log('updatedFields', updatedFields);
     this.onModeRender();
     finishAddMode();
-    addQuest(updatedFields);
+    addQuest({ ...questFromProp, ...updatedFields });
   };
 
   handleSaveQuest = () => {
@@ -211,7 +203,7 @@ class QuestCardContainer extends Component {
             dueDate={dueDate}
             group={group}
             isPriority={isPriority}
-            name={name}
+            name={this.props.task.name}
             done={done}
             onModeEdit={this.onModeEdit}
           />

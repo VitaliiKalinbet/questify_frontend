@@ -27,7 +27,8 @@ CardContainer.defaultProps = {
   dueDate: '',
   name: '',
   group: '',
-  _id: ''
+  _id: '',
+  isQuest: true
 };
 
 CardContainer.propTypes = {
