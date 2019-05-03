@@ -26,6 +26,7 @@
     "eslint-plugin-react": "7.12.4",
     "file-loader": "2.0.0",
     "fs-extra": "7.0.1",
+    "gh-pages": "^2.0.1",
     "history": "^4.9.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
@@ -69,7 +70,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint src -c .eslintrc.json --ext js,jsx --fix"
+    "lint": "eslint src -c .eslintrc.json --ext js,jsx --fix",
+    "deploy": "gh-pages -d build -b master"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -167,5 +169,5 @@
   "bugs": {
     "url": "https://github.com/VitaliiKalinbet/questify_frontend/issues"
   },
-  "homepage": "https://github.com/VitaliiKalinbet/questify_frontend#readme"
+  "homepage": "https://questify.vbguard.dev"
 }
