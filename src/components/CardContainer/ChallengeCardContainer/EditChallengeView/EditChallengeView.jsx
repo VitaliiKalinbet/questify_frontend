@@ -77,7 +77,7 @@ const EditChallengeView = ({
       </footer>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-      {isCompletedModalOpen && <CompletedModal moveToDone={moveToDone} name={name} />}
+      {isCompletedModalOpen && <CompletedModal moveToDone={moveToDone} name={name} isQuest={isQuest} />}
     </div>
   );
 };

@@ -18,7 +18,6 @@ const Header = ({ user, isExsistActiveChallenge, exit }) => (
       <UserInfo user={user} />
       <div className={styles.right}>
         <ChallengeStatus isExsistActiveChallenge={isExsistActiveChallenge} />
-        {/* <ChallengeStatus isQuest={isQuest} /> */}
         <Logout exit={exit} />
       </div>
     </div>
@@ -27,7 +26,7 @@ const Header = ({ user, isExsistActiveChallenge, exit }) => (
 
 Header.propTypes = {
   user: PropTypes.string.isRequired,
-  getIsExsistActiveChallenge: PropTypes.bool.isRequired,
+  isExsistActiveChallenge: PropTypes.bool.isRequired,
   exit: PropTypes.func.isRequired
 };
 

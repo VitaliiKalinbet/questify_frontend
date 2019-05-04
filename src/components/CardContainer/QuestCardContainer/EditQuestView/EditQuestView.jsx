@@ -24,6 +24,7 @@ const EditQuestView = ({
   toggleIsPriority,
   isPriority,
   name,
+  isQuest,
   toggleDifficultySelect,
   isOpenDifficultySelect,
   toggleOpenGroupSelect,

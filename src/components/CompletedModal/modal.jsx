@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './CompletedModal.module.css';
 
-const modalCompleted = ({ completedText, clickContinue }) => {
+const modalCompleted = ({ completedText, clickContinue, isQuest }) => {
   return (
-    <div className={s.wrapper}>
-      <p className={s.text}>
+    <div className={isQuest ? s.questBackground : s.challengeBackground}>
+      <p className={`${s.text} ${!isQuest && s.challengeText}`}>
         COMPLETED: <span className={s.span}> {completedText}</span>
       </p>
       <button className={s.button} type="button" onClick={clickContinue}>
-        Continue
+         Continue
+        <span className={s.buttonArrow}/>
       </button>
     </div>
   );
