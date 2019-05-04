@@ -42,8 +42,8 @@ const EditQuestView = ({
   moveToDone
 }) => {
   return (
-    <div className={s.card}>
-      <header className={s.cardHeader}>
+    <li className={s.card}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
             handleSaveSelectedDifficutlyItem={handleSaveSelectedDifficutlyItem}
@@ -55,8 +55,8 @@ const EditQuestView = ({
         <div className={s.starContainer} onClick={toggleIsPriority}>
           <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <input
           autoFocus
           className={s.title}
@@ -74,8 +74,8 @@ const EditQuestView = ({
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div className={s.groupsContainer} onClick={toggleOpenGroupSelect}>
           <img className={s.ArrowForGroupSelect} src={dropDownArrow} alt="dropDownArrow" />
           <GroupSelect
@@ -91,11 +91,11 @@ const EditQuestView = ({
           <div className={s.strip} />
           <DoneSvg className={s.doneSvg} onClick={toggleCompletedModal} />
         </div>
-      </footer>
+      </div>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal name={name} moveToDone={moveToDone} />}
-    </div>
+    </li>
   );
 };
 

@@ -18,28 +18,28 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName,
     <p className={s.date}>{`${categoryName}, ${notDoneFormatTime}`}</p>
   );
   return (
-    <div className={s.card} onClick={!done ? onModeEdit : null}>
-      <header className={s.cardHeader}>
+    <li className={s.card} onClick={!done ? onModeEdit : null}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
         </div>
         <div>
           <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <h2 className={s.title}>{name}</h2>
         <div className={s.date_fire_container}>
           {dateFormate}
           {isActiveFireIcon && isFireIconOn && <FireSvg className={s.fire} />}
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div>
           <GroupSelect group={group} />
         </div>
-      </footer>
-    </div>
+      </div>
+    </li>
   );
 };
 

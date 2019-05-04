@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import dropDowmArrowIcon from '../../assets/images/icons/drop-down-arrow.png';
 import CardContainer from '../CardContainer/CardContainer';
-import s from './DoneCardsRow.module.css';
+import s from './DoneCardsList.module.css';
 
-class DoneCardsRow extends Component {
+class DoneCardsList extends Component {
   state = {
-    isDoneCardsRowOpen: true
+    isDoneCardsListOpen: true
   };
 
-  toggleDoneCardsRow = () => {
+  toggleDoneCardsList = () => {
     this.setState(prevState => ({
-      isDoneCardsRowOpen: !prevState.isDoneCardsRowOpen
+      isDoneCardsListOpen: !prevState.isDoneCardsListOpen
     }));
   };
 
   render() {
     const { name, arr, type, addMode } = this.props;
-    const { isDoneCardsRowOpen } = this.state;
+    const { isDoneCardsListOpen } = this.state;
     return (
       <section className={s.section}>
         {arr.length > 0 && (
-          <div className={s.nameAndArrowContainer} onClick={this.toggleDoneCardsRow}>
-            <p className={isDoneCardsRowOpen ? s.name : `${s.name} ${s.lightName}`}>{name}</p>
+          <div className={s.nameAndArrowContainer} onClick={this.toggleDoneCardsList}>
+            <p className={isDoneCardsListOpen ? s.name : `${s.name} ${s.lightName}`}>{name}</p>
             <img
-              className={isDoneCardsRowOpen ? s.dropDowmArrowIconRotate : s.dropDowmArrowIcon}
+              className={isDoneCardsListOpen ? s.dropDowmArrowIconRotate : s.dropDowmArrowIcon}
               src={dropDowmArrowIcon}
               alt="dropDowmArrow"
             />
           </div>
         )}
-        {isDoneCardsRowOpen && (
+        {isDoneCardsListOpen && (
           <div className={s.container}>
             {/* {type === 'today' && addMode && <CardContainer mode="newQuest" />} */}
             {arr.map(task => (
@@ -42,4 +42,4 @@ class DoneCardsRow extends Component {
   }
 }
 
-export default DoneCardsRow;
+export default DoneCardsList;

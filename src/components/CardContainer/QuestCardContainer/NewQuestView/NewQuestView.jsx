@@ -81,9 +81,9 @@ const NewQuestView = ({
         <div className={s.toolsContainer}>
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
-          <p className={s.start} onClick={handleAddQuest}>
+          <button className={s.start} type="button" onClick={handleAddQuest}>
             start
-          </p>
+          </button>
         </div>
       </footer>
 

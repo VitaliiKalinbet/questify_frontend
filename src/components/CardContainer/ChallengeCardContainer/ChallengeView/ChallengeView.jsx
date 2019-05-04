@@ -20,29 +20,29 @@ const ChallengeView = ({ difficulty, dueDate, done, group, name, categoryName, o
     <p className={s.date}>{`${categoryName}, ${notDoneFormatTime}`}</p>
   );
   return (
-    <div className={s.card} onClick={onModeEdit}>
-      <header className={s.cardHeader}>
+    <li className={s.card} onClick={onModeEdit}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
         </div>
         <div className={s.starContainer}>
           <TpophySvg className={s.trophy} />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <h4 className={s.challangeTitle}>challange</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.date_fire_container}>
           {dateFormate}
           {isFireIconOn && <FireSvg className={s.fire} />}
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div className={s.groupsContainer}>
           <GroupSelect group={group} />
         </div>
-      </footer>
-    </div>
+      </div>
+    </li>
   );
 };
 

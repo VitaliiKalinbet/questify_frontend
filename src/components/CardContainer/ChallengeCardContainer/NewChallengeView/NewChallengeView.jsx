@@ -29,8 +29,8 @@ const NewChallengeView = ({
   handleAddChallange
 }) => {
   return (
-    <div className={s.card}>
-      <header className={s.cardHeader}>
+    <li className={s.card}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
             isQuest={isQuest}
@@ -43,8 +43,8 @@ const NewChallengeView = ({
         <div className={s.starContainer}>
           <TpophySvg className={s.trophy} />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <h4 className={s.challangeTitle}>challange</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
@@ -56,8 +56,8 @@ const NewChallengeView = ({
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div className={s.groupsContainer}>
           <GroupSelect group={group} />
           {/* {group} */}
@@ -65,27 +65,21 @@ const NewChallengeView = ({
         <div className={s.toolsContainer}>
           <CloseSvg className={s.closeSvg} onClick={toggleDeleteModal} />
           <div className={s.strip} />
-          <p className={s.start} onClick={handleAddChallange}>
+          <button className={s.start} type="button" onClick={handleAddChallange}>
             start
-          </p>
+          </button>
         </div>
-      </footer>
+      </div>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-    </div>
+    </li>
   );
 };
 
 NewChallengeView.defaultProps = {
-  // challengeSendToUser: false,
-  // mode: 'newChallenge',
-  // createdAt: '',
   difficulty: 'Easy',
-  // updatedAt: '',
-  // dueDate: '',
   group: 'STUFF',
   isQuest: true
-  // _id: ''
 };
 
 NewChallengeView.propTypes = {

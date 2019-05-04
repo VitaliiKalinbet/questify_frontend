@@ -35,8 +35,8 @@ const EditChallengeView = ({
   moveToDone
 }) => {
   return (
-    <div className={s.card}>
-      <header className={s.cardHeader}>
+    <li className={s.card}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
             isQuest={isQuest}
@@ -49,8 +49,8 @@ const EditChallengeView = ({
         <div className={s.starContainer}>
           <TpophySvg className={s.trophy} />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <h4 className={s.challangeTitle}>challange</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
@@ -62,8 +62,8 @@ const EditChallengeView = ({
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div className={s.groupsContainer}>
           <GroupSelect group={group} />
         </div>
@@ -74,11 +74,11 @@ const EditChallengeView = ({
           <div className={s.strip} />
           <DoneSvg className={s.doneSvg} onClick={toggleCompletedModal} />
         </div>
-      </footer>
+      </div>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal moveToDone={moveToDone} name={name} isQuest={isQuest} />}
-    </div>
+    </li>
   );
 };
 

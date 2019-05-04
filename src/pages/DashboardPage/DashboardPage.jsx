@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CardsRow from '../../components/CardsRow/CardsRow';
-import DoneCardsRow from '../../components/DoneCardsRow/DoneCardsRow';
+import CardsList from '../../components/CardsList/CardsList';
+import DoneCardsList from '../../components/DoneCardsList/DoneCardsList';
 import Header from '../../components/Header/Header';
 import CreateQuestButton from '../../components/CreateQuestButton/CreateQuestButton';
 import { userSelectors } from '../../redux/user';
@@ -21,10 +21,10 @@ class DashboardPage extends Component {
     return (
       <div className={s.dashboardContainer}>
         <Header />
-        <CardsRow name="today" arr={today} type="today" addMode={addMode} />
-        <CardsRow name="tomorrow" arr={tomorrow} />
-        <CardsRow name="all the rest" arr={allTheRest} />
-        <DoneCardsRow name="done" arr={done} />
+        <CardsList name="today" arr={today} type="today" addMode={addMode} />
+        <CardsList name="tomorrow" arr={tomorrow} />
+        <CardsList name="all the rest" arr={allTheRest} />
+        <DoneCardsList name="done" arr={done} />
         <CreateQuestButton />
       </div>
     );
