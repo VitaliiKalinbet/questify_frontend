@@ -40,6 +40,16 @@ class QuestCardContainer extends Component {
     });
   }
 
+  handleResetSelectors = () => {
+    const { isOpenDifficultySelect, isOpenGroupSelect } = this.state;
+    if (isOpenDifficultySelect || isOpenGroupSelect) {
+      this.setState({
+        isOpenDifficultySelect: false,
+        isOpenGroupSelect: false
+      });
+    }
+  };
+
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
       isOpenDifficultySelect: !prevState.isOpenDifficultySelect,
@@ -105,28 +115,8 @@ class QuestCardContainer extends Component {
   };
 
   handleReturnOldAndNewQuest = () => {
-    const {
-      name: stateName,
-      group: stateGroup,
-      difficulty: stateDifficulty,
-      dueDate: stateDate,
-      isPriority: stateIsIsPriority,
-      updatedFields
-    } = this.state;
-
-    const { dueDate, isQuest, isPriority, _id, name, group, difficulty, done, createdAt, updatedAt } = this.props.task;
-    const questFromProp = {
-      dueDate,
-      isQuest,
-      isPriority,
-      _id,
-      name,
-      group,
-      difficulty,
-      done,
-      createdAt,
-      updatedAt
-    };
+    const { updatedFields } = this.state;
+    const questFromProp = this.props.task;
     return { questFromProp, updatedFields };
   };
 
@@ -232,6 +222,7 @@ class QuestCardContainer extends Component {
             onSave={this.handleSaveQuest}
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
+            onResetSelectors={this.handleResetSelectors}
           />
         )}
         {addMode && mode === 'newQuest' && (
@@ -257,6 +248,7 @@ class QuestCardContainer extends Component {
             name={name}
             onSave={this.handleSaveQuest}
             onDelete={finishAddMode}
+            onResetSelectors={this.handleResetSelectors}
           />
         )}
       </>

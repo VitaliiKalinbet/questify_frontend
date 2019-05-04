@@ -32,10 +32,11 @@ const EditChallengeView = ({
   isCompletedModalOpen,
   isQuest,
   onDelete,
-  moveToDone
+  moveToDone,
+  onResetSelectors
 }) => {
   return (
-    <li className={s.card}>
+    <li className={s.card} onClick={onResetSelectors}>
       <div className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect

@@ -32,11 +32,12 @@ const NewQuestView = ({
   handleSaveSelectedGroupItem,
   isDeleteModalOpen,
   toggleDeleteModal,
-  onDelete
+  onDelete,
+  onResetSelectors
 }) => {
   return (
-    <div className={s.card}>
-      <header className={s.cardHeader}>
+    <li className={s.card} onClick={onResetSelectors}>
+      <div className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
             handleSaveSelectedDifficutlyItem={handleSaveSelectedDifficutlyItem}
@@ -48,8 +49,8 @@ const NewQuestView = ({
         <div className={s.starContainer} onClick={toggleIsPriority}>
           <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" />
         </div>
-      </header>
-      <main className={s.cardMain}>
+      </div>
+      <div className={s.cardMain}>
         <input
           minLength="3"
           required
@@ -68,8 +69,8 @@ const NewQuestView = ({
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
-      </main>
-      <footer className={s.cardFooter}>
+      </div>
+      <div className={s.cardFooter}>
         <div className={s.groupsContainer} onClick={toggleOpenGroupSelect}>
           <img className={s.ArrowForGroupSelect} src={dropDownArrow} alt="dropDownArrow" />
           <GroupSelect
@@ -85,10 +86,10 @@ const NewQuestView = ({
             start
           </button>
         </div>
-      </footer>
+      </div>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-    </div>
+    </li>
   );
 };
 
@@ -106,7 +107,8 @@ NewQuestView.propTypes = {
   dueDate: PropTypes.string.isRequired,
   group: PropTypes.string.isRequired,
   isPriority: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  onResetSelectors: PropTypes.func.isRequired
 };
 
 export default NewQuestView;

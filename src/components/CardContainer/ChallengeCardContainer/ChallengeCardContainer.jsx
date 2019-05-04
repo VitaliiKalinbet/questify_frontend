@@ -41,6 +41,15 @@ class ChallengeCardContainer extends Component {
     });
   }
 
+  handleResetSelectors = () => {
+    const { isOpenDifficultySelect } = this.state;
+    if (isOpenDifficultySelect) {
+      this.setState({
+        isOpenDifficultySelect: false
+      });
+    }
+  };
+
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
       isOpenDifficultySelect: !prevState.isOpenDifficultySelect
@@ -187,6 +196,7 @@ class ChallengeCardContainer extends Component {
             group={group}
             name={name}
             onDelete={this.handleDeleteQuest}
+            onResetSelectors={this.handleResetSelectors}
           />
         )}
         {!done && mode === 'edit' && (
@@ -207,6 +217,7 @@ class ChallengeCardContainer extends Component {
             name={name}
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
+            onResetSelectors={this.handleResetSelectors}
           />
         )}
       </>

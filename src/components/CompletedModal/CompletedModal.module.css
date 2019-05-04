@@ -15,8 +15,8 @@
   top: 0;
   left: 0;
   border-radius: 11px;
-  background-size: 70%;
-  background-position: center;
+  background-size: 90%;
+    background-position: center -8px;
   background-repeat: no-repeat;
   box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
   font: 400 15px 'HelveticaNeueCyrRoman', sans-serif;
