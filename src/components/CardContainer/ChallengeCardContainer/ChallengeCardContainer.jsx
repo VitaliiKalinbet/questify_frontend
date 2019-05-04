@@ -121,7 +121,12 @@ class ChallengeCardContainer extends Component {
         mode: 'render',
         updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
       }),
-      () => saveQuest(questFromProp, updatedFields)
+      () =>
+        saveQuest(questFromProp, {
+          ...updatedFields,
+          challengeSendToUser: true,
+          mode: 'render'
+        })
     );
   };
 

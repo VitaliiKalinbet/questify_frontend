@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './ChallengeStatus.module.css';
 import { ReactComponent as Trophy } from '../../assets/images/trophy/trophy.svg';
 
-const ChallengeStatus = ({ isQuest }) => (
-  <div className={isQuest ? styles.challendgeFalse : styles.challendgeTrue}>
-    <Trophy className={isQuest ? styles.trophyActive : styles.trophyNoActive} />
+const ChallengeStatus = ({ isExsistActiveChallenge }) => (
+  <div className={isExsistActiveChallenge ? styles.challendgeTrue : styles.challendgeFalse}>
+    <Trophy className={isExsistActiveChallenge ? styles.trophyNoActive : styles.trophyActive} />
   </div>
 );
 
 ChallengeStatus.propTypes = {
-  isQuest: PropTypes.bool.isRequired
+  isExsistActiveChallenge: PropTypes.bool.isRequired
 };
 
 export default ChallengeStatus;
