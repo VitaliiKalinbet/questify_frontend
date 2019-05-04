@@ -53,13 +53,18 @@
   background-color: rgb(66, 79, 138);
 }
 
-
-
 .listItem {
   font-family: 'HelveticaNeueCyr', sans-serif;
   font-size: 15px;
   line-height: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: rgba(182, 196, 202, 255);
+}
+
+.listItem:hover{
+  background-color: #eeeeee;
+  border-radius: 10px;
 }
 
 .select {
