@@ -27,7 +27,8 @@ class ChallengeCardContainer extends Component {
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
     challengeSendToUser: this.props.task.challengeSendToUser,
-    isFireIconOn: false
+    isFireIconOn: false,
+    isCalendarOpen: false
   };
 
   componentDidMount() {
@@ -42,6 +43,12 @@ class ChallengeCardContainer extends Component {
       isFireIconOn: getFireIconOn(dueDate, new Date())
     });
   }
+
+  togleOpenCalendar = () => {
+    const { isCalendarOpen } = this.state;
+    console.log(isCalendarOpen);
+    this.setState(state => ({ isCalendarOpen: !state.isCalendarOpen }));
+  };
 
   handleResetSelectors = () => {
     const { isOpenDifficultySelect } = this.state;
@@ -84,6 +91,7 @@ class ChallengeCardContainer extends Component {
     this.setState(prevState => ({
       isFireIconOn: getFireIconOn(changedDate, new Date()),
       dueDate: changedDate,
+      isCalendarOpen: false,
       updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
     }));
   };
@@ -182,7 +190,8 @@ class ChallengeCardContainer extends Component {
       isDeleteModalOpen,
       isCompletedModalOpen,
       isQuest,
-      isFireIconOn
+      isFireIconOn,
+      isCalendarOpen
     } = this.state;
     const { name: categoryName } = this.props;
     return (
@@ -215,6 +224,8 @@ class ChallengeCardContainer extends Component {
             name={name}
             onDelete={this.handleDeleteQuest}
             onResetSelectors={this.handleResetSelectors}
+            isCalendarOpen={isCalendarOpen}
+            togleOpenCalendar={this.togleOpenCalendar}
           />
         )}
         {!done && mode === 'edit' && (
@@ -236,6 +247,8 @@ class ChallengeCardContainer extends Component {
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
             onResetSelectors={this.handleResetSelectors}
+            isCalendarOpen={isCalendarOpen}
+            togleOpenCalendar={this.togleOpenCalendar}
           />
         )}
       </>
@@ -245,7 +258,6 @@ class ChallengeCardContainer extends Component {
 
 ChallengeCardContainer.defaultProps = {
   challengeSendToUser: false,
-  // mode: 'newChallenge',
   createdAt: '',
   difficulty: 'Easy',
   updatedAt: '',

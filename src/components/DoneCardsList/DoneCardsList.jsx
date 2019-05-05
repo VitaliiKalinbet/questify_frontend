@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import newId from 'uuid/v4';
 import dropDowmArrowIcon from '../../assets/images/icons/drop-down-arrow.png';
 import CardContainer from '../CardContainer/CardContainer';
 import s from './DoneCardsList.module.css';
@@ -33,7 +34,7 @@ class DoneCardsList extends Component {
           <div className={s.container}>
             {/* {type === 'today' && addMode && <CardContainer mode="newQuest" />} */}
             {arr.map(task => (
-              <CardContainer mode="render" task={task} key={task.dueDate} />
+              <CardContainer mode="render" task={task} key={task._id || newId()} />
             ))}
           </div>
         )}

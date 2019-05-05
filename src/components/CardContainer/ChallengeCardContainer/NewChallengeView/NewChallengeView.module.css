@@ -84,6 +84,15 @@
   fill: #00d7ff;
 }
 
+.calendarIconBtn{
+  border:none;
+  background: none;
+  cursor: pointer;
+}
+.calendarIconBtn:focus{
+  outline: none;
+}
+
 .title {
   width: 260px;
   text-align: center;

@@ -33,7 +33,9 @@ const EditChallengeView = ({
   isQuest,
   onDelete,
   moveToDone,
-  onResetSelectors
+  onResetSelectors,
+  togleOpenCalendar,
+  isCalendarOpen
 }) => {
   return (
     <li className={s.card} onClick={onResetSelectors}>
@@ -56,12 +58,16 @@ const EditChallengeView = ({
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
           <Datetime
+            onFocus={togleOpenCalendar}
             closeOnSelect
+            open={isCalendarOpen}
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
           />
-          <CalendarIcon className={s.calendarIcon} />
+          <button className={s.calendarIconBtn} onClick={togleOpenCalendar} type="button">
+            <CalendarIcon className={s.calendarIcon} />
+          </button>
         </div>
       </div>
       <div className={s.cardFooter}>

@@ -40,7 +40,9 @@ const EditQuestView = ({
   onSave,
   onDelete,
   moveToDone,
-  onResetSelectors
+  onResetSelectors,
+  togleOpenCalendar,
+  isCalendarOpen
 }) => {
   return (
     <li className={s.card} onClick={onResetSelectors}>
@@ -67,13 +69,16 @@ const EditQuestView = ({
         />
         <div className={s.dateTimeContainer}>
           <Datetime
+            onFocus={togleOpenCalendar}
             closeOnSelect
+            open={isCalendarOpen}
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
-            defaultValue={moment(dueDate)} // for test
-            // defaultValue={dueDate}
+            defaultValue={moment(dueDate)}
           />
-          <CalendarIcon className={s.calendarIcon} />
+          <button className={s.calendarIconBtn} onClick={togleOpenCalendar} type="button">
+            <CalendarIcon className={s.calendarIcon} />
+          </button>
         </div>
       </div>
       <div className={s.cardFooter}>

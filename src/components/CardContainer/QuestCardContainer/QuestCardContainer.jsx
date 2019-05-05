@@ -30,7 +30,8 @@ class QuestCardContainer extends Component {
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
     isFireIconOn: false,
-    _id: this.props.task._id || newId()
+    _id: this.props.task._id || newId(),
+    isCalendarOpen: false
   };
 
   componentDidMount() {
@@ -40,6 +41,12 @@ class QuestCardContainer extends Component {
       isFireIconOn: getFireIconOn(dueDate, new Date())
     });
   }
+
+  togleOpenCalendar = () => {
+    const { isCalendarOpen } = this.state;
+    console.log(isCalendarOpen);
+    this.setState(state => ({ isCalendarOpen: !state.isCalendarOpen }));
+  };
 
   handleResetSelectors = () => {
     const { isOpenDifficultySelect, isOpenGroupSelect } = this.state;
@@ -106,6 +113,7 @@ class QuestCardContainer extends Component {
     this.setState(prevState => ({
       isFireIconOn: getFireIconOn(changedDate, new Date()),
       dueDate: changedDate,
+      isCalendarOpen: false,
       updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
     }));
   };
@@ -137,9 +145,8 @@ class QuestCardContainer extends Component {
 
   handleAddQuest = () => {
     if (this.state.name.length < 3) return;
-    const { addQuest, finishAddMode } = this.props;
+    const { addQuest } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
-    console.log('updatedFields', updatedFields);
     this.onModeRender();
     addQuest({ ...questFromProp, ...updatedFields });
   };
@@ -195,7 +202,8 @@ class QuestCardContainer extends Component {
       isOpenGroupSelect,
       isDeleteModalOpen,
       isCompletedModalOpen,
-      isFireIconOn
+      isFireIconOn,
+      isCalendarOpen
     } = this.state;
 
     const { addMode, editMode, finishAddMode, name: categoryName } = this.props;
@@ -239,6 +247,8 @@ class QuestCardContainer extends Component {
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
             onResetSelectors={this.handleResetSelectors}
+            isCalendarOpen={isCalendarOpen}
+            togleOpenCalendar={this.togleOpenCalendar}
           />
         )}
         {addMode && mode === 'newQuest' && (
