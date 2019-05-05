@@ -75,22 +75,19 @@ class QuestCardContainer extends Component {
   onModeEdit = () => {
     const { startEditMode, editMode } = this.props;
     if (editMode) return;
-    this.setState(
-      {
-        mode: 'edit'
-      },
-      () => startEditMode()
-    );
+    this.setState({
+      mode: 'edit'
+    });
+    startEditMode();
   };
 
   onModeRender = () => {
     const { finishEditMode } = this.props;
-    this.setState(
-      {
-        mode: 'render'
-      },
-      () => finishEditMode()
-    );
+
+    this.setState({
+      mode: 'render'
+    });
+    finishEditMode();
   };
 
   toggleIsPriority = () => {
