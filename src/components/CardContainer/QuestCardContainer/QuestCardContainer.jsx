@@ -9,6 +9,7 @@ import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
+import { startEditMode, finishEditMode } from '../../../redux/editQuest/editActions';
 
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
@@ -65,15 +66,24 @@ class QuestCardContainer extends Component {
   };
 
   onModeEdit = () => {
-    this.setState({
-      mode: 'edit'
-    });
+    const { startEditMode, editMode } = this.props;
+    if (editMode) return;
+    this.setState(
+      {
+        mode: 'edit'
+      },
+      () => startEditMode()
+    );
   };
 
   onModeRender = () => {
-    this.setState({
-      mode: 'render'
-    });
+    const { finishEditMode } = this.props;
+    this.setState(
+      {
+        mode: 'render'
+      },
+      () => finishEditMode()
+    );
   };
 
   toggleIsPriority = () => {
@@ -131,7 +141,6 @@ class QuestCardContainer extends Component {
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     console.log('updatedFields', updatedFields);
     this.onModeRender();
-    finishAddMode();
     addQuest({ ...questFromProp, ...updatedFields });
   };
 
@@ -143,8 +152,10 @@ class QuestCardContainer extends Component {
   };
 
   handleDoneQuest = () => {
-    const { moveToDone } = this.props;
+    const { moveToDone, finishEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
+    this.onModeRender();
+    finishEditMode();
     return moveToDone({ ...questFromProp, ...updatedFields });
   };
 
@@ -163,9 +174,12 @@ class QuestCardContainer extends Component {
   handleDeleteQuest = () => {
     const {
       task: { _id: id, dueDate },
-      deleteQuest
+      deleteQuest,
+      finishEditMode
     } = this.props;
+
     deleteQuest({ id, dueDate });
+    finishEditMode();
   };
 
   render() {
@@ -183,7 +197,9 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    const { addMode, finishAddMode, name: categoryName } = this.props;
+
+    const { addMode, editMode, finishAddMode, name: categoryName } = this.props;
+
     return (
       <>
         {mode === 'render' && (
@@ -282,7 +298,8 @@ QuestCardContainer.propTypes = {
 };
 
 const mapState = state => ({
-  addMode: userSelectors.getAddMode(state)
+  addMode: userSelectors.getAddMode(state),
+  editMode: userSelectors.getEditMode(state)
 });
 
 const mapDispatch = dispath => ({
@@ -290,7 +307,9 @@ const mapDispatch = dispath => ({
   saveQuest: (oldQuest, savedQuest) => dispath(saveQuest(oldQuest, savedQuest)),
   deleteQuest: param => dispath(deleteQuest(param)),
   finishAddMode: () => dispath(finishAddMode()),
-  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
+  moveToDone: questIsDone => dispath(moveToDone(questIsDone)),
+  startEditMode: () => dispath(startEditMode()),
+  finishEditMode: () => dispath(finishEditMode())
 });
 
 export default connect(

@@ -6,6 +6,8 @@ import ChallengeView from './ChallengeView/ChallengeView';
 import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
+import userSelectors from '../../../redux/user/userSelectors';
+import { startEditMode, finishEditMode } from '../../../redux/editQuest/editActions';
 
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
@@ -57,15 +59,24 @@ class ChallengeCardContainer extends Component {
   };
 
   onModeEdit = () => {
-    this.setState({
-      mode: 'edit'
-    });
+    const { startEditMode, editMode } = this.props;
+    if (editMode) return;
+    this.setState(
+      {
+        mode: 'edit'
+      },
+      () => startEditMode()
+    );
   };
 
   onModeRender = () => {
-    this.setState({
-      mode: 'render'
-    });
+    const { finishEditMode } = this.props;
+    this.setState(
+      {
+        mode: 'render'
+      },
+      () => finishEditMode()
+    );
   };
 
   handleChangeDueDate = event => {
@@ -104,43 +115,47 @@ class ChallengeCardContainer extends Component {
   handleDeleteQuest = () => {
     const {
       task: { _id: id, dueDate },
-      deleteQuest
+      deleteQuest,
+      finishEditMode
     } = this.props;
+    finishEditMode();
+    this.onModeRender();
     deleteQuest({ id, dueDate });
   };
 
   handleDoneQuest = () => {
     this.setState({ mode: 'render' }, () => {
-      const { moveToDone } = this.props;
+      const { moveToDone, finishEditMode } = this.props;
       const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
       this.onModeRender();
+      finishEditMode();
       return moveToDone({ ...questFromProp, ...newQuest });
     });
   };
 
   handleAddQuest = () => {
-    const { saveQuest } = this.props;
+    const { saveQuest, finishEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     console.log('updatedFields', updatedFields);
-    // this.onModeRender();
-    // saveQuest({ ...questFromProp, ...updatedFields });
     this.setState(
       prevState => ({
         challengeSendToUser: true,
         mode: 'render',
         updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
       }),
-      () =>
+      () => {
+        finishEditMode();
         saveQuest(questFromProp, {
           ...updatedFields,
           challengeSendToUser: true,
           mode: 'render'
-        })
+        });
+      }
     );
   };
 
   handleSaveQuest = () => {
-    const { saveQuest } = this.props;
+    const { saveQuest, finishEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     this.setState(
       prevState => ({
@@ -148,7 +163,10 @@ class ChallengeCardContainer extends Component {
         mode: 'render',
         updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
       }),
-      () => saveQuest(questFromProp, updatedFields)
+      () => {
+        finishEditMode();
+        saveQuest(questFromProp, updatedFields);
+      }
     );
   };
 
@@ -254,13 +272,19 @@ ChallengeCardContainer.propTypes = {
   mode: PropTypes.string.isRequired
 };
 
+const mapState = state => ({
+  editMode: userSelectors.getEditMode(state)
+});
+
 const mapDispatch = dispath => ({
   saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
   deleteQuest: param => dispath(deleteQuest(param)),
-  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
+  moveToDone: questIsDone => dispath(moveToDone(questIsDone)),
+  startEditMode: () => dispath(startEditMode()),
+  finishEditMode: () => dispath(finishEditMode())
 });
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(ChallengeCardContainer);

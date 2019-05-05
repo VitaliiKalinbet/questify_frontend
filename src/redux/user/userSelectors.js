@@ -7,6 +7,7 @@ const getTomorrowList = state => state.userData.tomorrow;
 const getAllTheRestList = state => state.userData.allTheRest;
 const getDoneList = state => state.userData.done;
 const getAddMode = state => state.addMode;
+const getEditMode = state => state.editMode;
 
 const getIsExsistActiveChallenge = state => {
   const isExsistActiveChallenge = arr => arr.find(item => item.isQuest === false);
@@ -26,5 +27,6 @@ export default {
   getAllTheRestList,
   getDoneList,
   getAddMode,
+  getEditMode,
   getIsExsistActiveChallenge
 };
