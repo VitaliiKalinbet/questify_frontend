@@ -1,4 +1,5 @@
 import action from './actionType';
+import api from '../../services/api';
 
 const initPayload = {
   oldQuest: {
@@ -33,13 +34,25 @@ export const Err = error => ({
 });
 
 export const addQuest = newQuest => dispatch => {
-  dispatch({
-    type: action.ADD_QUEST,
-    payload: {
-      ...initPayload,
-      newQuest
-    }
-  });
+  api
+    .fetchNewQuest({
+      dueDate: newQuest.dueDate,
+      name: newQuest.name,
+      group: newQuest.group,
+      difficulty: newQuest.difficulty,
+      userId: newQuest.userId
+    })
+    .then(res => {
+      const data = res.data;
+      const getCreatedQuest = data.quest;
+      dispatch({
+        type: action.ADD_QUEST,
+        payload: {
+          ...initPayload,
+          newQuest: getCreatedQuest
+        }
+      });
+    });
 };
 
 export const saveQuest = (oldQuest, savedQuest) => dispatch => {
