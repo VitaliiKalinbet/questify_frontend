@@ -12,7 +12,7 @@ export const fetchUpdateQuest = ({ updateFields, questId }) => axios.put(`/quest
 
 export const fetchDeleteQuest = questId => axios.delete(`/quests/${questId}`);
 
-export const fetchUpdateChallenge = ({ challengeId, updateFields }) => axios.put(`/challenges/${challengeId}`, updateFields);
+export const fetchUpdateChallenge = ({ challengeId, updateFields, userId }) => axios.put(`/challenges/${challengeId}`, {updateFields, userId});
 
 
 

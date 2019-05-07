@@ -156,7 +156,8 @@ class QuestCardContainer extends Component {
   handleDoneQuest = () => {
     const { moveToDone } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
-    return moveToDone({ ...questFromProp, ...updatedFields });
+    const doneQuest = { ...questFromProp, ...updatedFields };
+    return moveToDone({ questIsDone: doneQuest });
   };
 
   toggleDeleteModal = () => {
@@ -173,10 +174,10 @@ class QuestCardContainer extends Component {
 
   handleDeleteQuest = () => {
     const {
-      task: { _id: id, dueDate },
+      task: { _id: id, dueDate, isQuest },
       deleteQuest
     } = this.props;
-    deleteQuest({ id, dueDate });
+    deleteQuest({deleteQuest:{ id, dueDate, isQuest }});
   };
 
   render() {
