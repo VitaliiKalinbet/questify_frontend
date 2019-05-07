@@ -10,6 +10,7 @@ import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
+
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
   new Date(time).getMonth() <= nowDate.getMonth() &&
@@ -137,12 +138,12 @@ class QuestCardContainer extends Component {
 
   handleAddQuest = () => {
     if (this.state.name.length < 3) return;
-    const { addQuest, finishAddMode } = this.props;
+    const { addQuest, finishAddMode, userId } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     console.log('updatedFields', updatedFields);
     this.onModeRender();
     finishAddMode();
-    addQuest({ ...questFromProp, ...updatedFields });
+    addQuest({ ...questFromProp, ...updatedFields, userId });
   };
 
   handleSaveQuest = () => {
@@ -155,7 +156,8 @@ class QuestCardContainer extends Component {
   handleDoneQuest = () => {
     const { moveToDone } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
-    return moveToDone({ ...questFromProp, ...updatedFields });
+    const doneQuest = { ...questFromProp, ...updatedFields };
+    return moveToDone({ questIsDone: doneQuest });
   };
 
   toggleDeleteModal = () => {
@@ -172,10 +174,10 @@ class QuestCardContainer extends Component {
 
   handleDeleteQuest = () => {
     const {
-      task: { _id: id, dueDate },
+      task: { _id: id, dueDate, isQuest },
       deleteQuest
     } = this.props;
-    deleteQuest({ id, dueDate });
+    deleteQuest({deleteQuest:{ id, dueDate, isQuest }});
   };
 
   render() {
@@ -193,7 +195,7 @@ class QuestCardContainer extends Component {
       isCompletedModalOpen,
       isFireIconOn
     } = this.state;
-    const { addMode, finishAddMode, name: categoryName } = this.props;
+    const { addMode, finishAddMode, name: categoryName, userId } = this.props;
     return (
       <>
         {mode === 'render' && (
@@ -290,7 +292,8 @@ QuestCardContainer.propTypes = {
 };
 
 const mapState = state => ({
-  addMode: userSelectors.getAddMode(state)
+  addMode: userSelectors.getAddMode(state),
+  userId: userSelectors.userId(state)
 });
 
 const mapDispatch = dispath => ({
