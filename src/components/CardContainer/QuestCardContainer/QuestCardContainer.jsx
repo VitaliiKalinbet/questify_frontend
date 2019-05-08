@@ -10,7 +10,6 @@ import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 
-
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
   new Date(time).getMonth() <= nowDate.getMonth() &&
@@ -30,7 +29,8 @@ class QuestCardContainer extends Component {
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
     isFireIconOn: false,
-    _id: this.props.task._id || newId()
+    _id: this.props.task._id || newId(),
+    isOpenCalendar: false
   };
 
   componentDidMount() {
@@ -40,6 +40,12 @@ class QuestCardContainer extends Component {
       isFireIconOn: getFireIconOn(dueDate, new Date())
     });
   }
+
+  toggleIsOpenCalendar = () => {
+    this.setState(prevState => ({
+      isOpenCalendar: !prevState.isOpenCalendar
+    }));
+  };
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
@@ -92,17 +98,27 @@ class QuestCardContainer extends Component {
   };
 
   handleSaveSelectedDifficutlyItem = difficultValue => {
-    this.setState(prevState => ({
-      difficulty: difficultValue,
-      updatedFields: { ...prevState.updatedFields, difficulty: difficultValue }
-    }));
+    this.setState(
+      prevState => ({
+        difficulty: difficultValue,
+        updatedFields: { ...prevState.updatedFields, difficulty: difficultValue }
+      }),
+      () => {
+        this.toggleDifficultySelect();
+      }
+    );
   };
 
   handleSaveSelectedGroupItem = groupValue => {
-    this.setState(prevState => ({
-      group: groupValue,
-      updatedFields: { ...prevState.updatedFields, group: groupValue }
-    }));
+    this.setState(
+      prevState => ({
+        group: groupValue,
+        updatedFields: { ...prevState.updatedFields, group: groupValue }
+      }),
+      () => {
+        this.toggleOpenGroupSelect();
+      }
+    );
   };
 
   handleReturnOldAndNewQuest = () => {
@@ -177,7 +193,7 @@ class QuestCardContainer extends Component {
       task: { _id: id, dueDate, isQuest },
       deleteQuest
     } = this.props;
-    deleteQuest({deleteQuest:{ id, dueDate, isQuest }});
+    deleteQuest({ deleteQuest: { id, dueDate, isQuest } });
   };
 
   render() {
@@ -193,9 +209,11 @@ class QuestCardContainer extends Component {
       isOpenGroupSelect,
       isDeleteModalOpen,
       isCompletedModalOpen,
-      isFireIconOn
+      isFireIconOn,
+      isOpenCalendar
     } = this.state;
     const { addMode, finishAddMode, name: categoryName, userId } = this.props;
+    const { isQuest } = this.props.task;
     return (
       <>
         {mode === 'render' && (
@@ -213,6 +231,7 @@ class QuestCardContainer extends Component {
         )}
         {mode === 'edit' && (
           <EditQuestView
+            isQuest={isQuest}
             toggleCompletedModal={this.toggleCompletedModal}
             isCompletedModalOpen={isCompletedModalOpen}
             isDeleteModalOpen={isDeleteModalOpen}
@@ -234,6 +253,8 @@ class QuestCardContainer extends Component {
             onSave={this.handleSaveQuest}
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
+            toggleIsOpenCalendar={this.toggleIsOpenCalendar}
+            isOpenCalendar={isOpenCalendar}
           />
         )}
         {addMode && mode === 'newQuest' && (

@@ -28,6 +28,10 @@
   color: rgba(182, 196, 202, 255);
 }
 
+.listItem:hover {
+  color: black;
+}
+
 .select {
   color: black;
 }

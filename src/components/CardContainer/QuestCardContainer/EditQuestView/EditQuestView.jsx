@@ -38,10 +38,16 @@ const EditQuestView = ({
   toggleCompletedModal,
   onSave,
   onDelete,
-  moveToDone
+  moveToDone,
+  toggleIsOpenCalendar,
+  isOpenCalendar,
+  isQuest
 }) => {
   return (
-    <div className={s.card}>
+    <div
+      className={s.card}
+      onClick={isOpenGroupSelect ? toggleOpenGroupSelect : isOpenDifficultySelect ? toggleDifficultySelect : () => {}}
+    >
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
@@ -63,13 +69,13 @@ const EditQuestView = ({
           value={name}
           placeholder="You may change quest name"
         />
-        <div className={s.dateTimeContainer}>
+        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
-            defaultValue={moment(dueDate)} // for test
-            // defaultValue={dueDate}
+            defaultValue={moment(dueDate)}
+            open={isOpenCalendar}
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
@@ -93,12 +99,15 @@ const EditQuestView = ({
       </footer>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-      {isCompletedModalOpen && <CompletedModal name={name} moveToDone={moveToDone} />}
+      {isCompletedModalOpen && <CompletedModal isQuest={isQuest} name={name} moveToDone={moveToDone} />}
     </div>
   );
 };
 
 EditQuestView.propTypes = {
+  isQuest: PropTypes.bool.isRequired,
+  isOpenCalendar: PropTypes.bool.isRequired,
+  toggleIsOpenCalendar: PropTypes.func.isRequired,
   toggleCompletedModal: PropTypes.func.isRequired,
   isCompletedModalOpen: PropTypes.bool.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,

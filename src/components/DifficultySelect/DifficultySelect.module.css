@@ -96,6 +96,14 @@
   background-color: #ff0335;
 }
 
+.listItem:hover {
+  color: black;
+}
+
 .whiteText {
+  color: white;
+}
+
+.challange:hover {
   color: white;
 }
