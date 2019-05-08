@@ -9,6 +9,7 @@ import EditQuestView from './EditQuestView/EditQuestView';
 import NewQuestView from './NewQuestView/NewQuestView';
 import { finishAddMode } from '../../../redux/createQuest/createQuestReducer';
 import { addQuest, saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
+import { startEditMode } from '../../../redux/editMode/editModeAction';
 
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
@@ -62,12 +63,19 @@ class QuestCardContainer extends Component {
   };
 
   onModeEdit = () => {
-    this.setState({
-      mode: 'edit'
-    });
+    const { isEditMode, startEditMode } = this.props;
+    if (!isEditMode) {
+      this.setState(
+        {
+          mode: 'edit'
+        },
+        () => startEditMode(true)
+      );
+    }
   };
 
   onModeRender = () => {
+    const { startEditMode } = this.props;
     this.setState({
       mode: 'render'
     });
@@ -154,25 +162,28 @@ class QuestCardContainer extends Component {
 
   handleAddQuest = () => {
     if (this.state.name.length < 3) return;
-    const { addQuest, finishAddMode, userId } = this.props;
+    const { addQuest, finishAddMode, userId, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
-    console.log('updatedFields', updatedFields);
+
     this.onModeRender();
     finishAddMode();
+    startEditMode(false);
     addQuest({ ...questFromProp, ...updatedFields, userId });
   };
 
   handleSaveQuest = () => {
-    const { saveQuest } = this.props;
+    const { saveQuest, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     this.onModeRender();
+    startEditMode(false);
     return saveQuest(questFromProp, updatedFields);
   };
 
   handleDoneQuest = () => {
-    const { moveToDone } = this.props;
+    const { moveToDone, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     const doneQuest = { ...questFromProp, ...updatedFields };
+    startEditMode(false);
     return moveToDone({ questIsDone: doneQuest });
   };
 
@@ -191,9 +202,17 @@ class QuestCardContainer extends Component {
   handleDeleteQuest = () => {
     const {
       task: { _id: id, dueDate, isQuest },
-      deleteQuest
+      deleteQuest,
+      startEditMode
     } = this.props;
+    startEditMode(false);
     deleteQuest({ deleteQuest: { id, dueDate, isQuest } });
+  };
+
+  handleCancelNewQuest = () => {
+    const { startEditMode, finishAddMode } = this.props;
+    startEditMode(false);
+    finishAddMode();
   };
 
   render() {
@@ -279,7 +298,7 @@ class QuestCardContainer extends Component {
             isPriority={isPriority}
             name={name}
             onSave={this.handleSaveQuest}
-            onDelete={finishAddMode}
+            onDelete={this.handleCancelNewQuest}
           />
         )}
       </>
@@ -309,20 +328,23 @@ QuestCardContainer.propTypes = {
     updatedAt: PropTypes.string,
     _id: PropTypes.string
   }),
-  mode: PropTypes.string
+  mode: PropTypes.string,
+  isEditMode: PropTypes.bool.isRequired
 };
 
 const mapState = state => ({
   addMode: userSelectors.getAddMode(state),
-  userId: userSelectors.userId(state)
+  userId: userSelectors.userId(state),
+  isEditMode: state.isEditMode
 });
 
-const mapDispatch = dispath => ({
-  addQuest: newQuest => dispath(addQuest(newQuest)),
-  saveQuest: (oldQuest, savedQuest) => dispath(saveQuest(oldQuest, savedQuest)),
-  deleteQuest: param => dispath(deleteQuest(param)),
-  finishAddMode: () => dispath(finishAddMode()),
-  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
+const mapDispatch = dispatch => ({
+  addQuest: newQuest => dispatch(addQuest(newQuest)),
+  saveQuest: (oldQuest, savedQuest) => dispatch(saveQuest(oldQuest, savedQuest)),
+  deleteQuest: param => dispatch(deleteQuest(param)),
+  finishAddMode: () => dispatch(finishAddMode()),
+  moveToDone: questIsDone => dispatch(moveToDone(questIsDone)),
+  startEditMode: editMode => dispatch(startEditMode(editMode))
 });
 
 export default connect(

@@ -21,7 +21,6 @@ export const Request = () => ({
 });
 
 export const Success = data => {
-  console.log('action data user: ', data);
   return {
     type: action.SUCCESS,
     payload: data
@@ -56,8 +55,7 @@ export const addQuest = newQuest => dispatch => {
 };
 
 export const saveQuest = (oldQuest, savedQuest) => dispatch => {
-  console.log(savedQuest);
-  if (!savedQuest.isQuest) {
+  if (!oldQuest.isQuest) {
     api
       .fetchUpdateChallenge({
         challengeId: oldQuest._id,
@@ -77,6 +75,7 @@ export const saveQuest = (oldQuest, savedQuest) => dispatch => {
         });
       });
   }
+
   if (oldQuest.isQuest) {
     api.fetchUpdateQuest({ updateFields: savedQuest, questId: oldQuest._id }).then(res => {
       dispatch({
@@ -95,8 +94,6 @@ export const saveQuest = (oldQuest, savedQuest) => dispatch => {
 };
 
 export const deleteQuest = ({ deleteQuest, userId }) => dispatch => {
-  console.log(deleteQuest);
-  console.log(userId);
   if (!deleteQuest.isQuest) {
     api
       .fetchUpdateChallenge({
@@ -130,8 +127,7 @@ export const deleteQuest = ({ deleteQuest, userId }) => dispatch => {
   }
 };
 
-export const moveToDone = ({questIsDone, userId}) => dispatch => {
-  console.log(userId);
+export const moveToDone = ({ questIsDone, userId }) => dispatch => {
   if (!questIsDone.isQuest) {
     api
       .fetchUpdateChallenge({

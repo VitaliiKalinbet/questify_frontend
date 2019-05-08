@@ -17,7 +17,7 @@ class Login extends Component {
   componentDidMount() {
     const { userLogin, history } = this.props;
     const nickname = localStorage.getItem('questifyNickname');
-    console.log('nickname', nickname);
+
     if (nickname) {
       userLogin({ nickname }).then(() => history.push('/dashboard'));
     }

@@ -13,11 +13,9 @@ const user = (state = null, {
       return payload;
 
     case action.ADD_QUEST:
-      console.log(payload);
       const {
         dueDate: newQuestDate = new Date()
       } = payload.newQuest;
-      // const newQuestDate = new Date();
 
       return {
         ...state,
@@ -35,7 +33,6 @@ const user = (state = null, {
       };
 
     case action.SAVE_QUEST:
-      console.log('payload :', payload);
       const {
         dueDate: oldQuestDate = new Date()
       } = payload.oldQuest;

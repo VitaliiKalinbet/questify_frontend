@@ -1,3 +1,5 @@
+import { newChallenge } from '../redux/challenge/challengeAction';
+
 const innit = {
   today: 'Today',
   tomorrow: 'Tomorrow',
