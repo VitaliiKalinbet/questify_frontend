@@ -2,7 +2,7 @@
   border-top: 1px dashed #d5dbdf;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  max-width: 300px;
   margin: 1rem auto 0;
   padding: 2rem 0;
   position: relative;
@@ -19,7 +19,7 @@
   font-size: 1rem;
   color: #00375b;
   text-transform: uppercase;
-  margin: 1rem 0 1rem 30px;
+  margin: 1rem 0 1rem;
 }
 
 .lightName {
@@ -51,7 +51,7 @@
 
 @media (min-width: 768px) {
   .section {
-    width: 600px;
+    max-width: 600px;
   }
 
   .name {
@@ -61,7 +61,7 @@
 
 @media (min-width: 1200px) {
   .section {
-    width: 1024px;
+    max-width: 1024px;
   }
 
   .name {
