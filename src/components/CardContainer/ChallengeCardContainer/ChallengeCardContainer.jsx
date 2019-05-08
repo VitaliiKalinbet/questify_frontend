@@ -131,11 +131,12 @@ class ChallengeCardContainer extends Component {
 
   handleDoneQuest = () => {
     this.setState({ mode: 'render' }, () => {
-      const { moveToDone, userId } = this.props;
+      const { moveToDone, userId, startEditMode } = this.props;
       const { questFromProp, newQuest } = this.handleReturnOldAndNewQuest();
       const doneChallenge = { ...questFromProp, ...newQuest };
       console.log(userId);
       this.onModeRender();
+      startEditMode(false);
       return moveToDone({ questIsDone: doneChallenge, userId });
     });
   };
