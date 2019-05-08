@@ -126,6 +126,7 @@ class ChallengeCardContainer extends Component {
       startEditMode
     } = this.props;
     startEditMode(false);
+    newChallenge([]);
     deleteQuest({ deleteQuest: { id, dueDate, isQuest }, userId });
   };
 
