@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-LightItalic.1cf9fabd.woff"
   },
   {
-    "revision": "4fd24bac5ac89157a84c",
-    "url": "/static/css/main.6f945cc0.chunk.css"
+    "revision": "fc4c438005a5ef5db08f",
+    "url": "/static/css/main.07e9542f.chunk.css"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/static/media/trophy.9cfd3d40.svg"
   },
   {
-    "revision": "530a69208575e958fdca",
-    "url": "/static/js/2.7e9b1441.chunk.js"
+    "revision": "ff39117002b58767db9f",
+    "url": "/static/js/2.e5f862b8.chunk.js"
   },
   {
     "revision": "17b771ebc5b42efc903df6a798df8fe1",
@@ -28,16 +28,20 @@ self.__precacheManifest = [
     "url": "/static/media/favourites-filled-star-symbol-not-active.dddb3639.svg"
   },
   {
-    "revision": "f5ec80768e7a04412dc2a58a261d9271",
-    "url": "/static/media/completed_modal_bg.f5ec8076.png"
-  },
-  {
     "revision": "d34adb7c725e7e0b333225253df3cc07",
     "url": "/static/media/login_page_bg.d34adb7c.png"
   },
   {
     "revision": "92af726e6c174f32a4bd92b9bb89276e",
     "url": "/static/media/login_page_bg_tablet.92af726e.png"
+  },
+  {
+    "revision": "c195a46b1c091cb221068b5336f4067d",
+    "url": "/static/media/questCompleteIcon.c195a46b.svg"
+  },
+  {
+    "revision": "44a34dec0f64f9b99805cfb869d6285f",
+    "url": "/static/media/challangeCompleteIcon.44a34dec.svg"
   },
   {
     "revision": "e2b8db419a27055bc8c304e3c14d04cd",
@@ -60,12 +64,12 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-Roman.510e1c04.woff"
   },
   {
-    "revision": "e87e87521b5d3a40a6011ddb2156e3a2",
-    "url": "/static/media/HelveticaNeueCyr-BlackItalic.e87e8752.woff"
-  },
-  {
     "revision": "dec627fe9d801ff74c2c7fb83e6ad13e",
     "url": "/static/media/HelveticaNeueCyr-BoldItalic.dec627fe.woff"
+  },
+  {
+    "revision": "e87e87521b5d3a40a6011ddb2156e3a2",
+    "url": "/static/media/HelveticaNeueCyr-BlackItalic.e87e8752.woff"
   },
   {
     "revision": "839fcf5492ad45796c1c9a6270d47244",
@@ -120,8 +124,8 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-Heavy.5d3dd852.ttf"
   },
   {
-    "revision": "4fd24bac5ac89157a84c",
-    "url": "/static/js/main.433f470d.chunk.js"
+    "revision": "fc4c438005a5ef5db08f",
+    "url": "/static/js/main.8ac3a84b.chunk.js"
   },
   {
     "revision": "e603c690f754c70654004a753c17b60b",
@@ -136,84 +140,88 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-Light.30778183.ttf"
   },
   {
-    "revision": "00b41bafdbc3722a4515887e8e4dde6e",
-    "url": "/static/media/HelveticaNeueCyr-Black.00b41baf.eot"
-  },
-  {
     "revision": "303f6a538da65cd9cd71f5cdd0d92125",
     "url": "/static/media/HelveticaNeueCyr-Black.303f6a53.ttf"
   },
   {
-    "revision": "fadb2adb0984cb4e053e45428d96e01a",
-    "url": "/static/media/HelveticaNeueCyr-Roman.fadb2adb.ttf"
+    "revision": "00b41bafdbc3722a4515887e8e4dde6e",
+    "url": "/static/media/HelveticaNeueCyr-Black.00b41baf.eot"
   },
   {
     "revision": "e2cd70ac11658e1d9c328d345d86ff7f",
     "url": "/static/media/HelveticaNeueCyr-Roman.e2cd70ac.eot"
   },
   {
-    "revision": "b8b29bfffbfd4a2918fb88a57ab7f619",
-    "url": "/static/media/HelveticaNeueCyr-BlackItalic.b8b29bff.ttf"
+    "revision": "3a528f425cc484d78ccb79ab6e7ffd68",
+    "url": "/static/media/HelveticaNeueCyr-BlackItalic.3a528f42.eot"
+  },
+  {
+    "revision": "fadb2adb0984cb4e053e45428d96e01a",
+    "url": "/static/media/HelveticaNeueCyr-Roman.fadb2adb.ttf"
   },
   {
     "revision": "bc385be2675498085028e19f414a576c",
     "url": "/static/media/HelveticaNeueCyr-BoldItalic.bc385be2.eot"
   },
   {
+    "revision": "b8b29bfffbfd4a2918fb88a57ab7f619",
+    "url": "/static/media/HelveticaNeueCyr-BlackItalic.b8b29bff.ttf"
+  },
+  {
     "revision": "dcb41ef2e9cf0d84d300dbb2160d6240",
     "url": "/static/media/HelveticaNeueCyr-BoldItalic.dcb41ef2.ttf"
-  },
-  {
-    "revision": "3a528f425cc484d78ccb79ab6e7ffd68",
-    "url": "/static/media/HelveticaNeueCyr-BlackItalic.3a528f42.eot"
-  },
-  {
-    "revision": "e8441de5abd8bcb809de1f1fd7bbbe60",
-    "url": "/static/media/HelveticaNeueCyr-HeavyItalic.e8441de5.eot"
   },
   {
     "revision": "cae2dabbb10a581944b861ab5d356bbc",
     "url": "/static/media/HelveticaNeueCyr-HeavyItalic.cae2dabb.ttf"
   },
   {
-    "revision": "69d9b6fa7fde0075f7e2a257dd9f76bf",
-    "url": "/static/media/HelveticaNeueCyr-Italic.69d9b6fa.eot"
-  },
-  {
     "revision": "d41615ab491632dd4bf42e0faaf3d524",
     "url": "/static/media/HelveticaNeueCyr-Italic.d41615ab.ttf"
   },
   {
-    "revision": "5dd6bee88f39ca7d14a40ff8b31c6d64",
-    "url": "/static/media/HelveticaNeueCyr-LightItalic.5dd6bee8.eot"
+    "revision": "e8441de5abd8bcb809de1f1fd7bbbe60",
+    "url": "/static/media/HelveticaNeueCyr-HeavyItalic.e8441de5.eot"
+  },
+  {
+    "revision": "69d9b6fa7fde0075f7e2a257dd9f76bf",
+    "url": "/static/media/HelveticaNeueCyr-Italic.69d9b6fa.eot"
   },
   {
     "revision": "8a3e8a0b8dfc66ef4a4e1aeda5f8134f",
     "url": "/static/media/HelveticaNeueCyr-LightItalic.8a3e8a0b.ttf"
   },
   {
-    "revision": "ae503b13b400cfaea50d767b4b61b810",
-    "url": "/static/media/HelveticaNeueCyr-Medium.ae503b13.eot"
+    "revision": "5dd6bee88f39ca7d14a40ff8b31c6d64",
+    "url": "/static/media/HelveticaNeueCyr-LightItalic.5dd6bee8.eot"
   },
   {
     "revision": "d3746fef517091ec5f5368625397376f",
     "url": "/static/media/HelveticaNeueCyr-MediumItalic.d3746fef.ttf"
   },
   {
-    "revision": "36b4ad9b336689c7be225f320ab2a10a",
-    "url": "/static/media/HelveticaNeueCyr-MediumItalic.36b4ad9b.eot"
+    "revision": "afe760ffd0c1944072ba8f7c3f47b4d5",
+    "url": "/static/media/HelveticaNeueCyr-Thin.afe760ff.ttf"
+  },
+  {
+    "revision": "ae503b13b400cfaea50d767b4b61b810",
+    "url": "/static/media/HelveticaNeueCyr-Medium.ae503b13.eot"
   },
   {
     "revision": "9b4d23f4e67b13185db491462417b79e",
     "url": "/static/media/HelveticaNeueCyr-Thin.9b4d23f4.eot"
   },
   {
-    "revision": "afe760ffd0c1944072ba8f7c3f47b4d5",
-    "url": "/static/media/HelveticaNeueCyr-Thin.afe760ff.ttf"
+    "revision": "36b4ad9b336689c7be225f320ab2a10a",
+    "url": "/static/media/HelveticaNeueCyr-MediumItalic.36b4ad9b.eot"
   },
   {
     "revision": "6e6845c8bf5e49fcff1ae035c2f016b1",
     "url": "/static/media/HelveticaNeueCyr-ThinItalic.6e6845c8.eot"
+  },
+  {
+    "revision": "30111f49e3746df5024292767ab0494f",
+    "url": "/static/media/HelveticaNeueCyr-UltraLight.30111f49.ttf"
   },
   {
     "revision": "a724b7f2e11be276659609c1457eed25",
@@ -224,10 +232,6 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-UltraLight.0f2aa927.eot"
   },
   {
-    "revision": "30111f49e3746df5024292767ab0494f",
-    "url": "/static/media/HelveticaNeueCyr-UltraLight.30111f49.ttf"
-  },
-  {
     "revision": "2d33d321e04da2c9f9bada8f9d011022",
     "url": "/static/media/HelveticaNeueCyr-UltraLightItalic.2d33d321.eot"
   },
@@ -236,11 +240,11 @@ self.__precacheManifest = [
     "url": "/static/media/HelveticaNeueCyr-UltraLightItalic.eddbfc23.ttf"
   },
   {
-    "revision": "530a69208575e958fdca",
+    "revision": "ff39117002b58767db9f",
     "url": "/static/css/2.cc7d0bef.chunk.css"
   },
   {
-    "revision": "f9e4c1d5e3e17c02a2ffe60bcbfffed4",
+    "revision": "49bcef309a49a3a30f34a1a16fceee6d",
     "url": "/index.html"
   }
 ];
