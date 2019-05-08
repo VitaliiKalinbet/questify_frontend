@@ -4,7 +4,14 @@ import styles from './Logout.module.css';
 
 const Logout = ({ exit }) => (
   <div>
-    <button className={styles.button} type="button" onClick={() => exit()} />
+    <button
+      className={styles.button}
+      type="button"
+      onClick={() => {
+        localStorage.removeItem('questifyNickname');
+        exit();
+      }}
+    />
   </div>
 );
 
