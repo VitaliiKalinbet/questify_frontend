@@ -27,7 +27,8 @@ class ChallengeCardContainer extends Component {
     isDeleteModalOpen: false,
     isCompletedModalOpen: false,
     challengeSendToUser: this.props.task.challengeSendToUser,
-    isFireIconOn: false
+    isFireIconOn: false,
+    isOpenCalendar: false
   };
 
   componentDidMount() {
@@ -42,6 +43,12 @@ class ChallengeCardContainer extends Component {
       isFireIconOn: getFireIconOn(dueDate, new Date())
     });
   }
+
+  toggleIsOpenCalendar = () => {
+    this.setState(prevState => ({
+      isOpenCalendar: !prevState.isOpenCalendar
+    }));
+  };
 
   toggleDifficultySelect = () => {
     this.setState(prevState => ({
@@ -71,10 +78,15 @@ class ChallengeCardContainer extends Component {
   };
 
   handleSaveSelectedDifficutlyItem = difficultValue => {
-    this.setState(prevState => ({
-      difficulty: difficultValue,
-      updatedFields: { ...prevState.updatedFields, difficulty: difficultValue }
-    }));
+    this.setState(
+      prevState => ({
+        difficulty: difficultValue,
+        updatedFields: { ...prevState.updatedFields, difficulty: difficultValue }
+      }),
+      () => {
+        this.toggleDifficultySelect();
+      }
+    );
   };
 
   toggleDeleteModal = () => {
@@ -101,7 +113,7 @@ class ChallengeCardContainer extends Component {
       deleteQuest,
       userId
     } = this.props;
-    deleteQuest({deleteQuest: { id, dueDate, isQuest }, userId });
+    deleteQuest({ deleteQuest: { id, dueDate, isQuest }, userId });
   };
 
   handleDoneQuest = () => {
@@ -111,7 +123,7 @@ class ChallengeCardContainer extends Component {
       const doneChallenge = { ...questFromProp, ...newQuest };
       console.log(userId);
       this.onModeRender();
-      return moveToDone({questIsDone: doneChallenge, userId: userId});
+      return moveToDone({ questIsDone: doneChallenge, userId });
     });
   };
 
@@ -125,7 +137,8 @@ class ChallengeCardContainer extends Component {
       }),
       () => {
         const { updatedFields } = this.state;
-        saveQuest(task, updatedFields)}
+        saveQuest(task, updatedFields);
+      }
     );
   };
 
@@ -154,7 +167,8 @@ class ChallengeCardContainer extends Component {
       isDeleteModalOpen,
       isCompletedModalOpen,
       isQuest,
-      isFireIconOn
+      isFireIconOn,
+      isOpenCalendar
     } = this.state;
     const { name: categoryName } = this.props;
     return (
@@ -206,6 +220,8 @@ class ChallengeCardContainer extends Component {
             name={name}
             onDelete={this.handleDeleteQuest}
             moveToDone={this.handleDoneQuest}
+            toggleIsOpenCalendar={this.toggleIsOpenCalendar}
+            isOpenCalendar={isOpenCalendar}
           />
         )}
       </>
@@ -244,7 +260,7 @@ ChallengeCardContainer.propTypes = {
 
 const mts = state => ({
   userId: userSelectors.userId(state)
-})
+});
 
 const mapDispatch = dispath => ({
   saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),

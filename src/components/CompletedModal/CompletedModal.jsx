@@ -8,19 +8,20 @@ const sliceTextCompleted = text => {
   return text.length > 20 ? `${text.slice(0, 20)}...` : text;
 };
 
-// const CompletedModal = (finishAddMode, name, moveToDone) => {
-const CompletedModal = ({ finishAddMode, moveToDone, name }) => {
+const CompletedModal = ({ finishAddMode, moveToDone, name, isQuest }) => {
   return (
     <Modal
       clickContinue={() => {
         finishAddMode(), moveToDone();
       }}
       completedText={sliceTextCompleted(name)}
+      isQuest={isQuest}
     />
   );
 };
 
 CompletedModal.propTypes = {
+  isQuest: PropTypes.bool.isRequired,
   finishAddMode: PropTypes.func
 };
 

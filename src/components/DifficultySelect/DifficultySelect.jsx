@@ -11,8 +11,10 @@ const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelect
             difficulty === 'Easy'
               ? isQuest
                 ? `${s.listItem} ${s.select}`
-                : `${s.listItem} ${s.whiteText}`
-              : s.listItem
+                : `${s.listItem} ${s.whiteText} ${s.challange}`
+              : isQuest
+              ? s.listItem
+              : `${s.listItem} ${s.challange}`
           }
           onClick={() => handleSaveSelectedDifficutlyItem('Easy')}
         >
@@ -23,8 +25,10 @@ const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelect
             difficulty === 'Normal'
               ? isQuest
                 ? `${s.listItem} ${s.select}`
-                : `${s.listItem} ${s.whiteText}`
-              : s.listItem
+                : `${s.listItem} ${s.whiteText} ${s.challange}`
+              : isQuest
+              ? s.listItem
+              : `${s.listItem} ${s.challange}`
           }
           onClick={() => handleSaveSelectedDifficutlyItem('Normal')}
         >
@@ -35,8 +39,10 @@ const DifficultySelect = ({ difficulty, isOpenDifficultySelect, handleSaveSelect
             difficulty === 'Hard'
               ? isQuest
                 ? `${s.listItem} ${s.select}`
-                : `${s.listItem} ${s.whiteText}`
-              : s.listItem
+                : `${s.listItem} ${s.whiteText} ${s.challange}`
+              : isQuest
+              ? s.listItem
+              : `${s.listItem} ${s.challange}`
           }
           onClick={() => handleSaveSelectedDifficutlyItem('Hard')}
         >

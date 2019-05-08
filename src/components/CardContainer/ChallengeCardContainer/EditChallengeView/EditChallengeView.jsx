@@ -32,10 +32,12 @@ const EditChallengeView = ({
   isCompletedModalOpen,
   isQuest,
   onDelete,
-  moveToDone
+  moveToDone,
+  toggleIsOpenCalendar,
+  isOpenCalendar
 }) => {
   return (
-    <div className={s.card}>
+    <div className={s.card} onClick={isOpenDifficultySelect ? toggleDifficultySelect : () => {}}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
@@ -53,12 +55,13 @@ const EditChallengeView = ({
       <main className={s.cardMain}>
         <h4 className={s.challangeTitle}>challange</h4>
         <h2 className={s.title}>{name}</h2>
-        <div className={s.dateTimeContainer}>
+        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
+            open={isOpenCalendar}
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
@@ -77,12 +80,14 @@ const EditChallengeView = ({
       </footer>
 
       {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
-      {isCompletedModalOpen && <CompletedModal moveToDone={moveToDone} name={name} />}
+      {isCompletedModalOpen && <CompletedModal isQuest={isQuest} moveToDone={moveToDone} name={name} />}
     </div>
   );
 };
 
 EditChallengeView.propTypes = {
+  isOpenCalendar: PropTypes.bool.isRequired,
+  toggleIsOpenCalendar: PropTypes.func.isRequired,
   isQuest: PropTypes.bool.isRequired,
   isCompletedModalOpen: PropTypes.bool.isRequired,
   toggleCompletedModal: PropTypes.func.isRequired,
