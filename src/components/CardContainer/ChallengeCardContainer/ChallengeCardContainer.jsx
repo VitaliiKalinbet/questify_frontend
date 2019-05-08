@@ -7,6 +7,7 @@ import EditChallengeView from './EditChallengeView/EditChallengeView';
 import NewChallengeView from './NewChallengeView/NewChallengeView';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 import userSelectors from '../../../redux/user/userSelectors';
+import { newChallenge } from '../../../redux/challenge/challengeAction';
 
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
@@ -127,8 +128,8 @@ class ChallengeCardContainer extends Component {
     });
   };
 
-  handleAddQuest = () => {
-    const { saveQuest, task } = this.props;
+  handleAddChallange = () => {
+    const { saveQuest, task, newChallenge } = this.props;
     this.setState(
       prevState => ({
         challengeSendToUser: true,
@@ -137,6 +138,7 @@ class ChallengeCardContainer extends Component {
       }),
       () => {
         const { updatedFields } = this.state;
+        newChallenge([]);
         saveQuest(task, updatedFields);
       }
     );
@@ -187,7 +189,7 @@ class ChallengeCardContainer extends Component {
         )}
         {!done && mode === 'newChallenge' && (
           <NewChallengeView
-            handleAddChallange={this.handleAddQuest}
+            handleAddChallange={this.handleAddChallange}
             isQuest={isQuest}
             isDeleteModalOpen={isDeleteModalOpen}
             toggleDeleteModal={this.toggleDeleteModal}
@@ -262,10 +264,11 @@ const mts = state => ({
   userId: userSelectors.userId(state)
 });
 
-const mapDispatch = dispath => ({
-  saveQuest: (oldQuest, newQuest) => dispath(saveQuest(oldQuest, newQuest)),
-  deleteQuest: param => dispath(deleteQuest(param)),
-  moveToDone: questIsDone => dispath(moveToDone(questIsDone))
+const mapDispatch = dispatch => ({
+  newChallenge: getNewChallenge => dispatch(newChallenge(getNewChallenge)),
+  saveQuest: (oldQuest, newQuest) => dispatch(saveQuest(oldQuest, newQuest)),
+  deleteQuest: param => dispatch(deleteQuest(param)),
+  moveToDone: questIsDone => dispatch(moveToDone(questIsDone))
 });
 
 export default connect(

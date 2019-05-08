@@ -56,8 +56,10 @@ export const addQuest = newQuest => dispatch => {
 };
 
 export const saveQuest = (oldQuest, savedQuest) => dispatch => {
-  console.log(savedQuest);
-  if (!savedQuest.isQuest) {
+  console.log('action saveQuest => savedQUEST: ', savedQuest);
+  console.log('action saveQuest => oldQuest: ', oldQuest);
+
+  if (!oldQuest.isQuest) {
     api
       .fetchUpdateChallenge({
         challengeId: oldQuest._id,
@@ -77,6 +79,7 @@ export const saveQuest = (oldQuest, savedQuest) => dispatch => {
         });
       });
   }
+
   if (oldQuest.isQuest) {
     api.fetchUpdateQuest({ updateFields: savedQuest, questId: oldQuest._id }).then(res => {
       dispatch({
@@ -130,7 +133,7 @@ export const deleteQuest = ({ deleteQuest, userId }) => dispatch => {
   }
 };
 
-export const moveToDone = ({questIsDone, userId}) => dispatch => {
+export const moveToDone = ({ questIsDone, userId }) => dispatch => {
   console.log(userId);
   if (!questIsDone.isQuest) {
     api

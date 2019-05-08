@@ -11,13 +11,13 @@ import styles from './Header.module.css';
 import { logout } from '../../redux/auth/authAction';
 import logo from '../../assets/logo/logo.png';
 
-const Header = ({ user, isQuest, exit }) => (
+const Header = ({ user, isNewChallenge, exit }) => (
   <header className={styles.container}>
     <div className={styles.header}>
       <img className={styles.logostyle} src={logo} alt="Logo" />
       <UserInfo user={user} />
       <div className={styles.right}>
-        <ChallengeStatus isQuest={isQuest} />
+        <ChallengeStatus isNewChallenge={isNewChallenge} />
         <Logout exit={exit} />
       </div>
     </div>
@@ -25,14 +25,14 @@ const Header = ({ user, isQuest, exit }) => (
 );
 
 Header.propTypes = {
+  isNewChallenge: PropTypes.bool.isRequired,
   user: PropTypes.string.isRequired,
-  isQuest: PropTypes.bool.isRequired,
   exit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
+  isNewChallenge: state.isNewChallenge,
   user: userSelectors.userName(state),
-  isQuest: false
 });
 
 const mapDispatchToProps = {
