@@ -8,6 +8,7 @@ import NewChallengeView from './NewChallengeView/NewChallengeView';
 import { saveQuest, deleteQuest, moveToDone } from '../../../redux/user/userAction';
 import userSelectors from '../../../redux/user/userSelectors';
 import { newChallenge } from '../../../redux/challenge/challengeAction';
+import { startEditMode } from '../../../redux/editMode/editModeAction';
 
 const getFireIconOn = (time, nowDate) =>
   new Date(time).getDay() < nowDate.getDay() &&
@@ -58,15 +59,24 @@ class ChallengeCardContainer extends Component {
   };
 
   onModeEdit = () => {
-    this.setState({
-      mode: 'edit'
-    });
+    const { isEditMode, startEditMode } = this.props;
+    if (!isEditMode) {
+      this.setState(
+        {
+          mode: 'edit'
+        },
+        () => startEditMode(true)
+      );
+    }
   };
 
   onModeRender = () => {
-    this.setState({
-      mode: 'render'
-    });
+    const {startEditMode} = this.props;
+    this.setState(
+      {
+        mode: 'render'
+      }
+    );
   };
 
   handleChangeDueDate = event => {
@@ -112,8 +122,10 @@ class ChallengeCardContainer extends Component {
     const {
       task: { _id: id, dueDate, isQuest, challengeSendToUser, done },
       deleteQuest,
-      userId
+      userId,
+      startEditMode
     } = this.props;
+    startEditMode(false);
     deleteQuest({ deleteQuest: { id, dueDate, isQuest }, userId });
   };
 
@@ -145,7 +157,7 @@ class ChallengeCardContainer extends Component {
   };
 
   handleSaveQuest = () => {
-    const { saveQuest } = this.props;
+    const { saveQuest, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     this.setState(
       prevState => ({
@@ -153,7 +165,10 @@ class ChallengeCardContainer extends Component {
         mode: 'render',
         updatedFields: { ...prevState.updatedFields, challengeSendToUser: true }
       }),
-      () => saveQuest(questFromProp, updatedFields)
+      () => {
+        startEditMode(false);
+        saveQuest(questFromProp, updatedFields);
+      }
     );
   };
 
@@ -257,18 +272,21 @@ ChallengeCardContainer.propTypes = {
     updatedAt: PropTypes.string,
     _id: PropTypes.string
   }),
-  mode: PropTypes.string.isRequired
+  mode: PropTypes.string.isRequired,
+  isEditMode: PropTypes.bool.isRequired
 };
 
 const mts = state => ({
-  userId: userSelectors.userId(state)
+  userId: userSelectors.userId(state),
+  isEditMode: state.isEditMode
 });
 
 const mapDispatch = dispatch => ({
   newChallenge: getNewChallenge => dispatch(newChallenge(getNewChallenge)),
   saveQuest: (oldQuest, newQuest) => dispatch(saveQuest(oldQuest, newQuest)),
   deleteQuest: param => dispatch(deleteQuest(param)),
-  moveToDone: questIsDone => dispatch(moveToDone(questIsDone))
+  moveToDone: questIsDone => dispatch(moveToDone(questIsDone)),
+  startEditMode: editMode => dispatch(startEditMode(editMode))
 });
 
 export default connect(
