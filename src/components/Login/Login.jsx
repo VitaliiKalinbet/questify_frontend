@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { asyncOperetion } from '../../redux/user';
 import styles from './Login.module.css';
-// import { loginUser } from '../../services/api';
 
 const INITIAL_STATE = {
   nickname: ''
@@ -14,6 +13,15 @@ const INITIAL_STATE = {
 
 class Login extends Component {
   state = { ...INITIAL_STATE };
+
+  componentDidMount() {
+    const { userLogin, history } = this.props;
+    const nickname = localStorage.getItem('questifyNickname');
+    console.log('nickname', nickname);
+    if (nickname) {
+      userLogin({ nickname }).then(() => history.push('/dashboard'));
+    }
+  }
 
   reset = () => {
     this.setState({ ...INITIAL_STATE });
@@ -24,7 +32,7 @@ class Login extends Component {
     const { userLogin, history } = this.props;
     const { nickname } = this.state;
     userLogin({ nickname }).then(() => history.push('/dashboard'));
-    // loginUser(nickname);
+    localStorage.setItem('questifyNickname', nickname);
     this.reset();
   };
 
