@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.card:hover {
+  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -140,6 +144,18 @@
 .doneSvg {
   fill: #24d40c;
   cursor: pointer;
+}
+
+.doneSvg:hover {
+  fill: #439945;
+}
+
+.saveSvg:hover {
+  fill: #47aad5;
+}
+
+.closeSvg:hover {
+  fill: #c2273d;
 }
 
 .strip {

@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.card:hover {
+  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -60,6 +64,10 @@
 .star {
   width: 22px;
   height: 21px;
+}
+
+.start:hover {
+  color: rgb(71, 170, 213);
 }
 
 .dateTimeContainer {
@@ -130,6 +138,10 @@
 .closeSvg {
   fill: #da0837;
   cursor: pointer;
+}
+
+.closeSvg:hover {
+  fill: #c2273d;
 }
 
 .strip {

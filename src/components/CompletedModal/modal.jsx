@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import s from './CompletedModal.module.css';
 import questCompleteIcon from '../../assets/images/questCompleteIcon.svg';
 import challangeCompleteIcon from '../../assets/images/challangeCompleteIcon.svg';
+import {ReactComponent as ArrowPic} from '../../assets/images/icons/arrow-right/right-arrow.svg';
 
 const containerStyle = {
   position: 'absolute',
   zIndex: '999',
   boxSizing: 'border-box',
   margin: '0',
-  padding: '22px',
+  padding: '26px',
   width: '100%',
   height: '100%',
   top: '0',
@@ -20,10 +21,18 @@ const containerStyle = {
 };
 
 const textStyle = {
+  fontFamily: 'HelveticaNeueCyrRoman',
   padding: '0',
-  margin: '0',
-  letterSpacing: '0.6px'
-};
+  margin: '0 auto',
+  textAlign: 'center',
+  textTransform: 'uppercase',
+  fontSize: '15px',
+  fontWeight: 'normal',
+  fontStyle: 'normal',
+  fontStretch: 'normal',
+  lineHeight: '1',
+  letterSpacing: '0.9px'
+  };
 
 const modalCompleted = ({ completedText, clickContinue, isQuest }) => {
   return (
@@ -32,10 +41,10 @@ const modalCompleted = ({ completedText, clickContinue, isQuest }) => {
         ...containerStyle,
         backgroundColor: isQuest ? '#fff' : '#15395a',
         backgroundImage: isQuest ? `url(${questCompleteIcon})` : `url(${challangeCompleteIcon})`,
-        backgroundPositionY: '-10px',
+        backgroundPositionY: '35%',
         backgroundPositionX: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '90%'
+        backgroundSize: '200px auto'
       }}
     >
       <p
@@ -47,7 +56,7 @@ const modalCompleted = ({ completedText, clickContinue, isQuest }) => {
         COMPLETED: <span className={s.span}> {completedText}</span>
       </p>
       <button className={s.button} type="button" onClick={clickContinue}>
-        Continue
+        Continue <ArrowPic/>
       </button>
     </div>
   );

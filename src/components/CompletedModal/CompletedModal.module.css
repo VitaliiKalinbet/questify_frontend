@@ -15,30 +15,45 @@
 
 .span {
   text-decoration: underline;
+  text-transform: initial;
   color: #00d7ff;
+  font-size: 12px;
+  font-stretch: normal;
+  letter-spacing: 0.4;
 }
 
 .button {
   position: absolute;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0;
   background: none;
   border: none;
   box-shadow: none;
-  bottom: 4%;
+  bottom: 22px;
   left: 35%;
-  letter-spacing: 0.9px;
+  font-family: 'HelveticaNeueCyrRoman';
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.73;
+  letter-spacing: 1.4px;
+  text-align: left;
   color: #7b8aa4;
+  width: 90px;
+  height: 20px;
 }
 
-.button::after {
-  content: '';
-  position: absolute;
+.button svg {
   width: 10px;
-  height: 8px;
-  background: url('../../assets/images/shape_completed_modal.png') no-repeat center;
-  right: -10%;
-  top: 40%;
+  height: 14px;
+  fill: #00d7ff;
+}
+
+.button:hover svg{
+  fill: #47aad5;
 }
 
 .button:focus {
