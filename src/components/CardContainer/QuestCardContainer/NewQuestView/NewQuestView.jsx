@@ -34,7 +34,8 @@ const NewQuestView = ({
   toggleDeleteModal,
   onDelete,
   toggleIsOpenCalendar,
-  isOpenCalendar
+  isOpenCalendar,
+  isQuest
 }) => {
   return (
     <div
@@ -93,12 +94,13 @@ const NewQuestView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal isQuest={isQuest} onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
     </div>
   );
 };
 
 NewQuestView.propTypes = {
+  isQuest: PropTypes.bool.isRequired,
   isOpenCalendar: PropTypes.bool.isRequired,
   toggleIsOpenCalendar: PropTypes.func.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,

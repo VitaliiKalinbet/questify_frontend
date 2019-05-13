@@ -71,12 +71,10 @@ class ChallengeCardContainer extends Component {
   };
 
   onModeRender = () => {
-    const {startEditMode} = this.props;
-    this.setState(
-      {
-        mode: 'render'
-      }
-    );
+    const { startEditMode } = this.props;
+    this.setState({
+      mode: 'render'
+    });
   };
 
   handleChangeDueDate = event => {
