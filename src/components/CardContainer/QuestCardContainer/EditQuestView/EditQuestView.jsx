@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Datetime from 'react-datetime';
+import lifecycle from 'react-pure-lifecycle';
 import 'react-datetime/css/react-datetime.css';
 
 import DeleteQuestModal from '../../../DeleteQuestModal/DeleteQuestModal';
@@ -16,6 +17,24 @@ import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSv
 import SaveSvg from '../../../../assets/images/icons/saveSvg/SaveSvg';
 import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 import DoneSvg from '../../../../assets/images/icons/doneSvg/DoneSvg';
+
+const handleEnterDown = (event, props) => {
+  if (event.keyCode === 13) {
+    props.onSave();
+  }
+  if (event.keyCode === 27) {
+    props.toggleDeleteModal();
+  }
+};
+
+const methods = {
+  componentDidMount(props) {
+    window.addEventListener('keydown', event => handleEnterDown(event, props));
+  },
+  componentWillUnmount() {
+    window.removeEventListener('keydown', handleEnterDown);
+  }
+};
 
 const EditQuestView = ({
   difficulty,
@@ -63,6 +82,8 @@ const EditQuestView = ({
       </header>
       <main className={s.cardMain}>
         <input
+          minLength="3"
+          required
           autoFocus
           className={s.title}
           onChange={handelChangeNameQuest}
@@ -126,4 +147,4 @@ EditQuestView.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default EditQuestView;
+export default lifecycle(methods)(EditQuestView);

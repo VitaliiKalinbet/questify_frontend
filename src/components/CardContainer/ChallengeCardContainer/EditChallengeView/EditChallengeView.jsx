@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Datetime from 'react-datetime';
+import lifecycle from 'react-pure-lifecycle';
 import 'react-datetime/css/react-datetime.css';
 
 import DeleteQuestModal from '../../../DeleteQuestModal/DeleteQuestModal';
@@ -15,6 +16,24 @@ import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 import SaveSvg from '../../../../assets/images/icons/saveSvg/SaveSvg';
 import DoneSvg from '../../../../assets/images/icons/doneSvg/DoneSvg';
 import CompletedModal from '../../../CompletedModal/CompletedModal';
+
+const handleEnterDown = (event, props) => {
+  if (event.keyCode === 13) {
+    props.handleSaveQuest();
+  }
+  if (event.keyCode === 27) {
+    props.toggleDeleteModal();
+  }
+};
+
+const methods = {
+  componentDidMount(props) {
+    window.addEventListener('keydown', event => handleEnterDown(event, props));
+  },
+  componentWillUnmount() {
+    window.removeEventListener('keydown', handleEnterDown);
+  }
+};
 
 const EditChallengeView = ({
   isDeleteModalOpen,
@@ -102,4 +121,4 @@ EditChallengeView.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default EditChallengeView;
+export default lifecycle(methods)(EditChallengeView);

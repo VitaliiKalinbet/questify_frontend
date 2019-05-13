@@ -1,4 +1,6 @@
-import { newChallenge } from '../redux/challenge/challengeAction';
+import {
+  newChallenge
+} from '../redux/challenge/challengeAction';
 
 const innit = {
   today: 'Today',
@@ -37,14 +39,23 @@ export const allTheRest = tasks => {
 };
 
 export const filter = data => {
-  const { tasks, user } = data;
+  const {
+    tasks,
+    user
+  } = data;
   const done = tasks.filter(task => task.done);
   const doneFalse = tasks.filter(task => !task.done);
   const todayArr = today(doneFalse);
   const tomorrowArr = tomorrow(doneFalse);
   const allTheRestArr = allTheRest(doneFalse);
 
-  return { user, today: todayArr, tomorrow: tomorrowArr, allTheRest: allTheRestArr, done };
+  return {
+    user,
+    today: todayArr,
+    tomorrow: tomorrowArr,
+    allTheRest: allTheRestArr,
+    done
+  };
 };
 
 // export const filter = data => {

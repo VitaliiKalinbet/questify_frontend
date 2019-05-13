@@ -14,6 +14,8 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName,
   const isActiveFireIcon = !done && categoryName === 'today';
   const dateFormate = done ? (
     <p className={s.date}>{doneFormatTime}</p>
+  ) : categoryName === 'all the rest' ? (
+    <p className={s.date}>{doneFormatTime}</p>
   ) : (
     <p className={s.date}>{`${categoryName}, ${notDoneFormatTime}`}</p>
   );
