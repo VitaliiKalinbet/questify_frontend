@@ -45,7 +45,7 @@ const NewChallengeView = ({
         </div>
       </header>
       <main className={s.cardMain}>
-        <h4 className={s.challangeTitle}>challange</h4>
+        <h4 className={s.challangeTitle}>challenge</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
           <Datetime
