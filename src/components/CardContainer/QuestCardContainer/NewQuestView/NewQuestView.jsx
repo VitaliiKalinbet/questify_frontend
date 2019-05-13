@@ -32,10 +32,15 @@ const NewQuestView = ({
   handleSaveSelectedGroupItem,
   isDeleteModalOpen,
   toggleDeleteModal,
-  onDelete
+  onDelete,
+  toggleIsOpenCalendar,
+  isOpenCalendar
 }) => {
   return (
-    <div className={s.card}>
+    <div
+      className={s.card}
+      onClick={isOpenGroupSelect ? toggleOpenGroupSelect : isOpenDifficultySelect ? toggleDifficultySelect : () => {}}
+    >
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
@@ -59,12 +64,13 @@ const NewQuestView = ({
           value={name}
           placeholder="Enter quest name"
         />
-        <div className={s.dateTimeContainer}>
+        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
+            open={isOpenCalendar}
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
@@ -93,6 +99,8 @@ const NewQuestView = ({
 };
 
 NewQuestView.propTypes = {
+  isOpenCalendar: PropTypes.bool.isRequired,
+  toggleIsOpenCalendar: PropTypes.func.isRequired,
   toggleDeleteModal: PropTypes.func.isRequired,
   isDeleteModalOpen: PropTypes.bool.isRequired,
   handleSaveSelectedGroupItem: PropTypes.func.isRequired,

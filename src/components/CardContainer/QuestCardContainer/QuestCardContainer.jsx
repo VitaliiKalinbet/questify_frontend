@@ -172,6 +172,7 @@ class QuestCardContainer extends Component {
   };
 
   handleSaveQuest = () => {
+    if (this.state.name.length < 3) return;
     const { saveQuest, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
     this.onModeRender();
@@ -194,6 +195,7 @@ class QuestCardContainer extends Component {
   };
 
   toggleCompletedModal = () => {
+    if (this.state.name.length < 3) return;
     this.setState(prevState => ({
       isCompletedModalOpen: !prevState.isCompletedModalOpen
     }));
@@ -278,6 +280,8 @@ class QuestCardContainer extends Component {
         )}
         {addMode && mode === 'newQuest' && (
           <NewQuestView
+            isOpenCalendar={isOpenCalendar}
+            toggleIsOpenCalendar={this.toggleIsOpenCalendar}
             handleAddQuest={this.handleAddQuest}
             toggleCompletedModal={this.toggleCompletedModal}
             isCompletedModalOpen={isCompletedModalOpen}
