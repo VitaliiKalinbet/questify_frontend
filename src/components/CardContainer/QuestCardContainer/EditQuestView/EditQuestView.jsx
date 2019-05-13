@@ -119,7 +119,7 @@ const EditQuestView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal isQuest={isQuest} onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal isQuest={isQuest} name={name} moveToDone={moveToDone} />}
     </div>
   );

@@ -280,6 +280,7 @@ class QuestCardContainer extends Component {
         )}
         {addMode && mode === 'newQuest' && (
           <NewQuestView
+            isQuest={isQuest}
             isOpenCalendar={isOpenCalendar}
             toggleIsOpenCalendar={this.toggleIsOpenCalendar}
             handleAddQuest={this.handleAddQuest}

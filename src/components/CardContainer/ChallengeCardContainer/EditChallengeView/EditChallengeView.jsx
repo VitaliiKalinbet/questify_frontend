@@ -72,7 +72,7 @@ const EditChallengeView = ({
         </div>
       </header>
       <main className={s.cardMain}>
-        <h4 className={s.challangeTitle}>challange</h4>
+        <h4 className={s.challangeTitle}>challenge</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
@@ -98,7 +98,7 @@ const EditChallengeView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal isQuest={isQuest} onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal isQuest={isQuest} moveToDone={moveToDone} name={name} />}
     </div>
   );
