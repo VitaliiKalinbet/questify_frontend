@@ -56,3 +56,17 @@
     margin-left: 1rem;
   }
 }
+
+@media (min-width: 1920px) {
+  .circle {
+    font: 400 30px "HelveticaNeueCyr", sans-serif;
+    width: 65px;
+    height: 65px;
+  }
+
+  .name {
+    font: 400 30px "HelveticaNeueCyr", sans-serif;
+    color: #758ba7;
+    margin-left: 1rem;
+  }
+}
