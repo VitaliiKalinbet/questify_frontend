@@ -92,11 +92,11 @@ const EditQuestView = ({
         />
         <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
-            closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
+            disableCloseOnClickOutside
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>
@@ -119,7 +119,7 @@ const EditQuestView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal isQuest={isQuest} onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
       {isCompletedModalOpen && <CompletedModal isQuest={isQuest} name={name} moveToDone={moveToDone} />}
     </div>
   );

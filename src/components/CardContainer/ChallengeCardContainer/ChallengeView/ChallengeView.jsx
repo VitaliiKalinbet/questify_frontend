@@ -16,6 +16,8 @@ const ChallengeView = ({ difficulty, dueDate, done, group, name, categoryName, o
   // const isActiveFireIcon = !done && categoryName === 'today';
   const dateFormate = done ? (
     <p className={s.date}>{doneFormatTime}</p>
+  ) : categoryName === 'all the rest' ? (
+    <p className={s.date}>{doneFormatTime}</p>
   ) : (
     <p className={s.date}>{`${categoryName}, ${notDoneFormatTime}`}</p>
   );
@@ -30,7 +32,7 @@ const ChallengeView = ({ difficulty, dueDate, done, group, name, categoryName, o
         </div>
       </header>
       <main className={s.cardMain}>
-        <h4 className={s.challangeTitle}>challange</h4>
+        <h4 className={s.challangeTitle}>challenge</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.date_fire_container}>
           {dateFormate}

@@ -18,10 +18,13 @@
   position: relative;
 }
 
+<<<<<<< HEAD
 .card:hover {
   box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
 }
 
+=======
+>>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -66,10 +69,13 @@
   height: 21px;
 }
 
+<<<<<<< HEAD
 .start:hover {
   color: rgb(71, 170, 213);
 }
 
+=======
+>>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .dateTimeContainer {
   position: relative;
   display: flex;
@@ -140,10 +146,13 @@
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .closeSvg:hover {
   fill: #c2273d;
 }
 
+=======
+>>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .strip {
   width: 2px;
   height: 30px;
@@ -181,3 +190,20 @@
     margin: 0 0 30px 0;
   }
 }
+<<<<<<< HEAD
+=======
+
+@media (min-width: 1920px) {
+  .card {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(3n) {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(5n) {
+    margin: 0 0 30px 0;
+  }
+}
+>>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2

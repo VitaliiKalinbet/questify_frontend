@@ -29,7 +29,7 @@ const NewChallengeView = ({
   handleAddChallange
 }) => {
   return (
-    <div className={s.card}>
+    <div className={s.card} onClick={isOpenDifficultySelect ? toggleDifficultySelect : () => {}}>
       <header className={s.cardHeader}>
         <div className={s.difficultySelect_container} onClick={toggleDifficultySelect}>
           <DifficultySelect
@@ -45,7 +45,7 @@ const NewChallengeView = ({
         </div>
       </header>
       <main className={s.cardMain}>
-        <h4 className={s.challangeTitle}>challange</h4>
+        <h4 className={s.challangeTitle}>challenge</h4>
         <h2 className={s.title}>{name}</h2>
         <div className={s.dateTimeContainer}>
           <Datetime
@@ -71,21 +71,15 @@ const NewChallengeView = ({
         </div>
       </footer>
 
-      {isDeleteModalOpen && <DeleteQuestModal onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
+      {isDeleteModalOpen && <DeleteQuestModal isQuest={isQuest} onDelete={onDelete} onCancelDel={toggleDeleteModal} />}
     </div>
   );
 };
 
 NewChallengeView.defaultProps = {
-  // challengeSendToUser: false,
-  // mode: 'newChallenge',
-  // createdAt: '',
   difficulty: 'Easy',
-  // updatedAt: '',
-  // dueDate: '',
   group: 'STUFF',
   isQuest: true
-  // _id: ''
 };
 
 NewChallengeView.propTypes = {
