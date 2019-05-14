@@ -10,7 +10,7 @@
   height: 264px;
   border-radius: 11px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
   border: 1px solid #00d7ff;
   display: flex;
   flex-direction: column;
@@ -57,16 +57,29 @@
   padding: 22px;
 }
 
-.star {
+.starActive {
   width: 22px;
   height: 21px;
+  fill: #00d7ff;
+}
+
+.starActive:hover {
+  fill: #b9c3c8;
+}
+
+.starNoActive {
+  width: 22px;
+  height: 21px;
+  fill: #b9c3c8;
+}
+
+.starNoActive:hover {
+  fill: #00d7ff;
 }
 
 .dateTimeContainer {
   position: relative;
-  display: flex;
-  align-items: center;
-
+  cursor: pointer;
 }
 
 .dateTimeContainer input {
@@ -79,13 +92,54 @@
   cursor: pointer;
 }
 
-.dateTimeContainer>div>div {
+.dateTimeContainer > div > div {
   top: 30px;
-  left: -20px;
+  left: -47px;
+}
+
+@media (min-width: 960px) {
+  .dateTimeContainer > div > div {
+    left: -35px;
+  }
+}
+
+@media (min-width: 1023px) {
+  .dateTimeContainer > div > div {
+    left: -35px;
+  }
+}
+
+@media (min-width: 1200) {
+
+}
+
+@media (min-width: 1920) {
+
+}
+
+.dateTimeContainer > div > div > div {
+  display: flex;
+  justify-content: center;
 }
 
 .calendarIcon {
+  width: 16px;
+  height: auto;
   fill: #00d7ff;
+  cursor: pointer;
+}
+
+.pickerIcon {
+  width: 16px;
+  height: auto;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .title {
@@ -140,6 +194,18 @@
 .doneSvg {
   fill: #24d40c;
   cursor: pointer;
+}
+
+.doneSvg:hover {
+  fill: #439945;
+}
+
+.saveSvg:hover {
+  fill: #47aad5;
+}
+
+.closeSvg:hover {
+  fill: #c2273d;
 }
 
 .strip {

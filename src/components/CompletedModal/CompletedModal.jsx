@@ -5,7 +5,7 @@ import Modal from './modal';
 import { finishAddMode } from '../../redux/createQuest/createQuestReducer';
 
 const sliceTextCompleted = text => {
-  return text.length > 20 ? `${text.slice(0, 20)}...` : text;
+  return text.length > 14 ? `${text.slice(0, 14)}...` : text;
 };
 
 const CompletedModal = ({ finishAddMode, moveToDone, name, isQuest }) => {

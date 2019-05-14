@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.card:hover {
+  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -62,9 +66,12 @@
   height: 21px;
 }
 
+.start:hover {
+  color: rgb(71, 170, 213);
+}
+
 .dateTimeContainer {
   position: relative;
-  display: flex;
   align-items: center;
 
 }
@@ -81,11 +88,32 @@
 
 .dateTimeContainer>div>div {
   top: 30px;
-  left: -20px;
+  left: -35px;
+}
+
+.dateTimeContainer > div > div > div {
+  display: flex;
+  justify-content: center;
 }
 
 .calendarIcon {
+  width: 16px;
+  height: auto;
   fill: #00d7ff;
+  cursor: pointer;
+}
+
+.pickerIcon {
+  width: 16px;
+  height: auto;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .title {
@@ -130,6 +158,10 @@
 .closeSvg {
   fill: #da0837;
   cursor: pointer;
+}
+
+.closeSvg:hover {
+  fill: #c2273d;
 }
 
 .strip {

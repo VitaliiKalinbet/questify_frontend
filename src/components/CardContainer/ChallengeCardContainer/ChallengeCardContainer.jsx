@@ -82,6 +82,7 @@ class ChallengeCardContainer extends Component {
     this.setState(prevState => ({
       isFireIconOn: getFireIconOn(changedDate, new Date()),
       dueDate: changedDate,
+      isOpenCalendar: !prevState.isOpenCalendar,
       updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
     }));
   };
@@ -217,6 +218,8 @@ class ChallengeCardContainer extends Component {
             group={group}
             name={name}
             onDelete={this.handleDeleteQuest}
+            isOpenCalendar={isOpenCalendar}
+            toggleIsOpenCalendar={this.toggleIsOpenCalendar}
           />
         )}
         {!done && mode === 'edit' && (

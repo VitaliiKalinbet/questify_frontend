@@ -11,9 +11,10 @@
 }
 
 .name {
-  font-family: "HelveticaNeueCyrBold", sans-serif;
+  font-family: "HelveticaNeueCyrNormal", sans-serif;
   font-size: 1rem;
-  color: #00375b;
+  color: #282828;
+  letter-spacing: 0.2px;
   text-transform: uppercase;
   margin: 0.5rem 0 1rem;
 }

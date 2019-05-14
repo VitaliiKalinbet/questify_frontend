@@ -6,7 +6,7 @@ import { ReactComponent as Trophy } from '../../assets/images/trophy/trophy.svg'
 
 const ChallengeStatus = ({ isNewChallenge }) => (
   <div className={!isNewChallenge ? styles.challendgeFalse : styles.challendgeTrue}>
-    <Trophy className={!isNewChallenge ? styles.trophyActive : styles.trophyNoActive} />
+    <Trophy className={!isNewChallenge ? styles.trophyNoActive : styles.trophyActive} />
   </div>
 );
 

@@ -17,6 +17,7 @@ import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSv
 import SaveSvg from '../../../../assets/images/icons/saveSvg/SaveSvg';
 import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 import DoneSvg from '../../../../assets/images/icons/doneSvg/DoneSvg';
+import { ReactComponent as StarIcon } from '../../../../assets/images/icons/star/favourites-filled-star-symbol.svg';
 
 const handleEnterDown = (event, props) => {
   if (event.keyCode === 13) {
@@ -34,6 +35,20 @@ const methods = {
   componentWillUnmount() {
     window.removeEventListener('keydown', handleEnterDown);
   }
+};
+
+const PickerInput = (props, openCalendar, closeCalendar) => {
+  function clear() {
+    props.onChange({ target: { value: '' } });
+  }
+  return (
+    <div>
+      <input {...props} />
+      <button onClick={openCalendar} className={s.pickerIcon}>
+        <CalendarIcon className={s.calendarIcon} />
+      </button>
+    </div>
+  );
 };
 
 const EditQuestView = ({
@@ -77,7 +92,8 @@ const EditQuestView = ({
           <img className={s.dropDownArrow} src={dropDownArrow} alt="dropDownArrow" />
         </div>
         <div className={s.starContainer} onClick={toggleIsPriority}>
-          <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" />
+          <StarIcon className={isPriority ? s.starActive : s.starNoActive} />
+          {/* <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" /> */}
         </div>
       </header>
       <main className={s.cardMain}>
@@ -90,15 +106,16 @@ const EditQuestView = ({
           value={name}
           placeholder="You may change quest name"
         />
-        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
+        <div className={s.dateTimeContainer}>
           <Datetime
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
-            disableCloseOnClickOutside
+            onFocus={toggleIsOpenCalendar}
+            locale={window.navigator.language}
+            renderInput={PickerInput}
           />
-          <CalendarIcon className={s.calendarIcon} />
         </div>
       </main>
       <footer className={s.cardFooter}>

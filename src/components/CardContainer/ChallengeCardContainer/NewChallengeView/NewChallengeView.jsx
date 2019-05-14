@@ -13,6 +13,20 @@ import dropDownArrow from '../../../../assets/images/icons/drop-down-arrow.png';
 import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSvg';
 import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 
+const PickerInput = (props, openCalendar, closeCalendar) => {
+  function clear() {
+    props.onChange({ target: { value: '' } });
+  }
+  return (
+    <div>
+      <input {...props} />
+      <button onClick={openCalendar} className={s.pickerIcon}>
+        <CalendarIcon className={s.calendarIcon} />
+      </button>
+    </div>
+  );
+};
+
 const NewChallengeView = ({
   isDeleteModalOpen,
   toggleDeleteModal,
@@ -26,7 +40,9 @@ const NewChallengeView = ({
   handleSaveSelectedDifficutlyItem,
   isQuest,
   onDelete,
-  handleAddChallange
+  handleAddChallange,
+  isOpenCalendar,
+  toggleIsOpenCalendar
 }) => {
   return (
     <div className={s.card} onClick={isOpenDifficultySelect ? toggleDifficultySelect : () => {}}>
@@ -53,8 +69,10 @@ const NewChallengeView = ({
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
+            open={isOpenCalendar}
+            onFocus={toggleIsOpenCalendar}
+            renderInput={PickerInput}
           />
-          <CalendarIcon className={s.calendarIcon} />
         </div>
       </main>
       <footer className={s.cardFooter}>
@@ -92,7 +110,9 @@ NewChallengeView.propTypes = {
   difficulty: PropTypes.string,
   dueDate: PropTypes.string,
   group: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  isOpenCalendar: PropTypes.bool.isRequired,
+  toggleIsOpenCalendar: PropTypes.func.isRequired
 };
 
 export default NewChallengeView;

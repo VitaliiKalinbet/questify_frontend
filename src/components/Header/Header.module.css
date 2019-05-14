@@ -4,7 +4,7 @@
 }
 
 .header {
-  max-width: 300px;
+  max-width: 280px;
   margin: 0 auto;
   font-family: 'Helvetica Neue Cyr Roman Bold';
   height: 60px;
@@ -13,8 +13,16 @@
   justify-content: space-between;
 }
 
+.userControl {
+  flex: 0 0 104px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
 .logostyle {
   display: block;
+  width: 67px;
 }
 
 .right {
@@ -23,27 +31,42 @@
   justify-content: space-between;
 }
 
+@media (min-width: 360px) {
+  .header {
+    min-width: 320px;
+  }
+}
+
 @media (min-width: 768px) {
   .header {
     max-width: 600px;
     padding: 0;
+    height: 74px;
+  }
+
+  .logostyle {
+    width: 90px;
+  }
+
+  .userControl {
+    flex: 1 0 auto;
   }
 }
 
 @media (min-width: 1200px) {
   .header {
     max-width: 1024px;
-    height: 90px;
+    height: 80px;
   }
 }
 
 @media (min-width: 1920px) {
   .header {
-    max-width: 1764px;
-    height: 110px;
+    max-width: 1736px;
+    height: 80px;
   }
 
   .logostyle {
-    width: 10rem;
+    width: 100px;
   }
 }
