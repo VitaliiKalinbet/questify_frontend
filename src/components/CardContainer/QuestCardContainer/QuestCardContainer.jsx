@@ -42,7 +42,7 @@ class QuestCardContainer extends Component {
     });
   }
 
-  toggleIsOpenCalendar = () => {
+  toggleIsOpenCalendar = e => {
     this.setState(prevState => ({
       isOpenCalendar: !prevState.isOpenCalendar
     }));
@@ -98,11 +98,16 @@ class QuestCardContainer extends Component {
 
   handleChangeDueDate = event => {
     const changedDate = moment(event._d).format('YYYY-MM-DDTHH:mm:ss.sssZ');
-    this.setState(prevState => ({
-      isFireIconOn: getFireIconOn(changedDate, new Date()),
-      dueDate: changedDate,
-      updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
-    }));
+    const { dueDate } = this.state;
+
+    if (new Date(dueDate).toString() !== event._d.toString()) {
+      this.setState(prevState => ({
+        isFireIconOn: getFireIconOn(changedDate, new Date()),
+        dueDate: changedDate,
+        isOpenCalendar: false,
+        updatedFields: { ...prevState.updatedFields, dueDate: changedDate }
+      }));
+    }
   };
 
   handleSaveSelectedDifficutlyItem = difficultValue => {

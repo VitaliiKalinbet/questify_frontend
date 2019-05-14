@@ -7,7 +7,7 @@ const UserInfo = ({ user }) => {
 
   return (
     <div className={styles.user}>
-      <div className={styles.circle}>{getUser(user)}</div>
+      <i className={styles.circle}>{getUser(user)}</i>
       <p className={styles.name}>{user}'s Quest Log</p>
     </div>
   );

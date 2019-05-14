@@ -4,17 +4,16 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  width: 21px;
-  height: 21px;
   text-align: center;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-right: 10px;
   line-height: 20px;
-  background-color: rgb(0, 215, 255);
-  box-shadow: 0px 6px 13px 0px rgba(121, 215, 254, 0.43);
+  width: 22px;
+  height: 22px;
+  box-shadow: 0px 6px 13px 0 rgba(121, 215, 254, 0.43);
+  background-color: #79d7fe;
 }
 
 .challendgeFalse {
@@ -23,61 +22,57 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  width: 21px;
-  height: 21px;
+  width: 22px;
+  height: 22px;
   text-align: center;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-right: 20px;
   line-height: 20px;
   background-color: #3e4e6c;
 }
 
-.trophyNoActive {
-  fill: #00365b;
-}
 
-.trophyActive {
+
+.trophyNoActive {
+  width: 10px;
+  height: 10px;
   fill: #7b8aa4;
 }
 
-.trophyNoActive {
-  fill: #00365b;
+.trophyActive {
+  width: 10px;
+  height: 10px;
+  fill: #20395a;
 }
+
 
 @media (min-width: 768px) {
 
   .challendgeTrue,
   .challendgeFalse {
-    margin-right: 25px;
+    flex-grow: 0;
+    margin-right: 32px;
     width: 35px;
     height: 35px;
   }
 
-  .challendgeTrue {
-    background-color: rgb(0, 216, 255);
-    box-shadow: 0px 6px 13px 0px rgba(0, 216, 255, 0.43);
+  .trophyActive, .trophyNoActive {
+    width: 17px;
+    height: 17px;
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1200px) {
 
   .challendgeTrue,
   .challendgeFalse {
-    width: 65px;
-    height: 65px;
-    margin-right: 35px;
+    margin-right: 41px;
   }
 
-  .trophyActive {
-    width: 20px;
-    height: 20px;
-  }
-
-  .trophyNoActive {
-    width: 20px;
-    height: 20px;
+  .trophyActive, .trophyNoActive {
+    width: 17px;
+    height: 17px;
   }
 }

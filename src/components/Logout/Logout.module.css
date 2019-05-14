@@ -4,14 +4,25 @@
   border: 0;
   vertical-align: middle;
   text-decoration: none;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   text-align: center;
   padding: 0;
   border-radius: 50%;
-  background: url('../../assets/images/logout/logout.svg');
+  background-color: transparent;
+}
+
+.button svg {
+  width: 21px;
+  fill: #3e4e6c;
   transform: rotate(180deg);
+}
+
+.button:hover svg {
+  fill: #7b8aa4;
 }
 
 .logout {
@@ -22,6 +33,8 @@
 
 @media (min-width: 768px) {
   .button {
+    flex-grow: 0;
+    align-self: center;
     width: 25px;
     height: 25px;
   }
@@ -31,12 +44,5 @@
   .button {
     width: 30px;
     height: 30px;
-  }
-}
-
-@media (min-width: 1920px) {
-  .button {
-    width: 40px;
-    height: 40px;
   }
 }

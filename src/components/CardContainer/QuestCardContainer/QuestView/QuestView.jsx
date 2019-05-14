@@ -7,6 +7,7 @@ import s from './QuestView.module.css';
 import activeStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-active.svg';
 import notActiveStar from '../../../../assets/images/icons/star/favourites-filled-star-symbol-not-active.svg';
 import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
+import { ReactComponent as StarIcon } from '../../../../assets/images/icons/star/favourites-filled-star-symbol.svg';
 
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName, onModeEdit, done, isFireIconOn }) => {
   const notDoneFormatTime = moment(dueDate).format('hh:mm');
@@ -25,9 +26,9 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName,
         <div className={s.difficultySelect_container}>
           <DifficultySelect difficulty={difficulty} />
         </div>
-        <div>
-          <img className={s.star} src={isPriority ? activeStar : notActiveStar} alt="star" />
-        </div>
+        <i>
+          <StarIcon className={isPriority ? s.starActive : s.starNoActive} />
+        </i>
       </header>
       <main className={s.cardMain}>
         <h2 className={s.title}>{name}</h2>

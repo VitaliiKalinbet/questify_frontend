@@ -10,7 +10,7 @@
   height: 264px;
   border-radius: 11px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0px 3px 20px 0px rgba(21, 57, 90, 0.08);
+  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
   border: 1px solid #00d7ff;
   display: flex;
   flex-direction: column;
@@ -18,13 +18,6 @@
   position: relative;
 }
 
-<<<<<<< HEAD
-.card:hover {
-  box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
-}
-
-=======
->>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -64,16 +57,33 @@
   padding: 22px;
 }
 
-.star {
+.starActive {
   width: 22px;
   height: 21px;
+  fill: #00d7ff;
+}
+
+.starActive:hover {
+  fill: #b9c3c8;
+}
+
+.starNoActive {
+  width: 22px;
+  height: 21px;
+  fill: #b9c3c8;
+}
+
+.starNoActive:hover {
+  fill: #00d7ff;
 }
 
 .dateTimeContainer {
+  min-width: 170px;
   position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-
+  cursor: pointer;
 }
 
 .dateTimeContainer input {
@@ -93,6 +103,7 @@
 
 .calendarIcon {
   fill: #00d7ff;
+  cursor: pointer;
 }
 
 .title {
@@ -149,7 +160,6 @@
   cursor: pointer;
 }
 
-<<<<<<< HEAD
 .doneSvg:hover {
   fill: #439945;
 }
@@ -162,8 +172,6 @@
   fill: #c2273d;
 }
 
-=======
->>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .strip {
   width: 2px;
   height: 30px;
@@ -193,8 +201,6 @@
     margin: 0 0 30px 0;
   }
 }
-<<<<<<< HEAD
-=======
 
 @media (min-width: 1920px) {
   .card {
@@ -209,4 +215,3 @@
     margin: 0 0 30px 0;
   }
 }
->>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2

@@ -15,8 +15,8 @@ const Header = ({ user, isNewChallenge, exit }) => (
   <header className={styles.container}>
     <div className={styles.header}>
       <img className={styles.logostyle} src={logo} alt="Logo" />
-      <UserInfo user={user} />
-      <div className={styles.right}>
+      <div className={styles.userControl}>
+        <UserInfo user={user} />
         <ChallengeStatus isNewChallenge={isNewChallenge} />
         <Logout exit={exit} />
       </div>
@@ -32,7 +32,7 @@ Header.propTypes = {
 
 const mapStateToProps = state => ({
   isNewChallenge: state.isNewChallenge,
-  user: userSelectors.userName(state),
+  user: userSelectors.userName(state)
 });
 
 const mapDispatchToProps = {

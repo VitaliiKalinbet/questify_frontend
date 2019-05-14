@@ -54,10 +54,18 @@
   color: #db0938;
 }
 
+.buttonDelete:hover {
+  color: rgb(194, 39, 63);
+}
+
 .buttonCancel {
   composes: button;
   color: #24d40c;
   margin-right: 36px;
+}
+
+.buttonCancel:hover {
+  color: rgb(67, 153, 69);
 }
 
 .buttonCancel::after {

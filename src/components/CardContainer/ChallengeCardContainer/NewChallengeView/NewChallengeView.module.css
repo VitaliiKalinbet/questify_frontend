@@ -17,13 +17,10 @@
   position: relative;
 }
 
-<<<<<<< HEAD
 .card:hover {
   box-shadow: 0px 10px 20px 0px rgba(21, 57, 90, 0.15);
 }
 
-=======
->>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -63,6 +60,7 @@
   fill: #00d7ff;
   width: 20px;
   height: 20px;
+  filter: drop-shadow( 0 6px 8px rgba(0, 215, 255, 0.5));
 }
 
 .dateTimeContainer {
@@ -168,8 +166,6 @@
     margin: 0 0 30px 0;
   }
 }
-<<<<<<< HEAD
-=======
 
 @media (min-width: 1920px) {
   .card {
@@ -184,4 +180,3 @@
     margin: 0 0 30px 0;
   }
 }
->>>>>>> 87fe36d31b8ee87c955d6f1df65f0dcb0b68a1d2
