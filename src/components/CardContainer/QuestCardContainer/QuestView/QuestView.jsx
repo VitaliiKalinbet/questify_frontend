@@ -9,6 +9,10 @@ import notActiveStar from '../../../../assets/images/icons/star/favourites-fille
 import FireSvg from '../../../../assets/images/icons/fire/FireSvg';
 import { ReactComponent as StarIcon } from '../../../../assets/images/icons/star/favourites-filled-star-symbol.svg';
 
+const sliceTextCompleted = text => {
+  return text.length > 36 ? `${text.slice(0, 36)}...` : text;
+};
+
 const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName, onModeEdit, done, isFireIconOn }) => {
   const notDoneFormatTime = moment(dueDate).format('hh:mm');
   const doneFormatTime = moment(dueDate).format('MMMM DD, hh:mm');
@@ -31,7 +35,7 @@ const QuestView = ({ difficulty, dueDate, group, isPriority, name, categoryName,
         </i>
       </header>
       <main className={s.cardMain}>
-        <h2 className={s.title}>{name}</h2>
+        <h2 className={s.title}>{sliceTextCompleted(name)}</h2>
         <div className={s.date_fire_container}>
           {dateFormate}
           {isActiveFireIcon && isFireIconOn && <FireSvg className={s.fire} />}

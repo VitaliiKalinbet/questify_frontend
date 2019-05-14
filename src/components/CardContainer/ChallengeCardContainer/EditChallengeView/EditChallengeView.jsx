@@ -35,6 +35,21 @@ const methods = {
   }
 };
 
+const PickerInput = (props, openCalendar, closeCalendar) => {
+  console.log(props);
+  function clear() {
+    props.onChange({ target: { value: '' } });
+  }
+  return (
+    <div>
+      <input {...props} />
+      <button onClick={openCalendar} className={s.pickerIcon}>
+        <CalendarIcon className={s.calendarIcon} />
+      </button>
+    </div>
+  );
+};
+
 const EditChallengeView = ({
   isDeleteModalOpen,
   toggleDeleteModal,
@@ -74,15 +89,16 @@ const EditChallengeView = ({
       <main className={s.cardMain}>
         <h4 className={s.challangeTitle}>challenge</h4>
         <h2 className={s.title}>{name}</h2>
-        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
+        <div className={s.dateTimeContainer}>
           <Datetime
             closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
+            onFocus={toggleIsOpenCalendar}
+            renderInput={PickerInput}
           />
-          <CalendarIcon className={s.calendarIcon} />
         </div>
       </main>
       <footer className={s.cardFooter}>

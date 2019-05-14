@@ -81,8 +81,17 @@
   font-family: 'HelveticaNeueCyr', sans-serif;
   font-size: 23px;
   font-weight: bold;
-  line-height: 28px;
   margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 28px;     /* fallback */
+  max-height: 56px;
+  display: block;    /* fallback */
+  -webkit-line-clamp: 2; /* number of lines to show */
+  /* -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto; */
+  hyphens: auto;
 }
 
 .date {

@@ -14,6 +14,20 @@ import dropDownArrow from '../../../../assets/images/icons/drop-down-arrow.png';
 import CalendarIcon from '../../../../assets/images/icons/calendarSvg/CalendarSvg';
 import CloseSvg from '../../../../assets/images/icons/closeSvg/CloseSvg';
 
+const PickerInput = (props, openCalendar, closeCalendar) => {
+  function clear() {
+    props.onChange({ target: { value: '' } });
+  }
+  return (
+    <div>
+      <input {...props} />
+      <button onClick={openCalendar} className={s.pickerIcon}>
+        <CalendarIcon className={s.calendarIcon} />
+      </button>
+    </div>
+  );
+};
+
 const NewQuestView = ({
   difficulty,
   dueDate,
@@ -65,15 +79,16 @@ const NewQuestView = ({
           value={name}
           placeholder="Enter quest name"
         />
-        <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
+        <div className={s.dateTimeContainer}>
           <Datetime
-            closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
+            onFocus={toggleIsOpenCalendar}
+            locale={window.navigator.language}
+            renderInput={PickerInput}
           />
-          <CalendarIcon className={s.calendarIcon} />
         </div>
       </main>
       <footer className={s.cardFooter}>

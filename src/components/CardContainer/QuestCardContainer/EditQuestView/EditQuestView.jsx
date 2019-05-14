@@ -37,6 +37,20 @@ const methods = {
   }
 };
 
+const PickerInput = (props, openCalendar, closeCalendar) => {
+  function clear() {
+    props.onChange({ target: { value: '' } });
+  }
+  return (
+    <div>
+      <input {...props} />
+      <button onClick={openCalendar} className={s.pickerIcon}>
+        <CalendarIcon className={s.calendarIcon} />
+      </button>
+    </div>
+  );
+};
+
 const EditQuestView = ({
   difficulty,
   dueDate,
@@ -99,7 +113,8 @@ const EditQuestView = ({
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
             onFocus={toggleIsOpenCalendar}
-            children={<CalendarIcon className={s.calendarIcon} />}
+            locale={window.navigator.language}
+            renderInput={PickerInput}
           />
         </div>
       </main>

@@ -61,8 +61,6 @@
 
 .dateTimeContainer {
   position: relative;
-  display: flex;
-  align-items: center;
   cursor: pointer;
 }
 
@@ -79,12 +77,32 @@
 
 .dateTimeContainer>div>div {
   top: 30px;
-  left: -20px;
+  left: -35px;
+}
+
+.dateTimeContainer > div > div > div {
+  display: flex;
+  justify-content: center;
 }
 
 .calendarIcon {
+  width: 16px;
+  height: auto;
   fill: #00d7ff;
   cursor: pointer;
+}
+
+.pickerIcon {
+  width: 16px;
+  height: auto;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .title {
@@ -127,14 +145,26 @@
   cursor: pointer;
 }
 
+.saveSvg:hover {
+  fill: #47aad5;
+}
+
 .closeSvg {
   fill: #da0837;
   cursor: pointer;
 }
 
+.closeSvg:hover {
+  fill: #c2273d;
+}
+
 .doneSvg {
   fill: #24d40c;
   cursor: pointer;
+}
+
+.doneSvg:hover {
+  fill: #439945;
 }
 
 .strip {
