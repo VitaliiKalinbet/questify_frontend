@@ -36,3 +36,14 @@
     height: 90px;
   }
 }
+
+@media (min-width: 1920px) {
+  .header {
+    max-width: 1764px;
+    height: 110px;
+  }
+
+  .logostyle {
+    width: 10rem;
+  }
+}

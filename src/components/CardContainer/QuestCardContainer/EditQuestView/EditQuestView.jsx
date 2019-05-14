@@ -92,11 +92,11 @@ const EditQuestView = ({
         />
         <div className={s.dateTimeContainer} onClick={toggleIsOpenCalendar}>
           <Datetime
-            closeOnSelect
             dateFormat="DD.MM.YYYY"
             onChange={handleChangeDueDate}
             defaultValue={moment(dueDate)}
             open={isOpenCalendar}
+            disableCloseOnClickOutside
           />
           <CalendarIcon className={s.calendarIcon} />
         </div>

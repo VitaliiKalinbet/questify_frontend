@@ -110,3 +110,17 @@
     margin: 0 0 30px 0;
   }
 }
+
+@media (min-width: 1920px) {
+  .card {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(3n) {
+    margin: 0 86px 30px 0;
+  }
+
+  .card:nth-child(5n) {
+    margin: 0 0 30px 0;
+  }
+}

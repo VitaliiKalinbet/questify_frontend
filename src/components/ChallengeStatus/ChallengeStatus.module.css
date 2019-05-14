@@ -66,8 +66,18 @@
 
   .challendgeTrue,
   .challendgeFalse {
-    width: 45px;
-    height: 45px;
+    width: 65px;
+    height: 65px;
     margin-right: 35px;
+  }
+
+  .trophyActive {
+    width: 20px;
+    height: 20px;
+  }
+
+  .trophyNoActive {
+    width: 20px;
+    height: 20px;
   }
 }

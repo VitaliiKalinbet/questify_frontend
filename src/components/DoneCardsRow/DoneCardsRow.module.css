@@ -77,3 +77,9 @@
     background-color: #f2f3f7;
   }
 }
+
+@media (min-width: 1920px) {
+  .section {
+    max-width: 1764px;
+  }
+}
