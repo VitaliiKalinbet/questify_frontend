@@ -54,7 +54,7 @@
   margin: 0;
   margin-top: 22px;
   padding: 4px 8px;
-  width: 178px;
+  width: 250px;
   text-align: center;
   font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 20px;
@@ -65,6 +65,11 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+/* .login__input::placeholder {
+  font-family: "HelveticaNeueCyrBold", sans-serif;
+  font-size: 22px;
+} */
 
 .login__input:focus {
   outline: none;

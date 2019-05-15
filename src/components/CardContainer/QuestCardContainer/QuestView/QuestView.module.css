@@ -49,8 +49,8 @@
   width: 22px;
   height: 21px;
   fill: #00d7ff;
-  -webkit-filter: drop-shadow( 0px 5px 7px rgba(0, 215, 255, 0.25));
-  filter: drop-shadow( 0px 5px 7px rgba(0, 215, 255, 0.25));
+  -webkit-filter: drop-shadow(0px 5px 7px rgba(0, 215, 255, 0.25));
+  filter: drop-shadow(0px 5px 7px rgba(0, 215, 255, 0.25));
 }
 
 .starActive svg {
@@ -78,16 +78,19 @@
 .title {
   width: 250px;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 23px;
   font-weight: bold;
   margin-bottom: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 28px;     /* fallback */
+  line-height: 28px;
+  /* fallback */
   max-height: 56px;
-  display: block;    /* fallback */
-  -webkit-line-clamp: 2; /* number of lines to show */
+  display: block;
+  /* fallback */
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
   /* -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto; */
@@ -95,7 +98,7 @@
 }
 
 .date {
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   color: #b9c3c8;
   margin: 0;
   text-align: center;

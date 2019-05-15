@@ -49,7 +49,8 @@ const NewQuestView = ({
   onDelete,
   toggleIsOpenCalendar,
   isOpenCalendar,
-  isQuest
+  isQuest,
+  isNameQuestWrite
 }) => {
   return (
     <div
@@ -105,6 +106,7 @@ const NewQuestView = ({
           <div className={s.strip} />
           <p className={s.start} onClick={handleAddQuest}>
             start
+            {isNameQuestWrite ? null : <span className={s.hint}>Enter quest name!</span>}
           </p>
         </div>
       </footer>
@@ -115,6 +117,7 @@ const NewQuestView = ({
 };
 
 NewQuestView.propTypes = {
+  isNameQuestWrite: PropTypes.bool.isRequired,
   isQuest: PropTypes.bool.isRequired,
   isOpenCalendar: PropTypes.bool.isRequired,
   toggleIsOpenCalendar: PropTypes.func.isRequired,

@@ -31,7 +31,8 @@ class QuestCardContainer extends Component {
     isCompletedModalOpen: false,
     isFireIconOn: false,
     _id: this.props.task._id || newId(),
-    isOpenCalendar: false
+    isOpenCalendar: false,
+    isNameQuestWrite: true
   };
 
   componentDidMount() {
@@ -163,7 +164,15 @@ class QuestCardContainer extends Component {
   };
 
   handleAddQuest = () => {
-    if (this.state.name.length < 3) return;
+    if (this.state.name.length < 3) {
+      this.setState({
+        isNameQuestWrite: false
+      });
+      return;
+    }
+    this.setState({
+      isNameQuestWrite: true
+    });
     const { addQuest, finishAddMode, userId, startEditMode } = this.props;
     const { questFromProp, updatedFields } = this.handleReturnOldAndNewQuest();
 
@@ -233,7 +242,8 @@ class QuestCardContainer extends Component {
       isDeleteModalOpen,
       isCompletedModalOpen,
       isFireIconOn,
-      isOpenCalendar
+      isOpenCalendar,
+      isNameQuestWrite
     } = this.state;
     const { addMode, finishAddMode, name: categoryName, userId } = this.props;
     const { isQuest } = this.props.task;
@@ -282,6 +292,7 @@ class QuestCardContainer extends Component {
         )}
         {addMode && mode === 'newQuest' && (
           <NewQuestView
+            isNameQuestWrite={isNameQuestWrite}
             isQuest={isQuest}
             isOpenCalendar={isOpenCalendar}
             toggleIsOpenCalendar={this.toggleIsOpenCalendar}

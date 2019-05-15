@@ -1,6 +1,6 @@
 .groupContainer {
   text-transform: uppercase;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 11px;
   height: 30px;
   line-height: 30px;
@@ -22,7 +22,7 @@
 }
 
 .listItem {
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 11px;
   line-height: 20px;
   color: rgba(182, 196, 202, 255);

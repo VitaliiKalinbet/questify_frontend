@@ -59,7 +59,7 @@
   fill: #00d7ff;
   width: 20px;
   height: 20px;
-  filter: drop-shadow( 0 6px 8px rgba(0, 215, 255, 0.5));
+  filter: drop-shadow(0 6px 8px rgba(0, 215, 255, 0.5));
 }
 
 .dateTimeContainer {
@@ -72,7 +72,7 @@
   border: none;
   outline: none;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 15px;
   color: #b9c3c8;
   cursor: pointer;
@@ -80,7 +80,7 @@
 }
 
 .date {
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   color: #b9c3c8;
   margin: 0;
   text-align: center;
@@ -103,7 +103,7 @@
 .title {
   width: 260px;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -113,7 +113,7 @@
 .challangeTitle {
   text-transform: uppercase;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -149,7 +149,7 @@
 .start {
   text-transform: uppercase;
   color: #00d7ff;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 18px;
 }
 
