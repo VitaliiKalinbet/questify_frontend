@@ -1,7 +1,7 @@
 .DifficultyEasy,
 .DifficultyNormal,
 .DifficultyHard {
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 15px;
   color: rgba(182, 196, 202, 255);
 }
@@ -53,10 +53,8 @@
   background-color: rgb(66, 79, 138);
 }
 
-
-
 .listItem {
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 15px;
   line-height: 25px;
   color: rgba(182, 196, 202, 255);

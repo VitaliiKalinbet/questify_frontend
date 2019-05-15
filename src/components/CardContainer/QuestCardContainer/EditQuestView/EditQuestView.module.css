@@ -86,38 +86,31 @@
   border: none;
   outline: none;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrRoman", sans-serif;
   font-size: 15px;
   color: #b9c3c8;
   cursor: pointer;
 }
 
-.dateTimeContainer > div > div {
+.dateTimeContainer>div>div {
   top: 30px;
-  left: -47px;
+  left: -35px;
 }
 
+/*
 @media (min-width: 960px) {
-  .dateTimeContainer > div > div {
-    left: -35px;
+  .dateTimeContainer>div>div {
+    left: -25px;
   }
 }
 
 @media (min-width: 1023px) {
-  .dateTimeContainer > div > div {
+  .dateTimeContainer>div>div {
     left: -35px;
   }
-}
+} */
 
-@media (min-width: 1200) {
-
-}
-
-@media (min-width: 1920) {
-
-}
-
-.dateTimeContainer > div > div > div {
+.dateTimeContainer>div>div>div {
   display: flex;
   justify-content: center;
 }
@@ -145,7 +138,7 @@
 .title {
   width: 250px;
   text-align: center;
-  font-family: 'HelveticaNeueCyr', sans-serif;
+  font-family: "HelveticaNeueCyrBold", sans-serif;
   font-size: 23px;
   font-weight: bold;
   line-height: 28px;

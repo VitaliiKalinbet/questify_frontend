@@ -13,6 +13,7 @@ const Logout = ({ exit }) => (
     }}
   >
     <IconLogout />
+    <p className={styles.hint}>Log out</p>
   </button>
 );
 

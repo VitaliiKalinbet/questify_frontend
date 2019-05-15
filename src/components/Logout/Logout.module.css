@@ -13,6 +13,7 @@
   padding: 0;
   border-radius: 50%;
   background-color: transparent;
+  position: relative;
 }
 
 .button svg {
@@ -29,6 +30,20 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.hint {
+  display: none;
+  position: absolute;
+  width: 170px;
+  font-family: "HelveticaNeueCyrLight", sans-serif;
+  font-size: 12px;
+  color: white;
+  top: 25px;
+}
+
+.button:hover .hint {
+  display: block;
 }
 
 @media (min-width: 768px) {
