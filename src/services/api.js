@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://questify.vbguard.dev/api';
+axios.defaults.baseURL = 'https://questify.goit.co.ua/api';
 // axios.defaults.baseURL = 'http://localhost:5000/api';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -12,9 +12,8 @@ export const fetchUpdateQuest = ({ updateFields, questId }) => axios.put(`/quest
 
 export const fetchDeleteQuest = questId => axios.delete(`/quests/${questId}`);
 
-export const fetchUpdateChallenge = ({ challengeId, updateFields, userId }) => axios.put(`/challenges/${challengeId}`, {updateFields, userId});
-
-
+export const fetchUpdateChallenge = ({ challengeId, updateFields, userId }) =>
+  axios.put(`/challenges/${challengeId}`, { updateFields, userId });
 
 export default {
   fetchUser,
